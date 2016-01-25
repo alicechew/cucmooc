@@ -1,0 +1,6 @@
+.item-panel{
+    height:360px;
+}
+.item-pic{position:relative;}
+.item-tit{height:50px;line-height: 50px;}
+.carousel-indicators{bottom:0px;}
