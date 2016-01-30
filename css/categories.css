@@ -1,0 +1,88 @@
+
+.categories{
+    border:1px solid #F0F0F0;
+}
+ul.tab{
+    margin-bottom:0;
+}
+.tab .title{
+    font-weight: 700;
+}
+.tab li{
+    float:left;
+    width:80px;
+    height:50px;
+    line-height: 50px;
+    text-align: center;
+}
+
+.tab li a{
+    display:block;
+}
+.tab .cur{
+    color:#14BE85;
+}
+.tab li a:hover{
+    color:#14BE85;
+    text-decoration: none;
+}
+
+.form-control{
+    height:45px;
+}
+.sort-title{
+    margin:0;
+    height:50px;
+    line-height: 50px;
+    padding-left:40px;
+}
+.sort-nav{
+
+}
+.sort-nav a,.sort-nav span{
+    height:50px;
+    line-height: 50px;
+}
+.sort-nav a{
+    display:block;
+    width:100px;
+    height:30px;
+    margin-top:10px;
+    line-height: 30px;
+    border:1px solid #14BE85;
+    text-align: center;
+    border-radius:3px;
+}
+
+.sort-nav a:link,.sort-nav a:visited,.sort-nav a:hover,.sort-nav a:focus{
+    text-decoration: none;
+}
+.sort-nav a:hover{
+    color:#14BE85;
+}
+.sort-nav a.cur:hover{
+    color:#fff;
+}
+
+.sort-nav .cur{
+    background-color: #14BE85;
+    color:#fff;
+}
+
+.pagination{
+    width:100%;
+    margin:0 auto;
+    text-align: center;
+}
+
+.pagination li{
+    display: inline-block;
+}
+
+.item-tit{
+    line-height: 30px;
+}
+
+.item-desc{
+    height: 40px;
+}

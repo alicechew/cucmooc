@@ -1,7 +1,9 @@
 body {
     padding-top: 50px;
 }
-
+ul,li{
+    list-style: none;
+}
 a {
     color: #363f44;
     text-decoration: none;
@@ -11,7 +13,7 @@ a {
 .wrap {
     min-height: 100%;
     height: auto;
-    background-color: #EDF1F2;
+    /*background-color: #EDF1F2;*/
 }
 
 .navbar {
@@ -86,4 +88,9 @@ a {
 
 .font-bold {
     font-weight: 700;
+}
+
+.col-centered{
+    float:none;
+    margin:0 auto;
 }
