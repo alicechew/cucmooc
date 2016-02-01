@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>主页</title>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/course.css">
+</head>
+
+<body class="course">
+    <div class="wrap">
+        <header class="navbar navbar-fixed-top box-shadow">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav_collapse" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">CUCMOOC</a>
+                </div>
+                <div id="nav_collapse" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">主页</a></li>
+                        <li><a href="#">课程分类</a></li>
+                        <li><a href="#">关于</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <div class="m-t-sm">
+                                <a href="#" class="btn btn-default btn-sm">登录</a>
+                                <a href="#" class="btn btn-sm btn-success m-l-sm"><strong>注册</strong></a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+        <div class="main-content">
+            <div class="m-t-lg"></div>
+            <div class="container">
+                <div class="row breadcrumbs">
+                    <a href="#">课程分类</a><span> > </span><a href="#">分类A</a><span> > </span><a class="cur" href="#">JavaScript入门</a>
+                </div>
+                <!-- 课程介绍 -->
+                <div class="row course-header">
+                    <div class="pic col-md-5 col-xs-12">
+                        <img src="https://www.codester.com/static//uploads/items/1469/preview.jpg" alt="">
+                    </div>
+                    <div class="info col-md-7 col-xs-12">
+                        <h2 class="title">JavaScript入门</h2>
+                        <p class="desc">课程描述：课程描述课程描述课程描述课程描述课程描述课程描述课程描述课程描述课程描述课程描述。JavaScript是一种基于对象(Object)和事件驱动(Event Driven)并具有安全性能的脚本语言。</p>
+                        <div class="operation">
+                            <a h ref="#" class="btn btn-success btn-join">订阅课程</a>
+                            <a href="#" class="btn btn-star m-l-sm">收藏<span class="glyphicon glyphicon-star-empty"></span></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-t-lg"></div>
+                <div class="row course-body">
+                <!-- 课程知识点 -->
+                <div class="course-point">
+                    <h3 class="m-l-md title">知识点</h3>
+                    <!-- 知识点动态生成，此处先占位 -->
+                    <div class="knowledge-point">
+                        <ul>
+                            <li><a href="#">知识点1</a></li>
+                            <li><a href="#">知识点2</a></li>
+                        </ul>
+                    </div>
+                    <div class="m-t-md more">
+                        <a href="#" class="btn btn-more">查看更多</a>
+                    </div>
+                </div>
+                <!-- 学习轨迹 -->
+                <div class="course-route">
+                    <h3 class="m-l-md title">学习轨迹</h3>
+                </div>
+                </div>
+            </div>
+            <input id="js_isjoin" type="hidden" value="false">
+        </div>
+    </div>
+    <script src="../js/lib/jquery-2.1.4.min.js"></script>
+    <script src="../js/lib/bootstrap.js"></script>
+</body>
+
+</html>
