@@ -10,6 +10,9 @@ a {
     cursor: pointer;
 }
 
+h3{
+    margin:0;
+}
 .wrap {
     min-height: 100%;
     height: auto;
@@ -79,9 +82,9 @@ a {
 
 
 /*font*/
-.text-center{
+/*.text-center{
     text-align: center;
-}
+}*/
 .text-md {
     font-size: 16px;
 }
@@ -96,6 +99,10 @@ a {
 }
 
 /*breadcrumbs*/
+.breadcrumbs{
+    height: 30px;
+    line-height: 30px;
+}
 .breadcrumbs .cur{
     color:#14BE85;
 }

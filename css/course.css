@@ -1,10 +1,7 @@
 .course{
-    background: #EDF1F2;
+    background-color: #EDF1F2;
 }
-.breadcrumbs{
-    height: 30px;
-    line-height: 30px;
-}
+
 .course-header{
     padding:15px 0px;
     background-color: #fff;

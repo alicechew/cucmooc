@@ -1,0 +1,78 @@
+.knowledge-point{
+    background-color: #EDF1F2;;
+}
+.point-header,.point-nav{
+    background-color: #fff;
+}
+.point-header .title{
+    font-weight: 700;
+    border-left:4px solid #4cae4c;
+    padding-left: 20px;
+}
+
+.point-header .desc{
+    padding: 10px 20px;
+}
+
+.point-nav{
+    padding:0;
+    margin-left: -15px;
+    border:1px solid #dbdbdb;
+}
+.point-nav .tab{
+    display:block;
+    height:80px;
+    line-height: 80px;
+    text-align: center;
+}
+
+.point-cont{
+    padding:20px 10px;
+    background-color: #fff;
+}
+
+.point-cont .title{
+    margin:10px;
+    padding-left:10px;
+    font-size: 20px;
+    font-weight: 700;
+    height: 30px;
+    line-height: 30px;
+    border-left: 4px solid #4cae4c;
+}
+
+.point-cont img{
+    width:100%;
+    height:115px;
+}
+
+.point-cont .row{
+    margin:0;
+}
+.point-cont .more{
+    margin-top:6px;
+    margin-right:10px;
+}
+
+.item-tit{
+    height:30px;
+    line-height: 30px;
+}
+
+.item-teacher,.item-meta{
+    font-size: 14px;
+    color:#999;
+}
+
+.source-other .source-list{
+    width:95%;
+}
+.source-other .item{
+    height:50px;
+    border-bottom:1px solid #dee5e7;
+}
+.source-other .item a{
+    height:50px;
+    line-height: 50px;
+}
+
