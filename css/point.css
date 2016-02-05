@@ -17,14 +17,42 @@
 .point-nav{
     padding:0;
     margin-left: -15px;
-    border:1px solid #dbdbdb;
+    /*border:1px solid #dbdbdb;*/
+}
+
+.point-nav li{
+    position: relative;
 }
 .point-nav .tab{
     display:block;
     height:80px;
     line-height: 80px;
     text-align: center;
+    border-bottom:1px solid #dee5e7;
+    font-size: 18px;
 }
+
+.point-nav .cur a{
+    background-color: #4cae4c;
+    color:#fff;
+}
+
+.point-nav .cur-bg{
+    position:absolute;
+    top:34px;
+    right:23px;
+    visibility: hidden;
+}
+
+.point-nav li:hover .cur-bg{
+    visibility: visible;
+    color:#4cae4c;
+}
+.point-nav .cur .cur-bg,.point-nav .cur:hover .cur-bg{
+    visibility: visible;
+    color:#fff;
+}
+
 
 .point-cont{
     padding:20px 10px;
