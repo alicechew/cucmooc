@@ -69,15 +69,7 @@ ul.tab{
     color:#fff;
 }
 
-.pagination{
-    width:100%;
-    margin:0 auto;
-    text-align: center;
-}
 
-.pagination li{
-    display: inline-block;
-}
 
 .item-tit{
     line-height: 30px;

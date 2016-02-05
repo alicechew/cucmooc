@@ -106,3 +106,14 @@ h3{
 .breadcrumbs .cur{
     color:#14BE85;
 }
+
+/*pagination*/
+.pagination{
+    width:100%;
+    margin:0 auto;
+    text-align: center;
+}
+
+.pagination li{
+    display: inline-block;
+}
