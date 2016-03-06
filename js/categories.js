@@ -29,4 +29,30 @@
         .always(function() {
             console.log("complete");
         });
+
+    // 提交搜索关键字
+    var searchModule = (function(){
+        var searchInputEl = $('#js_searchInput'),
+            btnSubmit = $('#js_searchSubmit'),
+            searchText;
+
+        btnSubmit.on('click', null, function(event) {
+            searchText = searchInputEl.val();
+            $.ajax({
+                url: '/path/to/file',
+                type: 'GET',
+                data: {searchText: searchText}
+            })
+            .done(function(result) {
+                console.log("result");
+            })
+            .fail(function() {
+                console.log("error");
+            })
+            .always(function() {
+                console.log("complete");
+            });
+
+        });
+    })();
 })();
