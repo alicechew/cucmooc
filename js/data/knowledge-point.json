@@ -1,0 +1,26 @@
+[{
+    "courseId":"001",
+    "courseName":"JavaScript入门",
+    "KnowledgePoint":[
+    {
+        "pointId":"001001",
+        "pointLevel":1,
+        "pointTitle":"对象 Object"
+    },
+    {
+        "pointId":"001002",
+        "pointLevel":1,
+        "pointTitle":"标准类型"
+    },
+    {
+        "pointId":"001002001",
+        "pointLevel":2,
+        "pointTitle":"Undefined"
+    },
+    {
+        "pointId":"001002002",
+        "pointLevel":2,
+        "pointTitle":"Boolean"
+    }
+    ]
+}]

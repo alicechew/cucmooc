@@ -1,59 +1,124 @@
-.course{
+.course {
     background-color: #EDF1F2;
 }
 
-.course-header{
-    padding:15px 0px;
+.course-header {
+    padding: 15px 0px;
     background-color: #fff;
 }
-.course-header img{
-    width:100%;
+
+.course-header img {
+    width: 100%;
 }
 
-.course-header .desc{
+.course-header .desc {
     line-height: 1.5;
 }
 
-.operation{
-    margin-top:90px;
+.operation {
+    margin-top: 90px;
 }
-.btn-join,.btn-star{
-    width:100px;
+
+.btn-join,
+.btn-star {
+    width: 100px;
 }
-.btn-star{
-    border:1px solid;
+
+.btn-star {
+    border: 1px solid;
 }
-.btn-star .glyphicon-star-empty{
-    margin-left:5px;
+
+.btn-star .glyphicon-star-empty {
+    margin-left: 5px;
     font-size: 18px;
     vertical-align: -3px;
 }
-.btn-star:hover{
-    border:1px solid #4cae4c;
-    color:#4cae4c;
+
+.btn-star:hover {
+    border: 1px solid #4cae4c;
+    color: #4cae4c;
 }
 
-.course-body{
+.course-body {
     background-color: #fff;
 }
-.course-body .title{
+
+.course-body .title {
     font-weight: 700;
-    border-left:4px solid #4cae4c;
+    border-left: 4px solid #4cae4c;
     padding-left: 20px;
 }
 
-.course-point .more{
-    width:100%;
+.course-point .more {
+    width: 100%;
     text-align: center;
 }
-.course-point .btn-more{
-    padding:0;
+
+.course-point .btn-more {
+    padding: 0;
     height: 40px;
-    width:300px;
+    width: 300px;
     line-height: 40px;
-    border:1px solid #333;
+    border: 1px solid #333;
 }
-.course-point .btn-more:hover{
-    color:#4cae4c;
+
+.course-point .btn-more:hover {
+    color: #4cae4c;
     border: 1px solid #4cae4c;
 }
+
+
+/* knowledge-point */
+.knowledge-point {
+    margin-left: 50px;
+    line-height: 25px;
+    min-height: 300px;
+    font-size: 16px;
+}
+.knowledge-point ul{ padding: 0;}
+
+.point-btn {
+    position: relative;
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    margin-left: -15px;
+    height: 15px;
+    width: 15px;
+    -moz-transition: 0.3s;
+    -o-transition: 0.3s;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.bar,.bar2{
+    position: absolute;
+    top: 3px;
+    height: 7px;
+    width: 7px;
+    background: none;
+    border-bottom: 1px solid #626262;
+    border-right: 1px solid #626262;
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    -moz-transition: 0.4s;
+    -o-transition: 0.4s;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+}
+
+.open-bar {
+    -moz-transform: rotate(225deg);
+    -ms-transform: rotate(225deg);
+    -webkit-transform: rotate(225deg);
+    transform: rotate(225deg);
+    transform-origin: 75% 105% 0;
+}
+
+.point-level-1{ margin-left: 10px;}
+.point-level-2{ margin-left: 20px;}
+.point-level-3{ margin-left: 30px;}
+

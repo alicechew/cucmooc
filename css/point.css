@@ -104,3 +104,42 @@
     line-height: 50px;
 }
 
+
+
+/*全部其他资源*/
+.source-other-all .item{
+    position:relative;
+    display:block;
+    height: 80px;
+    padding: 10px;
+}
+.source-other-all .item:hover{
+    color:#4cae4c;
+}
+
+.source-other-all .item-tit{
+    height:35px;
+    line-height: 35px;
+}
+.source-other-all .item-desc{
+    display: inline-block;
+    *display:inline;
+    *zoom:1;
+    width:80%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow:ellipsis;
+}
+.source-other-all .item-more{
+    position: absolute;
+    right:12px;
+    top:20px;
+    display: inline-block;
+    *display:inline;
+    *zoom:1;
+    width:20px;
+    height: 40px;
+    padding:10px 0;
+    /*background-color: red;*/
+    font-size: 20px;
+}
