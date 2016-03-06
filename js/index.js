@@ -6,7 +6,7 @@
 
 
     $.ajax({
-        url: '../js/data/recommend.json',
+        url: '../php/homepage.php',
         type: 'GET',
         dataType: 'json'
     })
