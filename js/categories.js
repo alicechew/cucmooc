@@ -38,6 +38,10 @@
 
         btnSubmit.on('click', null, function(event) {
             searchText = searchInputEl.val();
+            if(!searchText){
+                return;
+            }
+
             $.ajax({
                 url: '/path/to/file',
                 type: 'GET',
