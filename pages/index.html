@@ -12,6 +12,9 @@
 </head>
 
 <body>
+    <!-- 注册弹窗 -->
+    <div class="login-form-popup" id="js_loginFormPopup">
+    </div>
     <div class="wrap">
         <header class="navbar navbar-fixed-top box-shadow">
             <div class="container">
@@ -86,7 +89,21 @@
                 </div>
             </div>
             <div class="container">
+                <div class="your-course">
+                    <div class="row">
+                        <div class="wrapper clearfix">
+                        <h3 class="font-bold pull-left">你的课程</h3>
+                        <!-- <button class="pull-right btn btn-default" href="#">查看更多</button> -->
+                    </div>
+                    <div class="row">
+                        <div class="course-list">
+                            <p>Oops，请先<span id='js_login'>登录</span>查看您参与的课程！</p>
+                        </div>
+                    </div>
+                    </div>
+                </div>
                 <!-- <div class="m-t-md"></div> -->
+                <div class="recommend">
                 <div class="row">
                     <div class="wrapper clearfix">
                         <h3 class="font-bold pull-left">推荐课程</h3>
@@ -183,12 +200,18 @@
                         </div>
                     </div>
                 </div>
+                </div>
             </div>
         </div>
     </div>
+
     <script src="../js/lib/jquery-2.1.4.min.js"></script>
     <script src="../js/lib/bootstrap.js"></script>
+    <script src="../js/widgets/login-module.js"></script>
+
     <script src="../js/index.js"></script>
+
+
 </body>
 
 </html>
