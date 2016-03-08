@@ -7,7 +7,10 @@ requirejs.config({
     paths: {
         widgets: './widgets',
         lib: './lib',
-        jquery: 'lib/jquery-2.1.4.min',
-        bootstrap: 'lib/bootstrap'
+        jquery: './lib/jquery-2.1.4.min',
+        bootstrap: './lib/bootstrap'
+    },
+    shim: {
+        bootstrap: ['jquery']
     }
 });
