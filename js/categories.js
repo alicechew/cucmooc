@@ -44,12 +44,12 @@ requirejs(['jquery', 'bootstrap'],
             }
 
             $.ajax({
-                url: '/path/to/file',
+                url: '../php/categories.php',
                 type: 'GET',
                 data: {searchText: searchText}
             })
             .done(function(result) {
-                console.log("result");
+                console.log(result);
             })
             .fail(function() {
                 console.log("error");
