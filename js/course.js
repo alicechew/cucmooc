@@ -1,4 +1,6 @@
-(function() {
+requirejs(['jquery', 'bootstrap'],
+    function() {
+
     var simData = {
         "courseId": "01",
         "courseName": "JavaScript入门",
@@ -100,4 +102,4 @@
     }
 
 
-})();
+});

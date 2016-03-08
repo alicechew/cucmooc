@@ -1,4 +1,5 @@
-(function() {
+requirejs(['jquery', 'bootstrap'],
+    function() {
 
     String.prototype.temp = function(obj) {
         return this.replace(/\$\w+\$/gi, function(matchs) {
@@ -59,4 +60,4 @@
 
         });
     })();
-})();
+});
