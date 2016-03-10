@@ -70,21 +70,34 @@
                     </ul>
                 </div>
                 <div class="m-t-md"></div>
+                <!-- 搜索 -->
                 <div class="row">
-                    <div class="input-group col-md-6 col-md-offset-3 col-xs-8 col-xs-offset-2 m-t-md">
-                        <input id="js_searchInput" class="form-control" type="text" name="term" placeholder="课程名、知识点">
-                        <span class="input-group-btn">
-                            <button id="js_searchSubmit" type="submit" class="btn btn-lg bg-light">
-                                <i class="glyphicon glyphicon-search"></i>
-                            </button>
-                        </span>
+                    <div class="search form-horizontal col-md-6 col-md-offset-3 col-xs-8 col-xs-offset-2 m-t-md">
+                        <div class="form-group">
+                            <div class="searchType col-md-2 col-xs-3">
+                                <select name="searchType" id="js_searchType" class="form-control">
+                                    <option value="course">课程</option>
+                                    <option value="point">知识点</option>
+                                </select>
+                            </div>
+                            <div class="searchGroup col-md-10 col-xs-9">
+                                <div class="searchInput col-md-10 col-xs-10">
+                                <input id="js_searchInput" class="form-control" type="text" name="term" placeholder="输入关键字">
+                                </div>
+                                <span class="searchSubmit input-group-btn col-md-2 col-xs-2">
+                                    <button id="js_searchSubmit" type="submit" class="btn btn-lg bg-light">
+                                    <i class="glyphicon glyphicon-search"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="m-t-lg"></div>
                 <!-- 课程列表 -->
                 <div class="row">
                     <div class="col-md-5 col-xs-4">
-                        <h3 class="sort-title">课程列表</h3>
+                        <h3 id="js_sortTitle" class="sort-title">课程列表</h3>
                     </div>
                     <div class="sort-nav col-md-7 col-xs-8 clearfix">
                         <a class="m-l-sm pull-right" href="#">最新</a>
@@ -92,28 +105,29 @@
                         <span class="pull-right">排序：</span>
                     </div>
                 </div>
+                <div class="row text-center m-t-md" id="js_searchNotice">对不起，没有搜索到您要的结果！</div>
+
                 <div class="m-t-sm"></div>
                 <!-- html模板 -->
                 <textarea id="js_template" cols="30" rows="10" style="display:none">
                     <div class="col-md-3 col-xs-6">
-                            <div class="item-panel panel b-a">
-                                <div class="item-pic">
-                                    <a href="#"><img src="$imgSrc$" class="img-full" alt=""></a>
-                                </div>
-                                <div class="item-tit text-center font-bold text-md">
-                                    <a href="#">$courseName$</a>
-                                </div>
-                                <div class="item-desc m-l-sm m-r-sm">
-                                    <div class="text-center">$courseDesc$</div>
-                                </div>
+                        <div class="item-panel panel b-a">
+                            <div class="item-pic">
+                                <a href="#"><img src="$imgSrc$" class="img-full" alt=""></a>
+                            </div>
+                            <div class="item-tit text-center font-bold text-md">
+                                <a href="#">$courseName$</a>
+                            </div>
+                            <div class="item-desc m-l-sm m-r-sm">
+                                <div class="text-center">$courseDesc$</div>
                             </div>
                         </div>
+                    </div>
                 </textarea>
-                <div class="course-list">
-
+                <div class="course-list clearfix">
                 </div>
                 <div class="row text-center">
-                    <ul id="pagetest">
+                    <ul id="js_paginator">
                     </ul>
                 </div>
             </div>
@@ -121,7 +135,6 @@
     </div>
     <script data-main="../js/categories" src="../js/lib/require.js"></script>
     <script src="../js/config.js"></script>
-
 </body>
 
 </html>

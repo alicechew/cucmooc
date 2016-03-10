@@ -27,9 +27,28 @@ ul.tab{
     text-decoration: none;
 }
 
-.form-control{
+
+/*search*/
+.search .form-control{
     height:45px;
 }
+
+.search .searchType,.search .searchInput,.search .searchSubmit,.search .searchGroup
+{padding:0;}
+
+.search .searchType select{
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.search .searchInput input{
+    border-left: 0;
+    border-radius:0;
+}
+
+
+
+/*sort*/
 .sort-title{
     margin:0;
     height:50px;

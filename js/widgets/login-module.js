@@ -8,9 +8,16 @@ define(function() {
              + '<div class="mount-node">'
              + '<div class="container login-container">'
              + '<h3 class="login-title">登录</h3>'
-             + '<form id="js_login" action="" method="POST"><div class="row form-item m-b-lg"><div class="form-field col-md-12"><input type="text" id="js_usernameInput" class="form-control" name="username" placeholder="Input your username"></div></div>'
-             + '<div class="row form-item m-b-lg"><div class="form-field col-md-12"><input type="password" id="js_pswdInput" class="form-control" name="password" placeholder="Choose a password"></div></div>'
-             + '<div class="row form-item"><div class="form-action col-md-12"><button type="submit" id="js_btnSubmitLogin" class=" btn-login m-b-md">登录</button></div></div>'
+             + '<form id="js_login" action="" method="POST">'
+             + '<div class="form-group m-b-md">'
+             + '<label for="js_usernameInput">用户名</label>'
+             + '<input type="text" id="js_usernameInput" class="form-control" name="username" placeholder="Input your username">'
+             + '</div>'
+             + '<div class="form-group m-b-md">'
+             + '<label for="js_pswdInput">密码</label>'
+             + '<input type="password" id="js_pswdInput" class="form-control" name="password" placeholder="Choose a password">'
+             + '</div>'
+             + '<div class="form-group"><div class="form-action col-md-12"><button type="submit" id="js_btnSubmitLogin" class=" btn-login m-b-md">登录</button></div></div>'
              + '</form></div></div>';
 
         btnLogin.on('click', null, function(event) {
