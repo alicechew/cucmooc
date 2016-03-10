@@ -112,7 +112,7 @@ h3{
 }
 
 /*pagination*/
-.pagination{
+/*.pagination{
     width:100%;
     margin:0 auto;
     text-align: center;
@@ -120,7 +120,7 @@ h3{
 
 .pagination li{
     display: inline-block;
-}
+}*/
 
 
 /*login popup*/

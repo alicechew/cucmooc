@@ -77,4 +77,9 @@ ul.tab{
 
 .item-desc{
     height: 40px;
+    overflow: hidden;
+}
+.item-pic{
+    width: 263px;
+    height: 132px;
 }

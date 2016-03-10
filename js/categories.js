@@ -1,4 +1,4 @@
-requirejs(['jquery', 'bootstrap'],
+requirejs(['jquery', 'bootstrap','paginator'],
     function() {
 
     String.prototype.temp = function(obj) {
@@ -12,17 +12,29 @@ requirejs(['jquery', 'bootstrap'],
         htmlTemp = $('#js_template').val();
 
     $.ajax({
-            url: '../js/data/search.json',
+            url: '../php/categories.php',
             type: 'GET',
             dataType: 'json'
         })
         .done(function(result) {
             console.log("success");
-            //@todo:条目数目处理
-            result.forEach(function(obj) {
-                htmlList += htmlTemp.temp(obj);
-            });
-            $('.course-list').html(htmlList);
+            var container = $('.course-list'),
+                itemPerPage = 8,
+                itemGroup = divideContent(result, itemPerPage),
+                option = {
+                    size: 'normal',
+                    currentPage:1,
+                    totalPages: itemGroup.numOfPage,
+                    bootstrapMajorVersion: 3,   //important！ver2结构为div内直接li
+                    onPageClicked: function(event, originalEvent, type, page){
+                        fillInList(itemGroup.dividedCont[page-1],container);
+                    }
+                };
+
+                $('#pagetest').bootstrapPaginator(option);
+                fillInList(itemGroup.dividedCont[0], container);
+
+
         })
         .fail(function() {
             console.log("error");
@@ -30,6 +42,55 @@ requirejs(['jquery', 'bootstrap'],
         .always(function() {
             console.log("complete");
         });
+
+
+        function divideContent(content, itemPerPage){
+            var $content = $(content),
+                itemCount = $content.length,
+                itemPerPage = itemPerPage,
+                numOfPage = Math.ceil(itemCount / itemPerPage),
+                currentPage = 1,
+                tempGroup = [],
+                result = [];
+
+                console.log('num of page:' + numOfPage);
+                $content.each(function(index, el) {
+                    if (currentPage < numOfPage) {
+                        if(index % itemPerPage < itemPerPage - 1){
+                            // console.log(tempGroup);
+                            tempGroup.push(el);
+                        }else{
+                            tempGroup.push(el);
+                            result.push(tempGroup);
+                            tempGroup = [];
+                            currentPage++;
+                        }
+                    }else{
+                        if(index < itemCount - 1){
+                            tempGroup.push(el);
+                        }else{
+                            tempGroup.push(el);
+                            result.push(tempGroup);
+                        }
+                    }
+
+                });
+
+            return {
+                dividedCont:result,
+                itemCount: itemCount,
+                numOfPage: numOfPage
+            };
+        }
+
+        function fillInList(content, container){
+            htmlList = '';
+            container.html('');
+            $(content).each(function(index, el) {
+                htmlList += htmlTemp.temp(el);
+            });
+            container.html(htmlList);
+        }
 
     // 提交搜索关键字
     var searchModule = (function(){

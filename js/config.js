@@ -8,9 +8,11 @@ requirejs.config({
         widgets: './widgets',
         lib: './lib',
         jquery: './lib/jquery-2.1.4.min',
-        bootstrap: './lib/bootstrap'
+        bootstrap: './lib/bootstrap',
+        paginator: './lib/bootstrap-paginator'
     },
     shim: {
-        bootstrap: ['jquery']
+        bootstrap: ['jquery'],
+        paginator: ['bootstrap']
     }
 });
