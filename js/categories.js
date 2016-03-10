@@ -11,7 +11,23 @@ requirejs(['jquery', 'bootstrap', 'paginator'],
 
         var listSource = function(ifSearch, searchType, searchText) {
             var htmlList = '',
-                htmlTemp = $('#js_template').val();
+                htmlTemp,
+                itemName = searchType + 'Name',
+                itemDesc = searchType + 'Desc';
+
+                htmlTemp = '<div class="col-md-3 col-xs-6">'
+                        + '<div class="item-panel panel b-a">'
+                        +    '<div class="item-pic">'
+                        +       '<a href="#"><img src="$imgSrc$" class="img-full" alt=""></a>'
+                        +   '</div>'
+                        +    '<div class="item-tit text-center font-bold text-md">'
+                        +       '<a href="#">$' + itemName + '$</a>'
+                        +   '</div>'
+                        +   '<div class="item-desc m-l-sm m-r-sm">'
+                        +      '<div class="text-center">$' + itemDesc + '$</div>'
+                        +   '</div>'
+                        +   '</div>'
+                        + '</div>';
 
             $.ajax({
                     url: '../php/categories.php',
