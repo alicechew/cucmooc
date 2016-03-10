@@ -8,7 +8,12 @@ requirejs(['jquery', 'bootstrap', 'paginator'],
             });
         };
 
-
+/**
+ * listSource 填充列表函数
+ * @param  {Boolean} ifSearch  [是否为搜索动作引发的填充列表]
+ * @param  {String} searchType [搜索类型：course|point]
+ * @param  {String} searchText [搜索关键字]
+ */
         var listSource = function(ifSearch, searchType, searchText) {
             var htmlList = '',
                 htmlTemp,
@@ -138,10 +143,23 @@ requirejs(['jquery', 'bootstrap', 'paginator'],
                 searchType,
                 searchText;
 
+                //绑定tooltip
+                searchInputEl.tooltip({
+                        trigger:'manual',
+                        title: '搜索关键字不能为空！',
+                        placement: 'bottom'
+                    });
+
             btnSubmit.on('click', null, function(event) {
                 searchType = searchTypeEl.val();
                 searchText = searchInputEl.val();
+
+                //搜索关键字为空时不发送请求，同时显示tooltip
                 if (!searchText) {
+                    searchInputEl.tooltip('show');
+                    setTimeout(function(){
+                        searchInputEl.tooltip('hide');
+                    },1500);
                     return;
                 }
 
