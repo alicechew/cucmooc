@@ -164,7 +164,7 @@ h3{
     text-align: center;
 }
 
-.btn-login{
+.login-form-popup .btn-login{
     display: block;
     padding:0;
     width:100%;
@@ -177,7 +177,7 @@ h3{
     font-weight: 900;
 }
 
-.btn-login:hover{
+.login-form-popup .btn-login:hover{
     background-color: #fff;
     border: 3px solid #1de09c;
     color: #14BE85;
