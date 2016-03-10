@@ -18,15 +18,18 @@ requirejs(['jquery', 'bootstrap', 'paginator'],
             var htmlList = '',
                 htmlTemp,
                 itemName = searchType + 'Name',
-                itemDesc = searchType + 'Desc';
+                itemDesc = searchType + 'Desc',
+                itemPath = './course.html?',
+                itemId = searchType + 'Id',
+                itemImgSrc = 'itemImgSrc';
 
                 htmlTemp = '<div class="col-md-3 col-xs-6">'
                         + '<div class="item-panel panel b-a">'
                         +    '<div class="item-pic">'
-                        +       '<a href="#"><img src="$imgSrc$" class="img-full" alt=""></a>'
+                        +       '<a href="'+ itemPath + 'courseId=$' + itemId + '$"><img src="$' + itemImgSrc +'$" class="img-full" alt=""></a>'
                         +   '</div>'
                         +    '<div class="item-tit text-center font-bold text-md">'
-                        +       '<a href="#">$' + itemName + '$</a>'
+                        +       '<a href="' + itemPath + 'courseId=$' + itemId + '$">$' + itemName + '$</a>'
                         +   '</div>'
                         +   '<div class="item-desc m-l-sm m-r-sm">'
                         +      '<div class="text-center">$' + itemDesc + '$</div>'

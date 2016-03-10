@@ -1,4 +1,5 @@
 <?php
+require ('init.php');
 
 $loginname = isset($_GET['username'])?$_GET['username']:'';
 $loginpassword = isset($_GET['password'])?$_GET['password']:'';
@@ -6,16 +7,16 @@ $loginpassword = isset($_GET['password'])?$_GET['password']:'';
 header("content-Type:text/html;charset=utf-8");
 session_start();
 
-$con = mysql_connect("localhost:3306", "root", "");
+$con = mysql_connect(DB_HOST, DB_USER, DB_PASSWORD);
 mysql_set_charset("utf8", $con);
 
 if (!$con)
  {
  die('Could not connect: ' . mysql_error());
  }
- mysql_select_db("cucmooc", $con);
+ mysql_select_db(DB_NAME, $con);
 
-$sql = "SELECT * FROM users WHERE user_name='$loginname' and user_password='$loginpassword'";
+$sql = "SELECT * FROM users WHERE userName='$loginname' and userPassword='$loginpassword'";
 
 $res  = mysql_query($sql);
 $rows = mysql_num_rows($res);
