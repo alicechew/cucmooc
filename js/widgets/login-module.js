@@ -1,5 +1,61 @@
 define(function() {
-    var loginPopup = function(btnLogin, loginContainer) {
+    //路径配置
+    var phpPath = '../php/',
+        ifLogin = false;
+        loginContainer = $('#js_loginFormPopup');
+    //验证登录状态
+    var verifyLogin = function(){
+        $.ajax({
+            url: phpPath + 'verify-login.php',
+            type: 'GET',
+            dataType: 'json'
+        })
+        .done(function(result) {
+            console.log("verify login success");
+            console.log(result);
+            changeNavStatus(result.ifLogin,result.username);
+            ifLogin = true;
+        })
+        .fail(function() {
+            console.log("verify login error");
+        })
+        .always(function() {
+            // console.log("complete");
+        });
+
+        function changeNavStatus(ifLogin, username){
+            var loginArea = $('#js_loginButtons'),
+                loginStatus = $('#js_loginStatus'),
+                usernameEl = $('#js_loginStatus_user'),
+                btnLogin = $('#js_btnLogin'),
+                btnLogout = $('#js_btnLogout');
+
+                if(ifLogin != 'false'){
+                    loginArea.hide();
+                    loginStatus.show();
+                    if(username != ''){
+                        usernameEl.text(username);
+                    }
+                }else{
+                    loginStatus.hide();
+                    loginArea.show();
+                }
+
+                // 绑定登录按钮
+                btnLogin.on('click', null, function(event) {
+                   loginPopup(loginContainer);
+                });
+                //绑定登出按钮事件
+                btnLogout.on('click', null, function(event) {
+                    logout();
+                    window.location.reload();
+                });
+        }
+
+    };
+
+    //弹出登录框
+    var loginPopup = function(loginContainer) {
         console.log('login model connected');
 
         var btnClose,
@@ -20,7 +76,6 @@ define(function() {
              + '<div class="form-group"><div class="form-action col-md-12"><button type="submit" id="js_btnSubmitLogin" class=" btn-login m-b-md">登录</button></div></div>'
              + '</form></div></div>';
 
-        btnLogin.on('click', null, function(event) {
 
             loginContainer.html(popupString);
             loginContainer.toggleClass('show');
@@ -46,8 +101,8 @@ define(function() {
                     password = $('#js_pswdInput').val();
 
                 $.ajax({
-                    url: '../php/login.php',
-                    type: 'GET',
+                    url: phpPath + 'login.php',
+                    type: 'POST',
                     dataType: 'json',
                     data: {
                         username: username,
@@ -55,9 +110,10 @@ define(function() {
                     }
                 })
                 .done(function(result) {
-                    console.log("success");
+                    console.log("login success");
                     if(result.status == '200'){
                         console.log('登录成功');
+                        window.location.reload();
                     }else{
                         console.log('登录失败');
                     }
@@ -66,15 +122,41 @@ define(function() {
                     console.log("error");
                 })
                 .always(function(result) {
-                    console.log("complete");
+                    console.log(result);
+                    // console.log("complete");
                 });
 
             });
+
+    };
+
+    //登出
+    var logout = function(){
+        if(!ifLogin){
+            return;
+        }
+
+        $.ajax({
+            url: phpPath + 'logout.php',
+            type: 'GET'
+        })
+        .done(function() {
+            console.log("logout success");
+        })
+        .fail(function() {
+            console.log("error");
+        })
+        .always(function() {
+            // console.log("complete");
         });
+
     };
 
 
     return {
-        loginPopup: loginPopup
+        ifLogin: ifLogin,
+        verifyLogin: verifyLogin,
+        loginPopup: loginPopup,
+        logout: logout
     };
 });

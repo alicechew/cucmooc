@@ -1,11 +1,15 @@
 <?php
 require ('init.php');
-
-$loginname = isset($_GET['username'])?$_GET['username']:'';
-$loginpassword = isset($_GET['password'])?$_GET['password']:'';
-
 header("content-Type:text/html;charset=utf-8");
-session_start();
+
+
+$posts = $_POST;
+//清除空白符号
+foreach( $posts as $key => $value) {
+    $posts[$key] = trim($value);
+}
+$loginpassword = $posts['password'];
+$loginname = $posts['username'];
 
 $con = mysql_connect(DB_HOST, DB_USER, DB_PASSWORD);
 mysql_set_charset("utf8", $con);
@@ -24,12 +28,15 @@ if($rows==0){
 	$arr=array(
 		'status'=>'0'
 	);
-	//mysql_query("INSERT INTO rizhi (content,user) VALUES ('以{$loginname}为用户名登录失败','未知用户')");
 }else{
 	$arr=array(
 		'status'=>'200'
 	);
-	//mysql_query("INSERT INTO rizhi (content,user) VALUES ('用户登录','$loginname')");
+    //验证成功则启动session
+    session_start();
+    //注册登录成功的admin变量并赋值
+    $_SESSION['ifLogin'] = true;
+    $_SESSION['username'] = $loginname;
 }
 
 

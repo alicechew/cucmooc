@@ -34,10 +34,16 @@
                         <li><a href="#">关于</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li>
+                        <li id="js_loginButtons" >
                             <div class="m-t-sm">
-                            <a href="#" class="btn btn-default btn-sm">登录</a>
+                            <a id="js_btnLogin" href="#" class="btn btn-default btn-sm">登录</a>
                             <a href="#" class="btn btn-sm btn-success m-l-sm"><strong>注册</strong></a>
+                            </div>
+                        </li>
+                        <li id="js_loginStatus" style="display:none">
+                            <div class="m-t-sm">
+                            <a id="js_loginStatus_user" href="#" class="btn btn-link">user</a>
+                            <a id="js_btnLogout" href="#" class="btn btn-default btn-sm">登出</a>
                             </div>
                         </li>
                     </ul>
@@ -95,7 +101,7 @@
                         <h3 class="font-bold pull-left">您的课程</h3>
                     </div>
                     <div class="row text-center login-notice">
-                        <p class="font-bold">Oops，请先<span class="btn-login" id='js_login'>登录</span>查看您参与的课程！</p>
+                        <p class="font-bold">Oops，请先<span class="btn-login" id='js_indexLogin'>登录</span>查看您参与的课程！</p>
                     </div>
                     <div class="row">
                         <div class="course-list">
