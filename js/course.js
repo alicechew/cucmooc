@@ -1,5 +1,10 @@
-requirejs(['jquery', 'bootstrap', 'widgets/login-module'],
-    function() {
+requirejs(['jquery', 'bootstrap', 'loginModule'],
+    function(jquery, bootstrap, LoginModule) {
+
+        //验证登录状态
+        LoginModule.verifyLogin();
+        //记录登录状态
+        var ifLogin = LoginModule.ifLogin;
 
         var courseData = {
             "subjectName": 'IT互联网',

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>新用户注册</title>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <style>
+    .cont {
+        width: 500px;
+        min-height: 500px;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #dbdbdb;
+    }
+
+    .tit-brand {
+        color: #ddd;
+        font-size: 30px;
+    }
+
+    .tit-signup {
+        padding: 5px;
+        color: #14BE85;
+        font-size: 18px;
+        vertical-align: 2px;
+        font-family: 'Microsoft Yahei';
+    }
+
+    .checkboxes label {
+        width: 100px;
+    }
+
+    .checkboxes .form-group {
+        padding-left: 10px;
+    }
+    .notice{
+        margin-top: 150px;
+        color: #14BE85;
+        line-height: 1.5;
+        font-size: 18px;
+    }
+    .btn-submit{
+        background-color: #14BE85;
+        border: 1px solid #14BE85;
+        font-family: 'Microsoft Yahei', '微软雅黑', 'Simsun','宋体','Arial';
+    }
+    .btn-submit:hover{
+        background-color: #13a370;
+        border: 1px solid #13a370;
+    }
+    </style>
+</head>
+
+<body>
+            <!-- modal -->
+        <div id="js_modal" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Oops!注册失败</h4>
+                    </div>
+                    <div class="modal-body text-center">
+                        <p>该用户名已存在，请尝试换一个用户名:)</p>
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
+    <div class="container">
+        <div class="cont center-block">
+            <div class="title text-center">
+                <span class="tit-brand font-bold">CUCMOOC</span><span class="tit-signup">注册</span>
+            </div>
+            <div class="signup-form">
+                <form id="registerForm" method="POST">
+                    <div class="form-group  has-feedback">
+                        <label for="js_rgstName" class="control-label">用户名</label>
+                        <input type="text" name="username" class="form-control" id="js_rgstName" place-holder="请输入4-10字用户名" aria-describedly="nameStatus">
+                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                        <span id="nameStatus" class="help-block"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="js_rgstPassword" class="control-label">密码</label>
+                        <input type="password" name="password" class="form-control" id="js_rgstPassword">
+                    </div>
+                    <div class="form-group has-feedback">
+                        <label for="js_rgstRepeatPassword" class="control-label">确认密码</label>
+                        <input type="password" name="repeatPassword" class="form-control" id="js_rgstRepeatPassword" aria-describedly="passwordStatus">
+                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                        <span id="passwordStatus" class="help-block"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="js_eduType" class="control-label">学历</label>
+                        <select name="education" class="form-control" id="js_eduType">
+                            <option value="primary">小学</option>
+                            <option value="university">大学</option>
+                        </select>
+                    </div>
+                    <div class="checkboxes">
+                        <label class="control-label">感兴趣的科目：</label>
+                        <div class="form-group">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="subjects[]" value="chinese">语文
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="subjects[]" value="math">数学
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="subjects[]" value="english">英语
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="subjects[]" value="computer">计算机
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="subjects[]" value="history">历史
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="subjects[]" value="music">音乐
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-lg btn-block btn-submit">注册</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script data-main="registerModule" src="../js/lib/require.js"></script>
+    <script src="../js/config.js"></script>
+</body>
+
+</html>

@@ -1,5 +1,5 @@
 
-requirejs(['jquery', 'bootstrap', 'widgets/login-module'],
+requirejs(['jquery', 'bootstrap', 'loginModule'],
     function(jquery, bootstrap ,LoginModule) {
 
         //验证登录状态

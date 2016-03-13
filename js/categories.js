@@ -1,5 +1,12 @@
-requirejs(['jquery', 'bootstrap', 'paginator'],
-    function() {
+requirejs(['jquery', 'bootstrap', 'paginator', 'loginModule'],
+    function(jquery, bootstrap, paginator, LoginModule) {
+
+
+        //验证登录状态
+        LoginModule.verifyLogin();
+        //记录登录状态
+        var ifLogin = LoginModule.ifLogin;
+
 
         String.prototype.temp = function(obj) {
             return this.replace(/\$\w+\$/gi, function(matchs) {

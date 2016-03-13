@@ -12,6 +12,10 @@
 </head>
 
 <body>
+    <!-- 登录弹窗 -->
+    <div class="login-form-popup" id="js_loginFormPopup">
+    </div>
+
     <div class="wrap">
         <header class="navbar navbar-fixed-top box-shadow">
             <div class="container">
@@ -31,10 +35,16 @@
                         <li><a href="#">关于</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li>
+                        <li id="js_loginButtons" >
                             <div class="m-t-sm">
-                                <a href="#" class="btn btn-default btn-sm">登录</a>
-                                <a href="#" class="btn btn-sm btn-success m-l-sm"><strong>注册</strong></a>
+                            <a id="js_btnLogin" href="#" class="btn btn-default btn-sm">登录</a>
+                            <a href="./register.html" target="_blank" class="btn btn-sm btn-success m-l-sm"><strong>注册</strong></a>
+                            </div>
+                        </li>
+                        <li id="js_loginStatus" style="display:none">
+                            <div class="m-t-sm">
+                            <a id="js_loginStatus_user" href="#" class="btn btn-link">user</a>
+                            <a id="js_btnLogout" href="#" class="btn btn-default btn-sm">登出</a>
                             </div>
                         </li>
                     </ul>

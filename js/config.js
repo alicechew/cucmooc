@@ -9,10 +9,17 @@ requirejs.config({
         lib: './lib',
         jquery: './lib/jquery-2.1.4.min',
         bootstrap: './lib/bootstrap',
-        paginator: './lib/bootstrap-paginator'
+        paginator: './lib/bootstrap-paginator',
+        validate: './lib/jquery.validate',
+        loginModule: './widgets/login-module',
+        registerModule: './widgets/register-module'
     },
     shim: {
         bootstrap: ['jquery'],
-        paginator: ['bootstrap']
+        paginator: ['bootstrap'],
+        validate: ['jquery'],
+        loginModule: ['jquery'],
+        registerModule: ['validate']
+
     }
 });
