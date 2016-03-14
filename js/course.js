@@ -2,9 +2,8 @@ requirejs(['jquery', 'bootstrap', 'loginModule'],
     function(jquery, bootstrap, LoginModule) {
 
         //验证登录状态
-        LoginModule.verifyLogin();
-        //记录登录状态
-        var ifLogin = LoginModule.ifLogin;
+        var userInfo = LoginModule.verifyLogin(),
+            ifLogin = userInfo.ifLogin; //@ATTENTION: 这里的ifLogin是字符串而不是boolean！
 
         var courseData = {
             "subjectName": 'IT互联网',
@@ -49,8 +48,12 @@ requirejs(['jquery', 'bootstrap', 'loginModule'],
             }]
         };
         $(document).ready(function() {
-            var courseId = getQueryVariable('courseId');
-            console.log(courseId);
+            var courseId = getQueryVariable('courseId'),
+                btnEnroll = $('#js_btnEnroll'),
+                btnFav = $('#js_btnFav'),
+                userEnroll = userInfo.userEnroll,
+                ifEnroll;
+
             // $.ajax({
             //     url: '/path/to/file',
             //     type: 'GET',
@@ -68,6 +71,75 @@ requirejs(['jquery', 'bootstrap', 'loginModule'],
             // });
 
             fillInfo(courseData.subjectName, courseData.courseName, courseData.courseDesc, courseData.imgSrc, courseData.knowledgePoint);
+
+            //绑定按钮tooltip
+            btnEnroll.tooltip({
+                trigger: 'manual',
+                title: '选课成功！',
+                placement: 'top'
+            });
+
+            // 绑定按钮事件
+            btnEnroll.on('click', null, function(event) {
+                var userId,
+                    currentEnroll,
+                    newEnroll;
+
+                //未登录
+                if(ifLogin === 'false'){
+                    alert('请先登录！');
+                    return;
+                }
+
+                userId = userInfo.userId;
+                currentEnroll = userInfo.userEnroll;
+                //@TODO: 这里跟笑笑商量一下，要把全部课程串好发过去还是只发courseid过去
+                newEnroll = currentEnroll + '&' + courseId;
+
+                //发送到服务器
+                // $.ajax({
+                //     url: '/path/to/file',
+                //     type: 'POST',
+                //     dataType: 'json',
+                //     data: {
+                //         enroll: newEnroll
+                //     },
+                // })
+                // .done(function() {
+                //     console.log("success");
+                // })
+                // .fail(function() {
+                //     console.log("error");
+                // })
+                // .always(function() {
+                //     console.log("complete");
+                // });
+
+                //成功则popup
+                btnEnroll.tooltip('show');
+                setTimeout(function() {
+                    btnEnroll.tooltip('hide');
+                }, 1000);
+
+                //按钮状态变更
+                btnEnroll.text('已订阅');
+                btnEnroll.addClass('disabled');
+            });
+
+
+            //判断课程是否已选
+            //debug mode
+            // courseId = 001;
+            //debug mode
+            //未登录不执行
+            if (ifLogin === 'true') {
+                ifEnroll = userEnroll.indexOf(courseId);
+                if (ifEnroll) {
+                    btnEnroll.text('已参加');
+                    btnEnroll.addClass('disabled');
+                }
+            }
+
 
 
 

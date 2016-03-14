@@ -11,6 +11,10 @@
     width: 100%;
 }
 
+.course-header .title{
+    font-family: 'Microsoft Yahei','微软雅黑','Simsun','宋体','Arial';
+}
+
 .course-header .desc {
     line-height: 1.5;
 }
