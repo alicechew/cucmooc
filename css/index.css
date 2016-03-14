@@ -1,36 +1,59 @@
-
-.item-panel{
-    height:360px;
+h3{
+    font-family: 'Microsoft Yahei', '微软雅黑', 'Simsun','宋体','Arial';
 }
-.item-pic{position:relative;}
-.item-tit{height:50px;line-height: 50px;}
-.item-desc div{
+/*.recommend-point .item-panel {
+    min-height: 212px;
+}*/
+
+.recommend-course .item-panel {
+    height: 360px;
+}
+
+.item-pic{
+    position: relative;
+    /*width: 270px;*/
+    height: 135px;
+}
+
+.item-tit {
+    height: 45px;
+    line-height: 45px;
+}
+
+.item-desc div {
     height: 20px;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
 }
 
-.carousel-indicators{bottom:0px;}
+.carousel-indicators {
+    bottom: 0px;
+}
 
-h3{
+h3 {
     line-height: 34px;
 }
 
-.login-notice p{
-    color:#888;
+.login-notice{
+    height:80px;
+}
+.login-notice p {
+    font-family: 'Microsoft Yahei','微软雅黑','Simsun','宋体','Arial';
+    line-height: 80px;
+    color: #888;
 }
 
-.login-notice .btn-login{
+.login-notice .btn-login {
     position: relative;
     color: #14BE85;
     cursor: pointer;
-    padding:0 5px;
+    padding: 0 5px;
 }
 
-.login-notice .btn-login:hover::after{
-    content:'____';
+.login-notice .btn-login:hover::after {
+    content: '_____';
     position: absolute;
-    top:2px;
-    left: 3px;
+    top: -25px;
+    left: 4px;
 }

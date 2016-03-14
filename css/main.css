@@ -165,6 +165,7 @@ h3{
     font-weight: 700;
     color: #14BE85;
     text-align: center;
+    letter-spacing: 10px;
 }
 
 .login-form-popup .btn-login{
@@ -177,7 +178,10 @@ h3{
     border: 3px solid #14BE85;
     color: #fff;
     font-size: 20px;
-    font-weight: 900;
+    /*font-weight: 900;*/
+    font-family: 'Microsoft Yahei','微软雅黑','Simsun','宋体','Arial';
+    letter-spacing: 10px;
+
 }
 
 .login-form-popup .btn-login:hover{

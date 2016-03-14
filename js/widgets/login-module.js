@@ -1,20 +1,32 @@
 define(function() {
     //路径配置
     var phpPath = '../php/',
-        ifLogin = false;
+        ifLogin = false,
+        userId,
+        userName,
+        userEnroll,
         loginContainer = $('#js_loginFormPopup');
+
+
     //验证登录状态
     var verifyLogin = function(){
+
         $.ajax({
             url: phpPath + 'verify-login.php',
             type: 'GET',
-            dataType: 'json'
+            dataType: 'json',
+            async: false    //important! 异步进行，保证ifLogin和user信息正确返回
         })
         .done(function(result) {
             console.log("verify login success");
             console.log(result);
             changeNavStatus(result.ifLogin,result.username);
-            ifLogin = true;
+
+            //记录必要信息并返回
+            ifLogin = result.ifLogin;
+            userId = result.userId;
+            userName = result.userName;
+            userEnroll = result.userEnroll;
         })
         .fail(function() {
             console.log("verify login error");
@@ -51,6 +63,12 @@ define(function() {
                     window.location.reload();
                 });
         }
+
+        return {
+            ifLogin: ifLogin,
+            userId: userId,
+            userEnroll: userEnroll
+        };
 
     };
 
@@ -154,7 +172,6 @@ define(function() {
 
 
     return {
-        ifLogin: ifLogin,
         verifyLogin: verifyLogin,
         loginPopup: loginPopup,
         logout: logout

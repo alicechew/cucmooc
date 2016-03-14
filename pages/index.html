@@ -34,16 +34,16 @@
                         <li><a href="#">关于</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li id="js_loginButtons" >
+                        <li id="js_loginButtons">
                             <div class="m-t-sm">
-                            <a id="js_btnLogin" href="#" class="btn btn-default btn-sm">登录</a>
-                            <a href="./register.html" target="_blank" class="btn btn-sm btn-success m-l-sm"><strong>注册</strong></a>
+                                <a id="js_btnLogin" class="btn btn-default btn-sm">登录</a>
+                                <a href="./register.html" target="_blank" class="btn btn-sm btn-success m-l-sm"><strong>注册</strong></a>
                             </div>
                         </li>
                         <li id="js_loginStatus" style="display:none">
                             <div class="m-t-sm">
-                            <a id="js_loginStatus_user" href="#" class="btn btn-link">user</a>
-                            <a id="js_btnLogout" href="#" class="btn btn-default btn-sm">登出</a>
+                                <a id="js_loginStatus_user" href="#" class="btn btn-link">user</a>
+                                <a id="js_btnLogout" class="btn btn-default btn-sm">登出</a>
                             </div>
                         </li>
                     </ul>
@@ -98,124 +98,234 @@
                 <div class="your-course">
                     <div class="row">
                         <div class="wrapper clearfix">
-                        <h3 class="font-bold pull-left">您的课程</h3>
-                    </div>
-                    <div class="row text-center login-notice">
-                        <p class="font-bold">Oops，请先<span class="btn-login" id='js_indexLogin'>登录</span>查看您参与的课程！</p>
-                    </div>
-                    <div class="row">
-                        <div class="course-list">
+                            <h3 class="pull-left">您的课程</h3>
                         </div>
-                    </div>
+                        <div class="row text-center login-notice">
+                            <p class="font-bold">Oops，请先<span class="btn-login" id='js_indexLogin'>登录</span>查看您参与的课程！</p>
+                        </div>
+                        <div class="row">
+                            <div id="js_userCourseList">
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <!-- <div class="m-t-md"></div> -->
                 <div class="recommend">
-                <div class="row">
-                    <div class="wrapper clearfix">
-                        <h3 class="font-bold pull-left">推荐课程</h3>
-                        <button class="pull-right btn btn-default" href="#">查看更多</button>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-3 col-xs-6">
-                        <div class="item-panel panel b-a">
-                            <div class="item-pic">
-                                <a href="#"><img src="https://www.codester.com/static//uploads/items/1469/preview.jpg" class="img-full" alt=""></a>
+                    <div class="recommend-point hide">
+                        <div class="row">
+                            <div class="wrapper clearfix">
+                                <h3 class="pull-left">推荐知识点</h3>
+                                <button class="pull-right btn btn-default" href="#">查看更多</button>
                             </div>
-                            <div class="item-tit text-center font-bold text-md">
-                                <a href="#">JavaScript入门</a>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3 col-xs-6">
+                                <div class="item-panel panel b-a">
+                                    <div class="item-pic">
+                                        <a href="#"><img src="https://www.codester.com/static//uploads/items/1469/preview.jpg" class="img-full" alt=""></a>
+                                    </div>
+                                    <div class="item-tit text-center font-bold text-md">
+                                        <a href="#">数组</a>
+                                    </div>
+                                    <div class="item-belongCourse m-l-sm m-r-sm m-b-sm">
+                                        <div class="text-center">JavaScript入门</div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="item-desc m-l-sm m-r-sm">
-                                <div class="text-center">JavaScript零基础入门</div>
+                            <div class="col-md-3 col-xs-6">
+                                <div class="item-panel panel b-a">
+                                    <div class="item-pic">
+                                        <a href="#"><img src="https://www.codester.com/static//uploads/items/1469/preview.jpg" class="img-full" alt=""></a>
+                                    </div>
+                                    <div class="item-tit text-center font-bold text-md">
+                                        <a href="#">数组</a>
+                                    </div>
+                                    <div class="item-belongCourse m-l-sm m-r-sm m-b-sm">
+                                        <div class="text-center">JavaScript入门</div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="item-point  m-t-lg">
-                                <span class="font-bold m-l-md">热门知识点</span>
-                                <ul class="hot-point m-t-sm">
-                                    <li><a href="#">对象</a></li>
-                                    <li><a href="#">闭包</a></li>
-                                    <li><a href="#">函数作用域</a></li>
-                                    <li><a href="#">数组</a></li>
-                                </ul>
+                            <div class="col-md-3 col-xs-6">
+                                <div class="item-panel panel b-a">
+                                    <div class="item-pic">
+                                        <a href="#"><img src="https://www.codester.com/static//uploads/items/1469/preview.jpg" class="img-full" alt=""></a>
+                                    </div>
+                                    <div class="item-tit text-center font-bold text-md">
+                                        <a href="#">数组</a>
+                                    </div>
+                                    <div class="item-belongCourse m-l-sm m-r-sm m-b-sm">
+                                        <div class="text-center">JavaScript入门</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-xs-6">
+                                <div class="item-panel panel b-a">
+                                    <div class="item-pic">
+                                        <a href="#"><img src="https://www.codester.com/static//uploads/items/1469/preview.jpg" class="img-full" alt=""></a>
+                                    </div>
+                                    <div class="item-tit text-center font-bold text-md">
+                                        <a href="#">数组</a>
+                                    </div>
+                                    <div class="item-belongCourse m-l-sm m-r-sm m-b-sm">
+                                        <div class="text-center">JavaScript入门</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3 col-xs-6">
-                        <div class="item-panel panel b-a">
-                            <div class="item-pic">
-                                <a href="#"><img src="https://www.codester.com/static//uploads/items/1469/preview.jpg" class="img-full" alt=""></a>
+                    <div class="recommend-route hide">
+                        <div class="row">
+                            <div class="wrapper clearfix">
+                                <h3 class="pull-left">推荐学习轨迹</h3>
+                                <button class="pull-right btn btn-default" href="#">查看更多</button>
                             </div>
-                            <div class="item-tit text-center font-bold text-md">
-                                <a href="#">JavaScript入门</a>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3 col-xs-6">
+                                <div class="item-panel panel b-a">
+                                    <div class="item-pic">
+                                        <a href="#"><img src="https://www.codester.com/static//uploads/items/1469/preview.jpg" class="img-full" alt=""></a>
+                                    </div>
+                                    <div class="item-tit text-center font-bold text-md">
+                                        <a href="#">数据库</a>
+                                    </div>
+                                    <div class="item-belongCourse m-l-sm m-r-sm m-b-sm">
+                                        <div class="text-center">JavaWeb</div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="item-desc m-l-sm m-r-sm">
-                                <div class="text-center">JavaScript零基础入门</div>
+                            <div class="col-md-3 col-xs-6">
+                                <div class="item-panel panel b-a">
+                                    <div class="item-pic">
+                                        <a href="#"><img src="https://www.codester.com/static//uploads/items/1469/preview.jpg" class="img-full" alt=""></a>
+                                    </div>
+                                    <div class="item-tit text-center font-bold text-md">
+                                        <a href="#">页面设计</a>
+                                    </div>
+                                    <div class="item-belongCourse m-l-sm m-r-sm m-b-sm">
+                                        <div class="text-center">JavaWeb</div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="item-point  m-t-lg">
-                                <span class="font-bold m-l-md">热门知识点</span>
-                                <ul class="hot-point m-t-sm">
-                                    <li><a href="#">对象</a></li>
-                                    <li><a href="#">闭包</a></li>
-                                    <li><a href="#">函数作用域</a></li>
-                                    <li><a href="#">数组</a></li>
-                                </ul>
+                            <div class="col-md-3 col-xs-6">
+                                <div class="item-panel panel b-a">
+                                    <div class="item-pic">
+                                        <a href="#"><img src="https://www.codester.com/static//uploads/items/1469/preview.jpg" class="img-full" alt=""></a>
+                                    </div>
+                                    <div class="item-tit text-center font-bold text-md">
+                                        <a href="#">功能实现</a>
+                                    </div>
+                                    <div class="item-belongCourse m-l-sm m-r-sm m-b-sm">
+                                        <div class="text-center">JavaWeb</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3 col-xs-6">
-                        <div class="item-panel panel b-a">
-                            <div class="item-pic">
-                                <a href="#"><img src="https://www.codester.com/static//uploads/items/1469/preview.jpg" class="img-full" alt=""></a>
+                    <div class="recommend-course">
+                        <div class="row">
+                            <div class="wrapper clearfix">
+                                <h3 class="pull-left">推荐课程</h3>
+                                <button class="pull-right btn btn-default" href="#">查看更多</button>
                             </div>
-                            <div class="item-tit text-center font-bold text-md">
-                                <a href="#">JavaScript入门</a>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3 col-xs-6">
+                                <div class="item-panel panel b-a">
+                                    <div class="item-pic">
+                                        <a href="#"><img src="https://www.codester.com/static//uploads/items/1469/preview.jpg" class="img-full" alt=""></a>
+                                    </div>
+                                    <div class="item-tit text-center font-bold text-md">
+                                        <a href="#">JavaScript入门</a>
+                                    </div>
+                                    <div class="item-desc m-l-sm m-r-sm">
+                                        <div class="text-center">JavaScript零基础入门</div>
+                                    </div>
+                                    <div class="item-point  m-t-lg">
+                                        <span class="font-bold m-l-md">热门知识点</span>
+                                        <ul class="hot-point m-t-sm">
+                                            <li><a href="#">对象</a></li>
+                                            <li><a href="#">闭包</a></li>
+                                            <li><a href="#">函数作用域</a></li>
+                                            <li><a href="#">数组</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="item-desc m-l-sm m-r-sm">
-                                <div class="text-center">JavaScript零基础入门</div>
+                            <div class="col-md-3 col-xs-6">
+                                <div class="item-panel panel b-a">
+                                    <div class="item-pic">
+                                        <a href="#"><img src="https://www.codester.com/static//uploads/items/1469/preview.jpg" class="img-full" alt=""></a>
+                                    </div>
+                                    <div class="item-tit text-center font-bold text-md">
+                                        <a href="#">JavaScript入门</a>
+                                    </div>
+                                    <div class="item-desc m-l-sm m-r-sm">
+                                        <div class="text-center">JavaScript零基础入门</div>
+                                    </div>
+                                    <div class="item-point  m-t-lg">
+                                        <span class="font-bold m-l-md">热门知识点</span>
+                                        <ul class="hot-point m-t-sm">
+                                            <li><a href="#">对象</a></li>
+                                            <li><a href="#">闭包</a></li>
+                                            <li><a href="#">函数作用域</a></li>
+                                            <li><a href="#">数组</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="item-point  m-t-lg">
-                                <span class="font-bold m-l-md">热门知识点</span>
-                                <ul class="hot-point m-t-sm">
-                                    <li><a href="#">对象</a></li>
-                                    <li><a href="#">闭包</a></li>
-                                    <li><a href="#">函数作用域</a></li>
-                                    <li><a href="#">数组</a></li>
-                                </ul>
+                            <div class="col-md-3 col-xs-6">
+                                <div class="item-panel panel b-a">
+                                    <div class="item-pic">
+                                        <a href="#"><img src="https://www.codester.com/static//uploads/items/1469/preview.jpg" class="img-full" alt=""></a>
+                                    </div>
+                                    <div class="item-tit text-center font-bold text-md">
+                                        <a href="#">JavaScript入门</a>
+                                    </div>
+                                    <div class="item-desc m-l-sm m-r-sm">
+                                        <div class="text-center">JavaScript零基础入门</div>
+                                    </div>
+                                    <div class="item-point  m-t-lg">
+                                        <span class="font-bold m-l-md">热门知识点</span>
+                                        <ul class="hot-point m-t-sm">
+                                            <li><a href="#">对象</a></li>
+                                            <li><a href="#">闭包</a></li>
+                                            <li><a href="#">函数作用域</a></li>
+                                            <li><a href="#">数组</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-xs-6">
+                                <div class="item-panel panel b-a">
+                                    <div class="item-pic">
+                                        <a href="#"><img src="https://www.codester.com/static//uploads/items/1469/preview.jpg" class="img-full" alt=""></a>
+                                    </div>
+                                    <div class="item-tit text-center font-bold text-md">
+                                        <a href="#">JavaScript入门</a>
+                                    </div>
+                                    <div class="item-desc m-l-sm m-r-sm">
+                                        <div class="text-center">JavaScript零基础入门</div>
+                                    </div>
+                                    <div class="item-point  m-t-lg">
+                                        <span class="font-bold m-l-md">热门知识点</span>
+                                        <ul class="hot-point m-t-sm">
+                                            <li><a href="#">对象</a></li>
+                                            <li><a href="#">闭包</a></li>
+                                            <li><a href="#">函数作用域</a></li>
+                                            <li><a href="#">数组</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3 col-xs-6">
-                        <div class="item-panel panel b-a">
-                            <div class="item-pic">
-                                <a href="#"><img src="https://www.codester.com/static//uploads/items/1469/preview.jpg" class="img-full" alt=""></a>
-                            </div>
-                            <div class="item-tit text-center font-bold text-md">
-                                <a href="#">JavaScript入门</a>
-                            </div>
-                            <div class="item-desc m-l-sm m-r-sm">
-                                <div class="text-center">JavaScript零基础入门</div>
-                            </div>
-                            <div class="item-point  m-t-lg">
-                                <span class="font-bold m-l-md">热门知识点</span>
-                                <ul class="hot-point m-t-sm">
-                                    <li><a href="#">对象</a></li>
-                                    <li><a href="#">闭包</a></li>
-                                    <li><a href="#">函数作用域</a></li>
-                                    <li><a href="#">数组</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 </div>
             </div>
         </div>
     </div>
     <script data-main="../js/index" src="../js/lib/require.js"></script>
-     <script src="../js/config.js"></script>
-
-
-
+    <script src="../js/config.js"></script>
 </body>
 
 </html>
