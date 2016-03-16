@@ -1,13 +1,14 @@
 .knowledge-point{
     background-color: #EDF1F2;;
 }
+
 .point-header,.point-nav{
     background-color: #fff;
 }
 .point-header .title{
-    font-weight: 700;
     border-left:4px solid #4cae4c;
     padding-left: 20px;
+    font-family: 'Microsoft Yahei','微软雅黑','Simsun','宋体','Arial';
 }
 
 .point-header .desc{

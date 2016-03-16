@@ -24,23 +24,32 @@
 }
 
 .btn-join,
-.btn-star {
+.btn-star,
+.btn-search {
     width: 100px;
+    font-family: 'Microsoft Yahei','微软雅黑','Simsun','宋体','Arial';
 }
 
 .btn-star {
-    border: 1px solid;
+    position: absolute;
+    top:23px;
+    right: 0;
 }
 
 .btn-star .glyphicon-star-empty {
     margin-left: 5px;
-    font-size: 18px;
-    vertical-align: -3px;
+    font-size: 28px;
+    vertical-align: -6px;
+    color: #ffe13d;
 }
 
-.btn-star:hover {
+/*.btn-star:hover {
     border: 1px solid #4cae4c;
     color: #4cae4c;
+}*/
+
+.btn-search{
+    width:100px;
 }
 
 .course-body {
@@ -48,7 +57,7 @@
 }
 
 .course-body .title {
-    font-weight: 700;
+    font-family: 'Microsoft Yahei','微软雅黑','Simsun','宋体','Arial';
     border-left: 4px solid #4cae4c;
     padding-left: 20px;
 }

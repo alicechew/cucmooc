@@ -6,13 +6,13 @@ h3{
 }*/
 
 .recommend-course .item-panel {
-    height: 360px;
+    /*height: 360px;*/
 }
 
 .item-pic{
     position: relative;
     /*width: 270px;*/
-    height: 135px;
+    /*height: 135px;*/
 }
 
 .item-tit {

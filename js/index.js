@@ -101,6 +101,7 @@ requirejs(['jquery', 'bootstrap', 'loginModule'],
                 var htmlList = '';
                 container.html('');
                 $(content).each(function(index, el) {
+                    el.itemImgSrc = el.itemImgSrc || '../images/bg_imgloading.png';
                     htmlList += htmlTemp.temp(el);
                 });
                 container.html(htmlList);
@@ -114,7 +115,8 @@ requirejs(['jquery', 'bootstrap', 'loginModule'],
         var fillRecommend = (function(){
         var courseItems = $('.recommend-course').find('.item-panel'),
             courseName = courseItems.find('.item-tit').find('a'),
-            courseDesc = courseItems.find('.item-desc').find('div');
+            courseDesc = courseItems.find('.item-desc').find('div'),
+            courseImg = courseItems.find('img');
 
         $.ajax({
                 url: '../php/homepage.php',
@@ -132,6 +134,10 @@ requirejs(['jquery', 'bootstrap', 'loginModule'],
                 courseDesc.each(function(index, el) {
                     // el.innerText = result[index].courseDesc;
                     $(el).text(result[index].courseDesc);
+                });
+
+                courseImg.each(function(index, el) {
+                    el.src = result[index].courseImgSrc || '../images/bg_imgloading.png';
                 });
             })
             .fail(function() {

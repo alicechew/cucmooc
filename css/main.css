@@ -4,6 +4,8 @@ html[data-fixed="true"]{
 
 body {
     padding-top: 50px;
+    font-family: 'Microsoft', '微软雅黑', 'Simsun', '宋体', 'Arial';
+
 }
 ul,li{
     list-style: none;
