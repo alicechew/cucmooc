@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>学习轨迹</title>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/route.css">
+</head>
+
+<body>
+    <!-- 登录弹窗 -->
+    <div class="login-form-popup" id="js_loginFormPopup">
+    </div>
+    <div class="wrap">
+        <header class="navbar navbar-fixed-top box-shadow">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav_collapse" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">CUCMOOC</a>
+                </div>
+                <div id="nav_collapse" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="./index.html">主页</a></li>
+                        <li><a href="./categories.html">课程分类</a></li>
+                        <li><a href="#">关于</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li id="js_loginButtons">
+                            <div class="m-t-sm">
+                                <a id="js_btnLogin" class="btn btn-default btn-sm">登录</a>
+                                <a href="./register.html" target="_blank" class="btn btn-sm btn-success m-l-sm"><strong>注册</strong></a>
+                            </div>
+                        </li>
+                        <li id="js_loginStatus" style="display:none">
+                            <div class="m-t-sm">
+                                <a id="js_loginStatus_user" href="#" class="btn btn-link">user</a>
+                                <a id="js_btnLogout" class="btn btn-default btn-sm">登出</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-3 col-xs-12 sidebar">
+                    <div class="routenav-header box-shadow">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#routenav_content" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <div class="route-breadcrumb m-b-md">
+                            <a><i class="glyphicon glyphicon-triangle-left"></i>JavaScript入门blahblah</a>
+                        </div>
+                        <h3 class="routename">轨迹标题轨迹标题轨迹标题</h3>
+                    </div>
+                    <div class=" nano">
+                        <div class="nano-content">
+                            <ul id="routenav_content" class="m-t-md nav nav-sidebar collapse navbar-collapse">
+                                <li class="nav-item">
+                                    <a class="done" href="">
+                                        <div class="nav-icon">
+                                            <div class="pipe"></div>
+                                            <div class="status"></div>
+                                        </div>
+                                        <span class="progress-title">Function</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="done" href="">
+                                        <div class="nav-icon">
+                                            <div class="pipe"></div>
+                                            <div class="status"></div>
+                                        </div>
+                                        <span class="progress-title">Function</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="cur" href="">
+                                        <div class="nav-icon">
+                                            <div class="pipe"></div>
+                                            <div class="status"></div>
+                                        </div>
+                                        <span class="progress-title">Function</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="undone" href="">
+                                        <div class="nav-icon">
+                                            <div class="pipe"></div>
+                                            <div class="status"></div>
+                                        </div>
+                                        <span class="progress-title">面向对象编程 -- 对象的封装</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="undone" href="">
+                                        <div class="nav-icon">
+                                            <div class="pipe"></div>
+                                            <div class="status"></div>
+                                        </div>
+                                        <span class="progress-title">面向对象编程 -- 对象的封装</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="undone" href="">
+                                        <div class="nav-icon">
+                                            <div class="pipe"></div>
+                                            <div class="status"></div>
+                                        </div>
+                                        <span class="progress-title">面向对象编程 -- 对象的封装</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="undone" href="">
+                                        <div class="nav-icon">
+                                            <div class="pipe"></div>
+                                            <div class="status"></div>
+                                        </div>
+                                        <span class="progress-title">面向对象编程 -- 对象的封装</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="undone" href="">
+                                        <div class="nav-icon">
+                                            <div class="pipe"></div>
+                                            <div class="status"></div>
+                                        </div>
+                                        <span class="progress-title">面向对象编程 -- 对象的封装</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="undone" href="">
+                                        <div class="nav-icon">
+                                            <div class="pipe"></div>
+                                            <div class="status"></div>
+                                        </div>
+                                        <span class="progress-title">最后一个面向对象编程 -- 对象的封装</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-9 col-sm-offset-3 col-xs-12 main">
+                    <div class="header m-b-lg">
+                        <h1 class="page-title">面向对象编程 -- 对象的封装</h1>
+                        <div class="page-desc">
+                            <p>介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍</p>
+                        </div>
+                    </div>
+                    <div class="row content">
+                        <div class="video-box col-md-9 col-sm-12 m-b-md">
+                        <video src="http://www.w3school.com.cn/i/movie.mp4" controls width="100%" height="auto"></video>
+                        </div>
+                        <div class="extra col-md-3 col-xs-12">
+                            <h3 class="title m-b-md">补充资料</h3>
+                            <div class="cont m-b-md">无</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script data-main="../js/route" src="../js/lib/require.js"></script>
+    <script src="../js/config.js"></script>
+</body>
+
+</html>

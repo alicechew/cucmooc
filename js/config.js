@@ -12,14 +12,16 @@ requirejs.config({
         paginator: './lib/bootstrap-paginator',
         validate: './lib/jquery.validate',
         loginModule: './widgets/login-module',
-        registerModule: './widgets/register-module'
+        registerModule: './widgets/register-module',
+        nanoscroller: './lib/jquery.nanoscroller.min'
     },
     shim: {
         bootstrap: ['jquery'],
         paginator: ['bootstrap'],
         validate: ['jquery'],
         loginModule: ['jquery'],
-        registerModule: ['validate']
+        registerModule: ['validate'],
+        nanoscroller: ['jquery']
 
     }
 });
