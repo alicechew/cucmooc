@@ -8,6 +8,7 @@
     <title>学习轨迹</title>
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/video-js.min.css">
     <link rel="stylesheet" href="../css/route.css">
 </head>
 
@@ -162,7 +163,9 @@
                     </div>
                     <div class="row content">
                         <div class="video-box col-md-9 col-sm-12 m-b-md">
-                        <video src="http://www.w3school.com.cn/i/movie.mp4" controls width="100%" height="auto"></video>
+                            <video id="js_video" class="video-js vjs-default-skin vjs-big-play-centered">
+                                <source src="http://www.w3school.com.cn/i/movie.mp4" type="video/mp4">
+                            </video>
                         </div>
                         <div class="extra col-md-3 col-xs-12">
                             <h3 class="title m-b-md">补充资料</h3>

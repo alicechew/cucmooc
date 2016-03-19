@@ -1,17 +1,11 @@
-requirejs(['jquery', 'bootstrap', 'loginModule', 'nanoscroller', 'videojs'],
-    function(jquery, bootstrap, LoginModule, Scroller, VideoJs) {
+requirejs(['jquery', 'bootstrap', 'loginModule', 'videojs'],
+    function(jquery, bootstrap, LoginModule, VideoJs) {
 
         //验证登录状态
         var userInfo = LoginModule.verifyLogin(),
             ifLogin = userInfo.ifLogin;       //@ATTENTION: 这里的ifLogin是字符串而不是boolean！
 
-
-        //scroller srtup
-        $('.nano').nanoScroller({
-            preventPageScrolling: true
-        });
-
-        //video setup
+        //videojs setup
         var videoSetup = (function(){
             var option = {
                     "controls": true,

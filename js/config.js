@@ -13,7 +13,8 @@ requirejs.config({
         validate: './lib/jquery.validate',
         loginModule: './widgets/login-module',
         registerModule: './widgets/register-module',
-        nanoscroller: './lib/jquery.nanoscroller.min'
+        nanoscroller: './lib/jquery.nanoscroller.min',
+        videojs: './lib/video.min'
     },
     shim: {
         bootstrap: ['jquery'],

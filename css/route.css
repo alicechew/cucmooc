@@ -236,3 +236,12 @@
 .extra .title{
     font-size: 20px;
 }
+
+.video-js{
+    width: 100%;
+    height: auto;
+}
+
+.video-js .vjs-tech{
+    position: relative;
+}

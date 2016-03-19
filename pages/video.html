@@ -8,6 +8,7 @@
     <title>视频资源</title>
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/video-js.min.css">
     <link rel="stylesheet" href="../css/video.css">
 </head>
 
@@ -53,23 +54,29 @@
         <div class="main-content">
             <div class="m-t-lg"></div>
             <div class="container">
-                <div class="row breadcrumbs">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="breadcrumbs">
                     <a href="#" id="js_breadSubject">分类A</a><span> > </span><a href="#" id="js_breadCourse">课程</a><span> > </span><a id="js_breadPoint" href="#">知识点</a><span> > </span><a id="js_breadVideo" class="cur">视频</a>
+                        </div>
+                    </div>
                 </div>
                 <!-- 资源介绍 -->
-                <div class="row video-header">
+                <div class="row ">
                     <div class="col-md-12 col-xs-12">
-                        <h3 class="tit">资源介绍</h3>
-                        <div class="row">
-                            <div class="pic col-md-5 col-xs-12">
-                                <img id="js_videoImg" class="img-full" src="https://www.codester.com/static//uploads/items/1469/preview.jpg" alt="">
-                            </div>
-                            <div class="video-info col-md-7 col-xs-12">
-                                <h3 id="js_videoName" class="title m-b-md">视频资源0001</h3>
-                                <p class="detail">by <span>teacher001</span></p>
-                                <p class="detail"><span>85,348</span>观看</p>
-                                <p id="js_videoDesc" class="desc m-t-sm">视频资源描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述</p>
-                                <a class="btn btn-default">收藏该资源<span class="glyphicon glyphicon-star-empty"></span></a>
+                        <div class="video-header">
+                            <h3 class="tit">资源介绍</h3>
+                            <div class="row">
+                                <div class="pic col-md-5 col-xs-12">
+                                    <img id="js_videoImg" class="img-full" src="https://www.codester.com/static//uploads/items/1469/preview.jpg" alt="">
+                                </div>
+                                <div class="video-info col-md-7 col-xs-12">
+                                    <h3 id="js_videoName" class="title m-b-md">视频资源0001</h3>
+                                    <p class="detail">by <span>teacher001</span></p>
+                                    <p class="detail"><span>85,348</span>观看</p>
+                                    <p id="js_videoDesc" class="desc m-t-sm">视频资源描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述</p>
+                                    <a class="btn btn-default">收藏该资源<span class="glyphicon glyphicon-star-empty"></span></a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -81,11 +88,13 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="video-box">
-                                        <video src="http://www.w3school.com.cn/i/movie.mp4" controls width="100%" height="auto"></video>
+                                        <video id="js_video" class="video-js vjs-default-skin vjs-big-play-centered">
+                                            <source src="http://www.w3school.com.cn/i/movie.mp4" type="video/mp4">
+                                        </video>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row m-b-md">
                                 <div class="col-md-12 col-xs-12">
                                     <div class="rating">
                                         为该资源评分：<span class="rating-stars"></span>
@@ -101,7 +110,7 @@
                         </div>
                         <div class="col-md-4 col-xs-12">
                             <div class="related">
-                                <div class="col-md-12 col-xs-6 media related-item">
+                                <div class="col-md-12 col-xs-12 media related-item">
                                     <div class="media-left">
                                         <a href="#">
                                             <img class="media-object" src="" alt="...">
@@ -111,7 +120,7 @@
                                         <h4 class="media-heading">相关视频</h4> related video
                                     </div>
                                 </div>
-                                <div class="col-md-12 col-xs-6 media related-item">
+                                <div class="col-md-12 col-xs-12 media related-item">
                                     <div class="media-left">
                                         <a href="#">
                                             <img class="media-object" src="" alt="...">
@@ -121,7 +130,7 @@
                                         <h4 class="media-heading">相关视频</h4> related video
                                     </div>
                                 </div>
-                                <div class="col-md-12 col-xs-6 media related-item">
+                                <div class="col-md-12 col-xs-12 media related-item">
                                     <div class="media-left">
                                         <a href="#">
                                             <img class="media-object" src="" alt="...">
@@ -131,7 +140,7 @@
                                         <h4 class="media-heading">相关视频</h4> related video
                                     </div>
                                 </div>
-                                <div class="col-md-12 col-xs-6 media related-item">
+                                <div class="col-md-12 col-xs-12 media related-item">
                                     <div class="media-left">
                                         <a href="#">
                                             <img class="media-object" src="" alt="...">
@@ -149,7 +158,7 @@
             <input id="js_isjoin" type="hidden" value="false">
         </div>
     </div>
-    <script data-main="../js/course" src="../js/lib/require.js"></script>
+    <script data-main="../js/video" src="../js/lib/require.js"></script>
     <script src="../js/config.js"></script>
 </body>
 
