@@ -140,9 +140,6 @@ requirejs(['jquery', 'bootstrap', 'loginModule'],
                 }
             }
 
-
-
-
         });
 
         //填充基本信息
@@ -160,8 +157,7 @@ requirejs(['jquery', 'bootstrap', 'loginModule'],
             courseEl.text(name);
             nameEl.text(name);
             descEl.text(desc);
-            imgEl.text(imgSrc);
-
+            imgEl.src = imgSrc;
 
             //知识点列表生成
             $data.each(function(index, el) {
@@ -229,5 +225,31 @@ requirejs(['jquery', 'bootstrap', 'loginModule'],
             }
         }
 
+        var route = (function(){
+            var modalEl = $('#js_routeModal');
+            $('.course-route').on('click', '.route', function(event) {
+                modalEl.modal('show', $(this));
+            });
 
+            modalEl.on('show.bs.modal', function(event) {
+                var routeId = $(event.relatedTarget).attr('data-rid');
+
+                $.ajax({
+                    url: '/path/to/file',
+                    type: 'default GET (Other values: POST)',
+                    dataType: 'default: Intelligent Guess (Other values: xml, json, script, or html)',
+                    data: {param1: 'value1'},
+                })
+                .done(function() {
+                    console.log("success");
+                })
+                .fail(function() {
+                    console.log("error");
+                })
+                .always(function() {
+                    console.log("complete");
+                });
+
+            });
+        }());
     });

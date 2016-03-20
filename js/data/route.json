@@ -1,0 +1,28 @@
+[{
+    "routeId": "c01r01",
+    "routeName": "JS核心语法路线",
+    "courseName": "JavaScript零基础入门",
+    "courseId": "c01",
+    "routeIntro": "从核心语法入手，打好基础！",
+    "curNodeId": "c01r01n03",
+    "routeNodes": [{
+        "nodeName": "Number",
+        "nodeId": "c01r01n01",
+        "nodeStatus": "done"
+        },
+        {
+        "nodeName": "String",
+        "nodeId": "c01r01n02",
+        "nodeStatus": "cur"
+        },
+        {
+        "nodeName": "Boolean",
+        "nodeId": "c01r01n03",
+        "nodeStatus": "undone"
+        },
+        {
+        "nodeName": "Undefined",
+        "nodeId": "c01r01n04",
+        "nodeStatus": "undone"
+        }]
+    }]

@@ -1,0 +1,5 @@
+[{
+    "nodeName": "Number",
+    "nodeDesc": "在 JavaScript 中，数字是一种基本的数据类型。JavaScript 还支持 Number 对象，该对象是原始数值的包装对象。在必要时，JavaScript 会自动地在原始数据和对象之间转换。在 JavaScript 1.1 中，可以用构造函数 Number() 明确地创建一个 Number 对象，尽管这样做并没有什么必要。",
+    "videoSrc": "http://www.w3school.com.cn/i/movie.mp4"
+    }]

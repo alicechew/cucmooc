@@ -133,7 +133,7 @@
     color: #fff;
 }
 
-.nav-sidebar .cur {
+.nav-sidebar .nav-item .playing {
     background-color: #fff;
     color: #14be85;
 }

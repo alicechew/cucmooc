@@ -15,7 +15,6 @@
     <!-- 登录弹窗 -->
     <div class="login-form-popup" id="js_loginFormPopup">
     </div>
-
     <div class="wrap">
         <header class="navbar navbar-fixed-top box-shadow">
             <div class="container">
@@ -55,17 +54,18 @@
             <div class="m-t-lg"></div>
             <div class="container">
                 <div class="row breadcrumbs">
-                    <a href="#">课程分类</a><span> > </span><a href="#" id="js_subject">分类A</a><span> > </span><a id="js_course" class="cur" href="#">JavaScript入门</a>
+                    <a href="#">课程分类</a><span> > </span><a href="#" id="js_subject">分类</a><span> > </span>
+                    <a id="js_course" class="cur" href="#"></a>
                 </div>
                 <!-- 课程介绍 -->
                 <div class="row course-header">
                     <div class="pic col-md-5 col-xs-12">
-                        <img id="js_courseImg" src="https://www.codester.com/static//uploads/items/1469/preview.jpg" alt="">
+                        <img id="js_courseImg" src="" alt="课程图片">
                     </div>
                     <div class="course-info col-md-7 col-xs-12">
-                        <h2 id="js_courseName" class="title">JavaScript入门</h2>
+                        <h2 id="js_courseName" class="title"></h2>
                         <a id="js_btnFav" class="btn-star">收藏<span class="glyphicon glyphicon-star-empty"></span></a>
-                        <p id="js_courseDesc" class="desc">课程描述：课程描述课程描述课程描述课程描述课程描述课程描述课程描述课程描述课程描述课程描述。JavaScript是一种基于对象(Object)和事件驱动(Event Driven)并具有安全性能的脚本语言。</p>
+                        <p id="js_courseDesc" class="desc"></p>
                         <div class="operation ">
                             <a id="js_btnEnroll" class="btn btn-success btn-join">参加课程</a>
                             <a target="_blank" href="./course-search.html" class="btn btn-default btn-search">课内搜索</a>
@@ -74,23 +74,95 @@
                 </div>
                 <div class="m-t-lg"></div>
                 <div class="row course-body">
-                <!-- 课程知识点 -->
-                <div class="course-point">
-                    <h3 class="m-l-md m-t-md title">知识点</h3>
-                    <!-- 知识点动态生成，此处先占位 -->
-                    <div class="knowledge-point m-t-md">
-                        <ul id="js_kldgPoint">
-                            <!-- 知识点列表生成 -->
-                        </ul>
+                    <div class="col-md-4 col-xs-12 course-point-container">
+                        <!-- 课程知识点 -->
+                        <div class="course-point">
+                            <h3 class="m-l-md m-t-md title">知识点</h3>
+                            <!-- 知识点动态生成，此处先占位 -->
+                            <div class="knowledge-point m-t-md">
+                                <ul id="js_kldgPoint">
+                                    <!-- 知识点列表生成 -->
+                                </ul>
+                            </div>
+                            <!-- <div class="m-t-md more"> -->
+                            <!-- <a href="#" class="btn btn-more">查看更多</a> -->
+                            <!-- </div> -->
+                        </div>
                     </div>
-                    <div class="m-t-md more">
-                        <a href="#" class="btn btn-more">查看更多</a>
+                    <div class="col-md-8 col-xs-12">
+                        <!-- 学习轨迹 -->
+                        <div class="course-route">
+                            <h3 class="m-t-md m-l-md title">学习轨迹</h3>
+                            <div class="nano">
+                                <div class="nano-content">
+                                    <ul>
+                                        <li class="route" data-rid="c01r01">
+                                            <a>
+                                                <div class="title m-b-sm">学习轨迹标题</div>
+                                                <div class="intro">学习轨迹描述学习轨迹描述学习轨，迹描述学习轨迹描述学习轨迹描述学。习轨迹描述学习轨迹描述学习轨迹描述学习轨迹描述学习轨迹描述学习轨迹描述</div>
+                                            </a>
+                                        </li>
+                                        <li class="route" data-rid="c01r02">
+                                            <a>
+                                                <div class="title m-b-sm">学习轨迹标题</div>
+                                                <div class="intro">学习轨迹描述学习轨迹描述学习轨，
+                                                    <br>迹描述学习轨迹描述学习轨迹描述学。
+                                                    <br>习轨迹描述学习轨迹描述学习轨迹描述学习轨;
+                                                    <br>迹描述学习轨迹描述学习轨迹描述
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="route" data-rid="c01r03">
+                                            <a>
+                                                <div class="title m-b-sm">学习轨迹标题</div>
+                                                <div class="intro">学习轨迹描述学习轨迹描述学习轨，迹描述学习轨迹描述学习轨迹描述学。
+                                                    <br>习轨迹描述学习轨迹描述学习轨迹描述学习轨迹描述学习轨迹描述学习轨迹描述</div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <!-- 学习轨迹 -->
-                <div class="course-route">
-                    <h3 class="m-l-md title">学习轨迹</h3>
-                </div>
+                    <!-- modal -->
+                    <div id="js_routeModal" class="modal fade" tabindex="-1" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <div class="route-info">
+                                        <h3>学习轨迹标题</h3>
+                                        <p class="m-t-md">轨迹介绍介绍介绍介绍介绍介绍介绍</p>
+                                    </div>
+                                </div>
+                                <div class="modal-body">
+                                    <li class="nav-item">
+                                    <a class="done">
+                                        <div class="nav-icon">
+                                            <div class="pipe"></div>
+                                            <div class="status"></div>
+                                        </div>
+                                        <span class="progress-title">Function</span>
+                                    </a>
+                                    </li>
+                                    <li class="nav-item">
+                                    <a class="done">
+                                        <div class="nav-icon">
+                                            <div class="pipe"></div>
+                                            <div class="status"></div>
+                                        </div>
+                                        <span class="progress-title">Function</span>
+                                    </a>
+                                    </li>
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-primary">加入轨迹</button>
+                                </div>
+                            </div>
+                            <!-- /.modal-content -->
+                        </div>
+                        <!-- /.modal-dialog -->
+                    </div>
                 </div>
             </div>
             <input id="js_isjoin" type="hidden" value="false">
