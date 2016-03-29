@@ -2,13 +2,13 @@
 .categories{
     border:1px solid #F0F0F0;
 }
-ul.tab{
+.categories ul.tab{
     margin-bottom:0;
 }
-.tab .title{
+.categories .tab .title{
     font-weight: 700;
 }
-.tab li{
+.categories .tab li{
     float:left;
     width:80px;
     height:50px;
@@ -16,13 +16,13 @@ ul.tab{
     text-align: center;
 }
 
-.tab li a{
+.categories .tab li a{
     display:block;
 }
-.tab .cur{
+.categories .tab .cur{
     color:#14BE85;
 }
-.tab li a:hover{
+.categories .tab li a:hover{
     color:#14BE85;
     text-decoration: none;
 }
@@ -102,3 +102,41 @@ ul.tab{
     width: 263px;
     height: 132px;
 }
+
+
+/* course-search categories*/
+.categories-course .list{
+    display: -webkit-flex; /*safari*/
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-left;
+    border:1px solid #ddd;
+    border-top: none;
+    padding:5px;
+}
+
+.categories-course .list li{
+    /*float: left;*/
+    /*width:120px;*/
+    /*flex-grow: 1;*/
+    height: 50px;
+    padding:0 10px;
+    margin-left: 5px;
+    margin-top: 5px;
+    line-height: 50px;
+    background-color:#69b758;
+    border: 1px solid #69b758;
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.categories-course .list .cur, .categories-course .list li:hover{
+    background-color: #fff;
+    color: #69b758;
+}
+

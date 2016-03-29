@@ -1,33 +1,43 @@
-[{
-    "courseName":"JavaScript入门",
-    "courseDesc":"JavaScript零基础入门",
-    "imageSrc":"js.jpg"
-    },{
-    "courseName":"C#零基础入门",
-    "courseDesc":"C#零基础入门课程描述",
-    "imageSrc":"js.jpg"
-    },{
-    "courseName":"幻影引擎3D游戏开发教程",
-    "courseDesc":"J3D游戏开发教程",
-    "imageSrc":"js.jpg"
-    },{
-    "courseName":"局域网组建教程",
-    "courseDesc":"6个月成为网络专家",
-    "imageSrc":"js.jpg"
-    },{
-    "courseName":"局域网组建教程",
-    "courseDesc":"5个月成为网络专家",
-    "imageSrc":"js.jpg"
-    },{
-    "courseName":"局域网组建教程",
-    "courseDesc":"4个月成为网络专家",
-    "imageSrc":"js.jpg"
-    },{
-    "courseName":"局域网组建教程",
-    "courseDesc":"3个月成为网络专家",
-    "imageSrc":"js.jpg"
-    },{
-    "courseName":"局域网组建教程",
-    "courseDesc":"2个月成为网络专家",
-    "imageSrc":"js.jpg"
+{
+    "courseList": [{
+        "courseId": "c001",
+        "courseName": "JavaScript入门",
+        "courseDesc": "JavaScript零基础入门",
+        "imageSrc": "js.jpg"
+    }, {
+        "courseId": "c002",
+        "courseName": "C#零基础入门",
+        "courseDesc": "C#零基础入门课程描述",
+        "imageSrc": "js.jpg"
+    }, {
+        "courseId": "c003",
+        "courseName": "幻影引擎3D游戏开发教程",
+        "courseDesc": "J3D游戏开发教程",
+        "imageSrc": "js.jpg"
+    }, {
+        "courseId": "c004",
+        "courseName": "局域网组建教程",
+        "courseDesc": "6个月成为网络专家",
+        "imageSrc": "js.jpg"
+    }, {
+        "courseId": "c005",
+        "courseName": "局域网组建教程",
+        "courseDesc": "5个月成为网络专家",
+        "imageSrc": "js.jpg"
+    }, {
+        "courseId": "c006",
+        "courseName": "局域网组建教程",
+        "courseDesc": "4个月成为网络专家",
+        "imageSrc": "js.jpg"
+    }, {
+        "courseId": "c007",
+        "courseName": "局域网组建教程",
+        "courseDesc": "3个月成为网络专家",
+        "imageSrc": "js.jpg"
+    }, {
+        "courseId": "c008",
+        "courseName": "局域网组建教程",
+        "courseDesc": "2个月成为网络专家",
+        "imageSrc": "js.jpg"
     }]
+}

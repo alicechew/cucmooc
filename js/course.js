@@ -86,7 +86,7 @@ requirejs(['jquery', 'bootstrap', 'loginModule'],
                     newEnroll;
 
                 //未登录
-                if(ifLogin === 'false'){
+                if (ifLogin === 'false') {
                     alert('请先登录！');
                     return;
                 }
@@ -128,11 +128,7 @@ requirejs(['jquery', 'bootstrap', 'loginModule'],
 
 
             //判断课程是否已选
-            //debug mode
-            // courseId = 001;
-            //debug mode
-            //未登录不执行
-            if (ifLogin === 'true') {
+            if (ifLogin === 'true') { //未登录不执行
                 ifEnroll = userEnroll.indexOf(courseId);
                 if (ifEnroll) {
                     btnEnroll.text('已参加');
@@ -225,31 +221,119 @@ requirejs(['jquery', 'bootstrap', 'loginModule'],
             }
         }
 
-        var route = (function(){
-            var modalEl = $('#js_routeModal');
+        /**
+         * route模块
+         */
+        var route = (function() {
+            var modalEl = $('#js_routeModal'),
+                btnEnrollRoute = $('#js_btnEnrollRoute');
+
             $('.course-route').on('click', '.route', function(event) {
                 modalEl.modal('show', $(this));
             });
-
+            //加载modal内容
             modalEl.on('show.bs.modal', function(event) {
-                var routeId = $(event.relatedTarget).attr('data-rid');
+                var routeId = $(event.relatedTarget).attr('data-rid'),
+                    userId = userInfo.userId,
+                    url = './route.html?rid=';
+
+
+                $(this).attr('data-rid', routeId);
+                $('#js_btnOpenRoute').attr('href', url + routeId);
+
+                //获取轨迹内容
+                // $.ajax({
+                //     url: '/path/to/file',
+                //     type: 'default GET (Other values: POST)',
+                //     dataType: 'default: Intelligent Guess (Other values: xml, json, script, or html)',
+                //     data: {param1: 'value1'},
+                // })
+                // .done(function() {
+                //     console.log("success");
+                // })
+                // .fail(function() {
+                //     console.log("error");
+                // })
+                // .always(function() {
+                //     console.log("complete");
+                // });
+
+                    if(ifLogin == 'false'){
+                        return;
+                    }
+
+                //判断用户是否已加入该轨迹
+                $.ajax({
+                        url: '../js/data/route-user.json',
+                        type: 'GET',
+                        dataType: 'json',
+                        data: {
+                            routeId: routeId,
+                            userId: userId
+                        }
+                    })
+                    .done(function(result) {
+
+                        if (result.ifEnroll) {
+                            //按钮状态变更
+                            btnEnrollRoute.text('已加入');
+                            btnEnrollRoute.addClass('disabled');
+                            return;
+                        }
+                    })
+                    .fail(function() {
+                        console.log("verify route error");
+                    })
+                    .always(function() {
+                        // console.log("complete");
+                    });
+
+            });
+
+            //绑定tooltip
+            btnEnrollRoute.tooltip({
+                trigger: 'manual',
+                title: '加入轨迹成功！',
+                placement: 'top'
+            });
+
+            //加入轨迹按钮事件绑定
+            btnEnrollRoute.on('click', function(event) {
+                var routeId = modalEl.attr('data-rid'),
+                    userId = userInfo.userId;
+
+                    if(ifLogin == 'false'){
+                        alert('请先登录!');
+                        return;
+                    }
 
                 $.ajax({
-                    url: '/path/to/file',
-                    type: 'default GET (Other values: POST)',
-                    dataType: 'default: Intelligent Guess (Other values: xml, json, script, or html)',
-                    data: {param1: 'value1'},
-                })
-                .done(function() {
-                    console.log("success");
-                })
-                .fail(function() {
-                    console.log("error");
-                })
-                .always(function() {
-                    console.log("complete");
-                });
+                        url: '../js/data/route-user.json',
+                        type: 'POST',
+                        data: {
+                            userId: userId,
+                            routeId: routeId
+                        }
+                    })
+                    .done(function() {
+                        console.log("enroll route success");
 
+                        //弹出tooltip
+                        btnEnrollRoute.tooltip('show');
+                        setTimeout(function() {
+                            btnEnrollRoute.tooltip('hide');
+                        }, 1000);
+
+                        //按钮状态变更
+                        btnEnrollRoute.text('已加入');
+                        btnEnrollRoute.addClass('disabled');
+                    })
+                    .fail(function() {
+                        console.log("enroll route error");
+                    })
+                    .always(function() {
+                        // console.log("complete");
+                    });
             });
         }());
     });

@@ -1,9 +1,9 @@
 @media (min-width: 768px) {
-    .course-point-container{
-    /*使两栏同高*/
-    padding-bottom: 9999px;
-    margin-bottom: -9999px;
-}
+    .course-point-container {
+        /*使两栏同高*/
+        padding-bottom: 9999px;
+        margin-bottom: -9999px;
+    }
 }
 
 .course {
@@ -35,7 +35,7 @@
 
 .btn-star {
     position: absolute;
-    top:23px;
+    top: 23px;
     right: 0;
 }
 
@@ -46,39 +46,39 @@
     color: #ffe13d;
 }
 
+
 /*.btn-star:hover {
     border: 1px solid #4cae4c;
     color: #4cae4c;
 }*/
 
-.btn-search{
-    width:100px;
+.btn-search {
+    width: 100px;
 }
 
 .course-body {
     background-color: #fff;
     /*height: 600px;*/
     overflow: hidden;
+    margin-bottom: 80px;
 }
-
-
 
 .course-body h3.title {
     border-left: 4px solid #4cae4c;
     padding-left: 20px;
 }
 
-.course-point h3.title{
-    border-left:4px solid #9be07d;
+.course-point h3.title {
+    border-left: 4px solid #9be07d;
 }
 
-.course-point-container{
+.course-point-container {
     background-color: #53893E;
     height: 100%;
 }
 
-.course-point{
-    color:#fff;
+.course-point {
+    color: #fff;
 }
 
 .course-point .more {
@@ -101,17 +101,20 @@
 
 
 /* knowledge-point */
+
 .knowledge-point {
     margin-left: 50px;
     line-height: 25px;
     /*min-height: 300px;*/
     font-size: 16px;
-
 }
-.knowledge-point ul{
+
+.knowledge-point ul {
     padding: 0;
 }
-.knowledge-point a, .knowledge-point a:visited{
+
+.knowledge-point a,
+.knowledge-point a:visited {
     color: #fff;
 }
 
@@ -130,7 +133,8 @@
     cursor: pointer;
 }
 
-.bar,.bar2{
+.bar,
+.bar2 {
     position: absolute;
     top: 3px;
     height: 7px;
@@ -156,33 +160,49 @@
     transform-origin: 75% 105% 0;
 }
 
-.point-level-1{ margin-left: 10px;}
-.point-level-2{ margin-left: 20px;}
-.point-level-3{ margin-left: 30px;}
+.point-level-1 {
+    margin-left: 10px;
+}
+
+.point-level-2 {
+    margin-left: 20px;
+}
+
+.point-level-3 {
+    margin-left: 30px;
+}
 
 
 /*route*/
-.course-route ul{
+
+.course-route {
+    margin-bottom: 30px;
+}
+
+.course-route ul {
     padding: 0;
 }
-.route{
+
+.route {
     padding: 20px 45px;
-    border-bottom:1px solid #dbdbdb;
+    border-bottom: 1px solid #dbdbdb;
     cursor: pointer;
 }
 
-.route a,.route a:hover{
+.route a,
+.route a:hover {
     text-decoration: none;
-    color:#888;
+    color: #888;
 }
-.route .title{
+
+.route .title {
     position: relative;
     color: #68aa4e;
     font-size: 18px;
 }
 
-.route:hover .title:before{
-    content:'·';
+.route:hover .title:before {
+    content: '·';
     line-height: 10px;
     font-size: 80px;
     color: #68aa4e;
@@ -276,4 +296,17 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.btn-enrollroute {
+    width: 100px;
+    background-color: #14BE85;
+    border: 1px solid #14BE85;
+    color: #fff;
+}
+
+.btn-enrollroute:hover {
+    background-color: #00ad70;
+    border: 1px solid #00ad70;
+    color: #fff;
 }

@@ -20,7 +20,7 @@ define(function() {
         .done(function(result) {
             console.log("verify login success");
             console.log(result);
-            changeNavStatus(result.ifLogin,result.username);
+            createNav(result.ifLogin, result.username);
 
             //记录必要信息并返回
             ifLogin = result.ifLogin;
@@ -35,6 +35,49 @@ define(function() {
             // console.log("complete");
         });
 
+        //生成导航
+        function createNav(ifLogin, userName){
+            var unloginNavStr = '<header class="navbar navbar-fixed-top box-shadow">'
+            + '<div class="container"><div class="navbar-header">'
+                    + '<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav_collapse" aria-expanded="false">'
+                       + '<span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>'
+                   + '</button>'
+                   + '<a class="navbar-brand" href="#">CUCMOOC</a></div>'
+                + '<div id="nav_collapse" class="collapse navbar-collapse">'
+                   + '<ul class="nav navbar-nav"><li class="active"><a href="./index.html">主页</a></li><li><a href="./categories.html">课程分类</a></li><li><a href="#">关于</a></li></ul>'
+                   + '<ul class="nav navbar-nav navbar-right"><li id="js_loginButtons"><div class="m-t-sm">'
+                               + '<a id="js_btnLogin" class="btn btn-default btn-sm">登录</a>'
+                               + '<a href="./register.html" target="_blank" class="btn btn-sm btn-success m-l-sm"><strong>注册</strong></a>'
+                           + '</div></li>'
+                       + '<li id="js_loginStatus" style="display:none"><div class="m-t-sm">'
+                              + '<a id="js_loginStatus_user" href="#" class="btn btn-link">user</a>'
+                               + '<a id="js_btnLogout" class="btn btn-default btn-sm">登出</a>'
+                           + '</div></li></ul></div></div></header>',
+                loginNavStr = '<header class="navbar navbar-fixed-top box-shadow">'
+            + '<div class="container"><div class="navbar-header">'
+                    + '<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav_collapse" aria-expanded="false">'
+                       + '<span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>'
+                   + '</button>'
+                   + '<a class="navbar-brand" href="#">CUCMOOC</a></div>'
+                + '<div id="nav_collapse" class="collapse navbar-collapse">'
+                   + '<ul class="nav navbar-nav"><li class="active"><a href="./index.html">主页</a></li><li><a href="./course-search.html">课内搜索</a></li><li><a href="./categories.html">课程分类</a></li><li><a href="#">关于</a></li></ul>'
+                   + '<ul class="nav navbar-nav navbar-right"><li id="js_loginButtons"><div class="m-t-sm">'
+                               + '<a id="js_btnLogin" class="btn btn-default btn-sm">登录</a>'
+                               + '<a href="./register.html" target="_blank" class="btn btn-sm btn-success m-l-sm"><strong>注册</strong></a>'
+                           + '</div></li>'
+                       + '<li id="js_loginStatus" style="display:none"><div class="m-t-sm">'
+                              + '<a id="js_loginStatus_user" href="#" class="btn btn-link">user</a>'
+                               + '<a id="js_btnLogout" class="btn btn-default btn-sm">登出</a>'
+                           + '</div></li></ul></div></div></header>';
+
+        if(ifLogin == 'true'){
+            $('#js_navWrap').html(loginNavStr);
+        }else{
+            $('#js_navWrap').html(unloginNavStr);
+        }
+        changeNavStatus(ifLogin, userName);
+
+        }
         function changeNavStatus(ifLogin, username){
             var loginArea = $('#js_loginButtons'),
                 loginStatus = $('#js_loginStatus'),

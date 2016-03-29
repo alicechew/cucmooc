@@ -26,7 +26,7 @@ requirejs(['jquery', 'bootstrap', 'loginModule', 'nanoscroller', 'videojs'],
                 })
                 .done(function(result) {
                     console.log("route setup success");
-                    fillNavInfo(result[0]);
+                    fillNavInfo(result);
                 })
                 .fail(function() {
                     console.log("error");

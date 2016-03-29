@@ -16,68 +16,17 @@
     <div class="login-form-popup" id="js_loginFormPopup">
     </div>
     <div class="wrap">
-        <header class="navbar navbar-fixed-top box-shadow">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav_collapse" aria-expanded="false">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#">CUCMOOC</a>
-                </div>
-                <div id="nav_collapse" class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav">
-                        <li class="active"><a href="./index.html">主页</a></li>
-                        <li><a href="./categories.html">课程分类</a></li>
-                        <li><a href="#">关于</a></li>
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li id="js_loginButtons">
-                            <div class="m-t-sm">
-                                <a id="js_btnLogin" class="btn btn-default btn-sm">登录</a>
-                                <a href="./register.html" target="_blank" class="btn btn-sm btn-success m-l-sm"><strong>注册</strong></a>
-                            </div>
-                        </li>
-                        <li id="js_loginStatus" style="display:none">
-                            <div class="m-t-sm">
-                                <a id="js_loginStatus_user" href="#" class="btn btn-link">user</a>
-                                <a id="js_btnLogout" class="btn btn-default btn-sm">登出</a>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </header>
+        <div id="js_navWrap"></div>
         <div class="main-content">
             <div class="container">
                 <div class="m-t-lg"></div>
-                <!--  <div class="categories">
-                    <ul class="tab clearfix">
-                        <li><span class="title">学科分类：</span></li>
-                        <li><a class="cur" href="#">全部课程</a></li>
-                        <li><a href="#">计算机</a></li>
-                        <li><a href="#">数学</a></li>
-                        <li><a href="#">物理</a></li>
-                        <li><a href="#">传媒</a></li>
-                        <li><a href="#">人文</a></li>
-                        <li><a href="#">人文</a></li>
-                        <li><a href="#">人文</a></li>
-                        <li><a href="#">人文</a></li>
+                 <div class="categories-course">
+                    <ul class="nav nav-tabs">
+                        <li role="presentation" class="active"><a>当前课程</a></li>
                     </ul>
-                    <ul class="tab clearfix">
-                        <li><span class="title">面向人群：</span></li>
-                        <li><a href="#">小学</a></li>
-                        <li><a class="cur" href="#">大学</a></li>
+                    <ul class="list clearfix" id="js_courseList">
                     </ul>
-                    <ul class="tab clearfix">
-                        <li><span class="title">其他分类：</span></li>
-                        <li><a href="#">其他</a></li>
-                        <li><a href="#">其他</a></li>
-                        <li><a href="#">其他其他</a></li>
-                    </ul>
-                </div> -->
+                </div>
                 <div class="m-t-md"></div>
                 <!-- 搜索 -->
                 <div class="row">
@@ -125,7 +74,7 @@
             </div>
         </div>
     </div>
-    <script data-main="../js/categories" src="../js/lib/require.js"></script>
+    <script data-main="../js/course-search" src="../js/lib/require.js"></script>
     <script src="../js/config.js"></script>
 </body>
 
