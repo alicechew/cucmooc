@@ -1,9 +1,7 @@
 <?php
 require ('init.php');
 header("content-Type:text/html;charset=utf-8");
-$cid = $_GET['courseId'];
-// $cid = "1";
-
+$rid = $_GET['routeId'];
 $con = mysql_connect(DB_HOST, DB_USER, DB_PASSWORD);
 mysql_set_charset("utf8",$con);
 
@@ -13,7 +11,7 @@ if (!$con) {
     mysql_select_db(DB_NAME, $con);
     //echo("链接数据库成功");
 
-    $sql = "SELECT * FROM course WHERE courseID='$cid'";
+    $sql = "SELECT pathName,nodeIDs,courseID FROM learningpath WHERE pathID='$rid'";
     $result = mysql_query($sql);
     $arr=array();
     while($row = mysql_fetch_array($result, MYSQL_ASSOC)){

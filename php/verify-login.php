@@ -8,12 +8,12 @@ session_start();
 if (isset($_SESSION['ifLogin']) && $_SESSION['ifLogin'] === true){
     //@TODO: 打开数据库调用户的userid和已参与课程
 
-    echo json_encode(array('ifLogin' => 'true','username' => $_SESSION['username'], 'userId' => 'u001', 'userEnroll' => '001&003&008&010&005'));
+    echo json_encode(array('ifLogin' => 'true','username' => $_SESSION['username'], 'userId' => $_SESSION['userId'], 'userEnroll' => '001&003&008&010&005'));
 
 }else{
     //验证失败
     $_SESSION['ifLogin'] = false;
-    echo json_encode(array('ifLogin' => 'false','username' => ''));
+    echo json_encode(array('ifLogin' => 'false','username' => '', 'userId' => ''));
 }
 
 ?>

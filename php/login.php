@@ -37,6 +37,9 @@ if($rows==0){
     //注册登录成功的admin变量并赋值
     $_SESSION['ifLogin'] = true;
     $_SESSION['username'] = $loginname;
+
+    $row = mysql_fetch_array($res);
+    $_SESSION['userId'] = $row['userID'];
 }
 
 
