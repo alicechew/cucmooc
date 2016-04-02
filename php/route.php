@@ -11,7 +11,7 @@ if (!$con) {
     mysql_select_db(DB_NAME, $con);
     //echo("链接数据库成功");
 
-    $sql = "SELECT pathName,nodeIDs,courseID FROM learningpath WHERE pathID='$rid'";
+    $sql = "SELECT * FROM learningpath WHERE pathID='$rid'";
     $result = mysql_query($sql);
     $arr=array();
     while($row = mysql_fetch_array($result, MYSQL_ASSOC)){

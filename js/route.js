@@ -12,8 +12,7 @@ requirejs(['jquery', 'bootstrap', 'loginModule', 'nanoscroller', 'videojs', 'ale
          * nav setup
          */
         var navSetup = (function() {
-            var curNodeId = 'c01r01n03';
-
+            var curNodeId = getQueryVariable('nid');
             //routeInfo 轨迹基本信息
             $.ajax({
                     url: '../php/route.php',
@@ -53,11 +52,12 @@ requirejs(['jquery', 'bootstrap', 'loginModule', 'nanoscroller', 'videojs', 'ale
                         type: 'GET',
                         dataType: 'json',
                         data: {
+                            type:'getCourseData',
                             courseId: courseId
                         }
                     })
                     .done(function(result) {
-                        courseName = result.courseName;
+                        courseName = result.content.courseName;
                         //title
                         courseTit.html('<i class="glyphicon glyphicon-triangle-left"></i>' + courseName);
                         courseTit.attr('href', courseHref + courseId);
@@ -182,14 +182,14 @@ requirejs(['jquery', 'bootstrap', 'loginModule', 'nanoscroller', 'videojs', 'ale
             //更改正文
             function pageSetup(nodeId) {
                 $.ajax({
-                        url: '../js/data/route-node.json',
+                        url: '../php/route-nodes.php',
                         type: 'GET',
                         dataType: 'json',
-                        data: { nodeId: nodeId }
+                        data: { nodeStr: nodeId }
                     })
                     .done(function(result) {
-                        console.log("get page cont success");
-                        fillPageCont(result[0]);
+                        console.log(result);
+                        fillPageCont(result.content[0]);
                     })
                     .fail(function() {
                         console.log("error");

@@ -34,7 +34,7 @@
                         <a id="js_btnFav" class="btn-star">收藏<span class="glyphicon glyphicon-star-empty"></span></a>
                         <p id="js_courseDesc" class="desc"></p>
                         <div class="operation ">
-                            <a id="js_btnEnroll" class="btn btn-success btn-join">参加课程</a>
+                            <a id="js_btnEnroll" class="btn btn-success btn-join">订阅课程</a>
                             <a target="_blank" href="./course-search.html" class="btn btn-default btn-search">课内搜索</a>
                         </div>
                     </div>
@@ -62,30 +62,13 @@
                             <h3 class="m-t-md m-l-md title">学习轨迹</h3>
                             <div class="nano">
                                 <div class="nano-content">
-                                    <ul>
-                                        <li class="route" data-rid="1">
+                                    <ul id="js_routeList">
+                                        <!-- <li class="route" data-rid="1">
                                             <a>
                                                 <div class="title m-b-sm">学习轨迹标题</div>
                                                 <div class="intro">学习轨迹描述学习轨迹描述学习轨，迹描述学习轨迹描述学习轨迹描述学。习轨迹描述学习轨迹描述学习轨迹描述学习轨迹描述学习轨迹描述学习轨迹描述</div>
                                             </a>
-                                        </li>
-                                        <li class="route" data-rid="c01r02">
-                                            <a>
-                                                <div class="title m-b-sm">学习轨迹标题</div>
-                                                <div class="intro">学习轨迹描述学习轨迹描述学习轨，
-                                                    <br>迹描述学习轨迹描述学习轨迹描述学。
-                                                    <br>习轨迹描述学习轨迹描述学习轨迹描述学习轨;
-                                                    <br>迹描述学习轨迹描述学习轨迹描述
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li class="route" data-rid="c01r03">
-                                            <a>
-                                                <div class="title m-b-sm">学习轨迹标题</div>
-                                                <div class="intro">学习轨迹描述学习轨迹描述学习轨，迹描述学习轨迹描述学习轨迹描述学。
-                                                    <br>习轨迹描述学习轨迹描述学习轨迹描述学习轨迹描述学习轨迹描述学习轨迹描述</div>
-                                            </a>
-                                        </li>
+                                        </li> -->
                                     </ul>
                                 </div>
                             </div>
@@ -103,24 +86,17 @@
                                     </div>
                                 </div>
                                 <div class="modal-body">
-                                    <li class="nav-item">
-                                    <a class="done">
-                                        <div class="nav-icon">
-                                            <div class="pipe"></div>
-                                            <div class="status"></div>
-                                        </div>
-                                        <span class="progress-title">Function</span>
-                                    </a>
-                                    </li>
-                                    <li class="nav-item">
-                                    <a class="done">
-                                        <div class="nav-icon">
-                                            <div class="pipe"></div>
-                                            <div class="status"></div>
-                                        </div>
-                                        <span class="progress-title">Function</span>
-                                    </a>
-                                    </li>
+                                    <ul id="js_modalNodeList">
+                                        <li class="nav-item">
+                                            <a class="done">
+                                                <div class="nav-icon">
+                                                    <div class="pipe"></div>
+                                                    <div class="status"></div>
+                                                </div>
+                                                <span class="progress-title">Function</span>
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </div>
                                 <div class="modal-footer">
                                     <a target="_blank" id="js_btnOpenRoute" class="btn btn-default">查看轨迹</a>
