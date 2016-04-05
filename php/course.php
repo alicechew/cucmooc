@@ -103,6 +103,27 @@ if (!$con) {
 
         echo json_encode($arr, JSON_UNESCAPED_UNICODE);
     }
+    /**
+     * 加入轨迹
+     */
+    else if($type === 'enrollRoute'){
+        $rid = $_POST['routeId'];
+        $uid = $_POST['userId'];
+        $nodeStr = $_POST['nodeStr'];
+        $first = $_POST['first'];
+        $have = '';
+        $time = date('y-m-d h:i:s',time());
+
+        $sql = "INSERT INTO learningrecord (userID,pathID,haveLearned,havenotLearned,isLearning,recordUpdateTime) VALUES ('{$uid}','{$rid}','{$have}','{$nodeStr}','{$first}','{$time}')";
+        $res = mysql_query($sql);
+        // $row = mysql_fetch_array($res);
+        if (!$res) {
+            $arr = array("status" => "0");
+        }else{
+            $arr = array("status" => "200");
+        }
+        echo json_encode($arr, JSON_UNESCAPED_UNICODE);
+    }
 }
 mysql_close($con);
 ?>

@@ -143,7 +143,7 @@ requirejs(['jquery', 'bootstrap', 'loginModule'],
             createItem(userEnroll);
 
 
-            //获取用户已参加课程信息
+            //获取用户已参加轨迹信息
             function getUserRoutes(userId){
                 var routeStr = '';
                 $.ajax({

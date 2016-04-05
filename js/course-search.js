@@ -2,12 +2,9 @@ requirejs(['jquery', 'bootstrap', 'paginator', 'loginModule'],
     function(jquery, bootstrap, paginator, LoginModule) {
 
 
-        //验证登录状态
-        LoginModule.verifyLogin();
         //记录登录状态
-        var ifLogin = LoginModule.ifLogin,
-            userId = LoginModule.userId;
-
+        var userInfo = LoginModule.verifyLogin(),
+            ifLogin = userInfo.ifLogin; //@ATTENTION: 这里的ifLogin是字符串而不是boolean！
 
         String.prototype.temp = function(obj) {
             return this.replace(/\$\w+\$/gi, function(matchs) {
@@ -16,32 +13,67 @@ requirejs(['jquery', 'bootstrap', 'paginator', 'loginModule'],
             });
         };
 
-/**
- * categoriesSection 已选课程目录生成
- * @param  {String} ) userId [用户id]
- */
-        var categoriesSection = (function(userId){
+        /**
+         * categoriesSection 已选课程目录生成
+         * @param  {String} ) userId [用户id]
+         */
+        var categoriesSection = (function(userId) {
+            // var courses = new Array();
+            var userEnroll = getUserCourses(userInfo.userId);
 
             $.ajax({
-                url: '../js/data/search.json',
-                type: 'GET',
-                dataType: 'json',
-                data: {userId: userId},
-            })
-            .done(function(result) {
-                console.log("get categories success");
-                createCategories('#js_courseList', result.courseList);
-            })
-            .fail(function() {
-                console.log("get categories error");
-            })
-            .always(function(result) {
-                console.log(result);
-                // console.log("complete");
-            });
+                    url: '../php/homepage.php',
+                    type: 'GET',
+                    dataType: 'json',
+                    data: {
+                        type: 'getCoursesData',
+                        courseStr: userEnroll
+                    },
+                })
+                .done(function(result) {
+                    if (result.status == '200') {
+                        createCategories('#js_courseList', result.content);
+                    }
+                })
+                .fail(function() {
+                    console.log("get courses data error");
+                })
+                .always(function(result) {
+                    // console.log("complete");
+                });
 
+            //获取用户已参加课程信息
+            function getUserCourses(userId) {
+                var courseStr = '';
+                $.ajax({
+                        url: '../php/homepage.php',
+                        type: 'GET',
+                        dataType: 'json',
+                        data: {
+                            type: 'getCoursesId',
+                            userId: userId
+                        },
+                        async: false
+                    })
+                    .done(function(result) {
+                        if (result.status == '200') {
+                            var courses = new Array();
+                            $(result.content).each(function(index, el) {
+                                courses.push(el.courseID);
+                            });
+                            courseStr = courses.join('&');
+                        }
+                    })
+                    .fail(function() {
+                        console.log("get user courses error");
+                    })
+                    .always(function() {
+                        // console.log("complete");
+                    });
+                return courseStr;
+            }
 
-            function createCategories(selector, result){
+            function createCategories(selector, result) {
                 var container = $(selector),
                     url = './course.html?cid=',
                     listStr,
@@ -49,9 +81,9 @@ requirejs(['jquery', 'bootstrap', 'paginator', 'loginModule'],
                     prevTab,
                     curTab;
 
-                if(!result.length){
+                if (!result.length) {
                     listStr = '<p class="text-center">当前没有参加课程</p>';
-                }else{
+                } else {
                     listStr = '<li class="cur" data-cid="all">全部课程</li>';
                     $(result).each(function(index, el) {
                         listStr += '<li data-cid="' + el.courseId + '">' + el.courseName + '</li>';
@@ -68,9 +100,9 @@ requirejs(['jquery', 'bootstrap', 'paginator', 'loginModule'],
                 tabItem.on('click', function(event) {
                     var cid = $(this).attr('data-cid');
                     console.log(cid);
-                    if(curTab == this){
+                    if (curTab == this) {
                         return;
-                    }else{
+                    } else {
                         curTab = this;
                         $(curTab).addClass('cur');
                         $(prevTab).removeClass('cur');
@@ -84,12 +116,12 @@ requirejs(['jquery', 'bootstrap', 'paginator', 'loginModule'],
         }());
 
 
-/**
- * listSource 填充列表函数
- * @param  {Boolean} ifSearch  [是否为搜索动作引发的填充列表]
- * @param  {String} searchType [搜索类型：course|point]
- * @param  {String} searchText [搜索关键字]
- */
+        /**
+         * listSource 填充列表函数
+         * @param  {Boolean} ifSearch  [是否为搜索动作引发的填充列表]
+         * @param  {String} searchType [搜索类型：course|point]
+         * @param  {String} searchText [搜索关键字]
+         */
         var listSource = function(ifSearch, searchType, searchText) {
             var htmlList = '',
                 htmlTemp,
@@ -99,19 +131,7 @@ requirejs(['jquery', 'bootstrap', 'paginator', 'loginModule'],
                 itemId = searchType + 'Id',
                 itemImgSrc = 'itemImgSrc';
 
-                htmlTemp = '<div class="col-md-3 col-xs-6">'
-                        + '<div class="item-panel panel b-a">'
-                        +    '<div class="item-pic">'
-                        +       '<a target="_blank" href="'+ itemPath + 'courseId=$' + itemId + '$"><img src="$' + itemImgSrc +'$" class="img-full" alt=""></a>'
-                        +   '</div>'
-                        +    '<div class="item-tit text-center font-bold text-md">'
-                        +       '<a target="_blank" href="' + itemPath + 'courseId=$' + itemId + '$">$' + itemName + '$</a>'
-                        +   '</div>'
-                        +   '<div class="item-desc m-l-sm m-r-sm">'
-                        +      '<div class="text-center">$' + itemDesc + '$</div>'
-                        +   '</div>'
-                        +   '</div>'
-                        + '</div>';
+            htmlTemp = '<div class="col-md-3 col-xs-6">' + '<div class="item-panel panel b-a">' + '<div class="item-pic">' + '<a target="_blank" href="' + itemPath + 'courseId=$' + itemId + '$"><img src="$' + itemImgSrc + '$" class="img-full" alt=""></a>' + '</div>' + '<div class="item-tit text-center font-bold text-md">' + '<a target="_blank" href="' + itemPath + 'courseId=$' + itemId + '$">$' + itemName + '$</a>' + '</div>' + '<div class="item-desc m-l-sm m-r-sm">' + '<div class="text-center">$' + itemDesc + '$</div>' + '</div>' + '</div>' + '</div>';
 
             $.ajax({
                     url: '../php/categories.php',
@@ -222,12 +242,12 @@ requirejs(['jquery', 'bootstrap', 'paginator', 'loginModule'],
                 searchType,
                 searchText;
 
-                //绑定tooltip
-                searchInputEl.tooltip({
-                        trigger:'manual',
-                        title: '搜索关键字不能为空！',
-                        placement: 'bottom'
-                    });
+            //绑定tooltip
+            searchInputEl.tooltip({
+                trigger: 'manual',
+                title: '搜索关键字不能为空！',
+                placement: 'bottom'
+            });
 
             btnSubmit.on('click', null, function(event) {
                 searchType = searchTypeEl.val();
@@ -236,9 +256,9 @@ requirejs(['jquery', 'bootstrap', 'paginator', 'loginModule'],
                 //搜索关键字为空时不发送请求，同时显示tooltip
                 if (!searchText) {
                     searchInputEl.tooltip('show');
-                    setTimeout(function(){
+                    setTimeout(function() {
                         searchInputEl.tooltip('hide');
-                    },1500);
+                    }, 1500);
                     return;
                 }
 
@@ -246,5 +266,5 @@ requirejs(['jquery', 'bootstrap', 'paginator', 'loginModule'],
             });
         })();
 
-        listSource(false,'course','');
+        listSource(false, 'course', '');
     });

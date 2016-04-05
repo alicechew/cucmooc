@@ -49,10 +49,9 @@ requirejs(['jquery', 'bootstrap', 'loginModule'],
                                 type: 'enrollCourse',
                                 userId: userInfo.userId,
                                 courseId: courseId
-                            },
+                            }
                         })
                         .done(function(result) {
-                            console.log(result);
                             if (result.status == '200') {
                                 //成功则popup
                                 btnEnroll.tooltip('show');
@@ -298,7 +297,8 @@ requirejs(['jquery', 'bootstrap', 'loginModule'],
          */
         var route = (function() {
             var modalEl = $('#js_routeModal'),
-                btnEnrollRoute = $('#js_btnEnrollRoute');
+                btnEnrollRoute = $('#js_btnEnrollRoute'),
+                routeNodes = new Array();
 
             $('#js_routeList').on('click', '.route', function(event) {
                 modalEl.modal('show', $(this));
@@ -314,7 +314,7 @@ requirejs(['jquery', 'bootstrap', 'loginModule'],
                 getRouteNode(routeId);
                 //判断用户是否已加入该轨迹
                 $.ajax({
-                        url: '../js/data/route-user.json',
+                        url: '../php/route-status.php',
                         type: 'GET',
                         dataType: 'json',
                         data: {
@@ -323,12 +323,15 @@ requirejs(['jquery', 'bootstrap', 'loginModule'],
                         }
                     })
                     .done(function(result) {
-
-                        if (result.ifEnroll) {
+                        if (result.status == '200') {
                             //按钮状态变更
                             btnEnrollRoute.text('已加入');
                             btnEnrollRoute.addClass('disabled');
                             return;
+                        } else {
+                            //按钮状态变更
+                            btnEnrollRoute.text('加入轨迹');
+                            btnEnrollRoute.removeClass('disabled');
                         }
                     })
                     .fail(function() {
@@ -353,33 +356,43 @@ requirejs(['jquery', 'bootstrap', 'loginModule'],
             //加入轨迹按钮事件绑定
             btnEnrollRoute.on('click', function(event) {
                 var routeId = modalEl.attr('data-rid'),
-                    userId = userInfo.userId;
+                    userId = userInfo.userId,
+                    nodeStr,
+                    firstNode;
+
+                firstNode = routeNodes[0];
+                routeNodes.shift();
+                nodeStr = routeNodes.join('&');
 
                 if (ifLogin == 'false') {
                     alert('请先登录!');
                     return;
                 }
-
                 $.ajax({
-                        url: '../js/data/route-user.json',
+                        url: '../php/course.php',
                         type: 'POST',
+                        dataType:'json',
                         data: {
+                            type: 'enrollRoute',
                             userId: userId,
-                            routeId: routeId
+                            routeId: routeId,
+                            first: firstNode,
+                            nodeStr: nodeStr
                         }
                     })
-                    .done(function() {
-                        console.log("enroll route success");
+                    .done(function(result) {
+                        console.log(result);
+                        if (result.status == '200') {
+                            //弹出tooltip
+                            btnEnrollRoute.tooltip('show');
+                            setTimeout(function() {
+                                btnEnrollRoute.tooltip('hide');
+                            }, 1000);
 
-                        //弹出tooltip
-                        btnEnrollRoute.tooltip('show');
-                        setTimeout(function() {
-                            btnEnrollRoute.tooltip('hide');
-                        }, 1000);
-
-                        //按钮状态变更
-                        btnEnrollRoute.text('已加入');
-                        btnEnrollRoute.addClass('disabled');
+                            //按钮状态变更
+                            btnEnrollRoute.text('已加入');
+                            btnEnrollRoute.addClass('disabled');
+                        }
                     })
                     .fail(function() {
                         console.log("enroll route error");
@@ -437,9 +450,12 @@ requirejs(['jquery', 'bootstrap', 'loginModule'],
                         var container = $('#js_modalNodeList'),
                             htmlStr = '',
                             firstNodeId = result.content[0].nodeID;
+
+                        routeNodes = [];
                         $(result.content).each(function(index, el) {
                             var title = el.nodeName,
                                 nid = el.nodeID;
+                            routeNodes.push(el.nodeID);
                             htmlStr += '<li class="nav-item"><a data-nid="' + nid + '"><div class="nav-icon"><div class="pipe"></div><div class="status"></div></div>' + '<span class="progress-title">' + title + '</span></a>';
                         });
                         container.html(htmlStr);
@@ -488,24 +504,28 @@ requirejs(['jquery', 'bootstrap', 'loginModule'],
             }
             //填充节点状态
             function fillStatus(routeId, routeStatus) {
-                var done = routeStatus.haveLearned.split('&'),
-                    undone = routeStatus.havenotLearned.split('&'),
-                    cur = routeStatus.isLearning.split('&'),
+                var done = routeStatus.haveLearned ? routeStatus.haveLearned.split('&') : '',
+                    undone = routeStatus.havenotLearned ? routeStatus.havenotLearned.split('&') : '',
+                    cur = routeStatus.isLearning ? routeStatus.isLearning.split('&') : '',
                     url = './route.html?rid=';
                 //已完成
-                $(done).each(function(index, el) {
-                    $('[data-nid=' + el + ']').addClass('done');
-                });
+                if (done) {
+                    $(done).each(function(index, el) {
+                        $('[data-nid=' + el + ']').addClass('done');
+                    });
+                }
                 //未完成
-                $(undone).each(function(index, el) {
-                    $('[data-nid=' + el + ']').addClass('undone');
-                });
+                if (undone) {
+                    $(undone).each(function(index, el) {
+                        $('[data-nid=' + el + ']').addClass('undone');
+                    });
+                }
                 //当前进度
-                $('[data-nid=' + cur + ']').addClass('cur');
-
-                //按钮路径
-                $('#js_btnOpenRoute').attr('href', url + routeId + '&nid=' + cur);
-
+                if (cur) {
+                    $('[data-nid=' + cur + ']').addClass('cur');
+                    //按钮路径
+                    $('#js_btnOpenRoute').attr('href', url + routeId + '&nid=' + cur);
+                }
             }
         }());
     });
