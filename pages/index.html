@@ -17,7 +17,7 @@
     </div>
     <div class="wrap">
         <div id="js_navWrap"></div>
-       <!--  <header class="navbar navbar-fixed-top box-shadow">
+        <!--  <header class="navbar navbar-fixed-top box-shadow">
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav_collapse" aria-expanded="false">
@@ -96,7 +96,29 @@
                 </div>
             </div>
             <div class="container">
-                <div class="your-course">
+                <div class="your-status">
+                    <div class="row">
+                        <div class="wrapper clearfix">
+                            <h3 class="pull-left">您的学习状态</h3>
+                        </div>
+                        <div class="row text-center login-notice">
+                            <p class="font-bold">Oops，请先<span class="btn-login" id='js_indexLogin'>登录</span>查看您的学习状态！</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="your-route hide">
+                    <div class="row">
+                        <div class="wrapper clearfix">
+                            <h3 class="pull-left">您的轨迹</h3>
+                        </div>
+                        <div class="row text-center login-notice">
+                            <p class="font-bold">Oops，请先<span class="btn-login" id='js_indexLogin'>登录</span>查看您参与的轨迹！</p>
+                        </div>
+                        <div id="js_userRouteList">
+                        </div>
+                    </div>
+                </div>
+                <div class="your-course hide">
                     <div class="row">
                         <div class="wrapper clearfix">
                             <h3 class="pull-left">您的课程</h3>
@@ -105,8 +127,8 @@
                             <p class="font-bold">Oops，请先<span class="btn-login" id='js_indexLogin'>登录</span>查看您参与的课程！</p>
                         </div>
                         <!-- <div class="row"> -->
-                            <div id="js_userCourseList">
-                            </div>
+                        <div id="js_userCourseList">
+                        </div>
                         <!-- </div> -->
                     </div>
                 </div>
@@ -223,7 +245,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="recommend-course">
                         <div class="row">
                             <div class="wrapper clearfix">
