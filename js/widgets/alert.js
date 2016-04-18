@@ -1,7 +1,7 @@
 define(['jquery', 'bootstrap'], function(jQuery, bootstrap) {
-    var W = new Object();
+    var Q = new Object();
 
-    W.alert = function(selector, type, cont, duration) {
+    Q.alert = function(selector, type, cont, duration) {
         var alertType = type,
             alertCont = cont,
             alertDur = duration,
@@ -16,5 +16,9 @@ define(['jquery', 'bootstrap'], function(jQuery, bootstrap) {
         $('.alert').fadeIn();
     };
 
-    return W;
+    //@TODO
+    Q.popup = function(selector, type, cont, duration){
+
+    };
+    return Q;
 });

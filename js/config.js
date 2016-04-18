@@ -15,7 +15,8 @@ requirejs.config({
         registerModule: './widgets/register-module',
         alert: './widgets/alert',
         nanoscroller: './lib/jquery.nanoscroller.min',
-        videojs: './lib/video.min'
+        videojs: './lib/video.min',
+        api: './widgets/api'
     },
     shim: {
         bootstrap: ['jquery'],
@@ -24,7 +25,8 @@ requirejs.config({
         loginModule: ['jquery'],
         registerModule: ['validate'],
         alert: ['bootstrap'],
-        nanoscroller: ['jquery']
+        nanoscroller: ['jquery'],
+        api: ['jquery']
 
     }
 });

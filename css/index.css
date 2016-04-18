@@ -1,6 +1,27 @@
-h3{
-    font-family: 'Microsoft Yahei', '微软雅黑', 'Simsun','宋体','Arial';
+@media (min-width: 992px) {
+    .last-route .more {
+        right: 15px;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+    }
 }
+
+@media (max-width: 991px) {
+    .last-route .more {
+        right: 15px;
+        bottom: 10px;
+    }
+}
+.main-content{
+    background-color: #FAFBFC;
+}
+
+h3 {
+    font-family: 'Microsoft Yahei', '微软雅黑', 'Simsun', '宋体', 'Arial';
+}
+
+
 /*.recommend-point .item-panel {
     min-height: 212px;
 }*/
@@ -9,7 +30,32 @@ h3{
     /*height: 360px;*/
 }
 
-.item-pic{
+.item-panel .btn-unenroll {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    right: 20px;
+    top: 5px;
+    background: url('../images/btn_cross.png') no-repeat center;
+    -webkit-background-size: 100% 100%;
+    background-size: 100% 100%;
+    text-indent: -999px;
+    overflow: hidden;
+    z-index: 2;
+    cursor: pointer;
+}
+
+
+/*.item-panel:hover .btn-unenroll{
+    display: inline-block;
+    *display: inline;
+    *zoom:1;
+}*/
+
+.item-pic {
     position: relative;
     /*width: 270px;*/
     /*height: 135px;*/
@@ -18,6 +64,9 @@ h3{
 .item-tit {
     height: 45px;
     line-height: 45px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .item-desc div {
@@ -35,11 +84,12 @@ h3 {
     line-height: 34px;
 }
 
-.login-notice{
-    height:80px;
+.login-notice {
+    height: 80px;
 }
+
 .login-notice p {
-    font-family: 'Microsoft Yahei','微软雅黑','Simsun','宋体','Arial';
+    font-family: 'Microsoft Yahei', '微软雅黑', 'Simsun', '宋体', 'Arial';
     line-height: 80px;
     color: #888;
 }
@@ -56,4 +106,163 @@ h3 {
     position: absolute;
     top: -25px;
     left: 4px;
+}
+
+
+/* course nav*/
+
+.course-nav {
+    display: -webkit-flex;
+    /*safari*/
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 5px;
+}
+
+.course-nav-tab {
+    position: relative;
+    height: 50px;
+    padding: 0 10px;
+    margin-left: 10px;
+    margin-top: 5px;
+    line-height: 50px;
+    background-color: #69b758;
+    border: 1px solid #69b758;
+}
+
+.course-nav-tab a{
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.course-nav-tab.cur,
+.course-nav-tab:hover{
+    background-color: #fff;
+}
+
+.course-nav-tab.cur a,
+.course-nav-tab:hover a{
+    color: #69b758;
+}
+
+.course-nav .btn-unenroll {
+    position: absolute;
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    width: 20px;
+    height: 20px;
+    right: -10px;
+    top: -10px;
+    border-radius: 99px;
+    text-indent: -999px;
+    background: url('../images/btn_unenroll.png') no-repeat center center;
+    cursor: pointer;
+}
+
+
+/* 最后观看轨迹*/
+#js_lastRoute .title{
+    font-size: 15px;
+    font-weight: 600;
+    color:#58646d;
+}
+
+.last-route {
+    position: relative;
+    min-height: 100px;
+    padding: 10px;
+    border: 1px solid #dbdbdb;
+    border-radius: 4px;
+    background-color: #fff;
+    box-shadow:0 2px 4px 0 rgba(46,61,73,.2);
+}
+.last-route .more {
+    position: absolute;
+    display: inline-block;
+    height: 84px;
+    width: 32px;
+    background: url('../images/icon_arrow.png') center center;
+    text-indent: -999px;
+    overflow: hidden;
+    opacity: 0.5;
+}
+
+.progress {
+    height: 15px;
+    background-color: #ebebeb;
+    border-left: 1px solid transparent;
+    border-right: 1px solid transparent;
+    border-radius: 10px;
+}
+
+.progress .bar {
+    position: relative;
+    float: left;
+    margin: 0 -1px;
+    min-width: 30px;
+    height: 15px;
+    line-height: 13px;
+    text-align: right;
+    background-color: #85c440;
+    border-color: #78b337;
+    background-image: -webkit-linear-gradient(top, #b7dc8e 0%, #99ce5f 70%, #85c440 100%);
+    border-radius: 10px;
+    box-shadow: inset 0 1px rgba(255, 255, 255, 0.3), 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.progress .bar:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    height: 18px;
+    background: url('../images/bg_progress.png') 0 0 repeat-x;
+    border-radius: 10px;
+}
+
+
+/* 你的课程 管理*/
+
+.your-course .btn-manage {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    width: 80px;
+    height: 25px;
+    margin-left: 15px;
+    border-radius: 99px;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 25px;
+    cursor: pointer;
+    background-color: #E1F3FB;
+    color: #1CB9F0;
+    text-align: center;
+}
+
+.your-course .btn-manage:hover {
+    background-color: #b8e6f9;
+}
+
+.your-course .icon-manage {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    margin-left: 2px;
+    background: url('../images/btn_manage.png') no-repeat center center;
+    -webkit-background-size: 100% auto;
+    background-size: 100% auto;
+    vertical-align: -3px;
 }

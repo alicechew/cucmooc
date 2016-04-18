@@ -61,7 +61,6 @@
 
 .course-body {
     background-color: #fff;
-    /*height: 600px;*/
     overflow: hidden;
     margin-bottom: 80px;
 }
@@ -180,6 +179,7 @@
 
 .course-route {
     margin-bottom: 30px;
+    min-height: 400px;
 }
 
 .course-route ul {
@@ -312,4 +312,10 @@
     background-color: #00ad70;
     border: 1px solid #00ad70;
     color: #fff;
+}
+
+/* course footer */
+.course-footer{
+    background-color: #fff;
+    line-height: 88px;
 }

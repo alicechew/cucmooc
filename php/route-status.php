@@ -1,7 +1,7 @@
 <?php
 require ('init.php');
 header("content-Type:text/html;charset=utf-8");
-$rid = $_GET['routeId'];
+$routeStr = $_GET['routeStr'];
 $uid = $_GET['userId'];
 
 $con = mysql_connect(DB_HOST, DB_USER, DB_PASSWORD);
@@ -13,23 +13,26 @@ if (!$con) {
     mysql_select_db(DB_NAME, $con);
     //echo("链接数据库成功");
 
-    $sql = "SELECT haveLearned,havenotLearned,isLearning FROM learningrecord WHERE pathID='$rid' and userID='$uid'";
-    $result = mysql_query($sql);
-    $cont=array();
+    $routeArr = explode("&", $routeStr);
+    $rids = implode(",", $routeArr);
+    $sql = "SELECT * FROM learningrecord WHERE userID='$uid' AND pathID IN (".$rids.")";
 
-    $rows = mysql_num_rows($result);
-    if($rows == 0){
+    $result = mysql_query($sql);
+    $row = mysql_fetch_array($result, MYSQL_ASSOC);
+    if(!$row){
         $arr = array(
             "status" => "0"
         );
-    }else if($rows == 1){
+    }else{
+        $cont=array();
+        $cont[]=$row;
         while($row = mysql_fetch_array($result, MYSQL_ASSOC)){
-            // array_push($cont,$row);
-            $arr = array(
-                "status" => "200",
-                "content" => $row
-            );
+            $cont[] = $row;
         }
+         $arr = array(
+            "status" => "200",
+            "content" => $cont
+         );
 
     }
 

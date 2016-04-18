@@ -81,6 +81,25 @@ if (!$con) {
         echo json_encode($arr, JSON_UNESCAPED_UNICODE);
     }
     /**
+     * 退出课程
+     */
+    else if ($type === 'unenrollCourses'){
+        $uid = $_GET['userId'];
+        $cidStr = $_GET['courseStr'];
+        $cidArr = explode("&", $cidStr);
+        $cids = implode(',', $cidArr);
+        //$count = count($cids);
+        $sql = "DELETE FROM  collectcourse  WHERE userID = '$uid' AND courseID IN ('".$cids."')";
+        $res = mysql_query($sql);
+        if (!$res) {
+            $arr = array("status" => "0");
+        }else {
+            $arr = array("status" => "200");
+        }
+        echo json_encode($arr, JSON_UNESCAPED_UNICODE);
+
+    }
+    /**
      * 获取轨迹信息
      */
     else if( $type === 'getRoute'){
@@ -124,6 +143,7 @@ if (!$con) {
         }
         echo json_encode($arr, JSON_UNESCAPED_UNICODE);
     }
+
 }
 mysql_close($con);
 ?>

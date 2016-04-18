@@ -53,15 +53,6 @@
         </header> -->
         <div class="main-content">
             <div class="frontpage-header">
-                <!-- <div class="container">
-                    <div class="row">
-                        <div class="col-md-8 col-md-offset-2 text-center">
-                            <div>
-                                <h1>搜索课堂</h1>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
                 <div id="carousel-generic" class="carousel slide" data-ride="carousel">
                     <!-- indicators -->
                     <ol class="carousel-indicators">
@@ -106,7 +97,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="your-route hide">
+              <!--   <div class="your-route hide">
                     <div class="row">
                         <div class="wrapper clearfix">
                             <h3 class="pull-left">您的轨迹</h3>
@@ -117,22 +108,44 @@
                         <div id="js_userRouteList">
                         </div>
                     </div>
-                </div>
-                <div class="your-course hide">
-                    <div class="row">
-                        <div class="wrapper clearfix">
-                            <h3 class="pull-left">您的课程</h3>
+                </div> -->
+                <div class="m-t-lg"></div>
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2 col-xs-10 col-xs-offset-1">
+                        <div id="js_lastRoute">
+                            <!-- <div class="row">
+                                <a href="">
+                                <div class="col-md-4 col-xs-12">
+                                    <img class="img-full" src="../images/course/c01.jpg">
+                                </div>
+                                <div class="col-md-6 col-xs-10">
+                                    <h4>最近轨迹</h4>
+                                    <div class="progress">
+                                        <span class="bar" style="width: 40%">
+                                            <span>40%</span>
+                                        </span>
+                                    </div>
+                                    <p>当前节点：XXX XXXXXX XX XX XXX XX</p>
+                                </div>
+                                <div class="col-md-2 col-xs-2">
+                                    <span class="more">more</span>
+                                </div>
+                                </a>
+                            </div> -->
                         </div>
-                        <div class="row text-center login-notice">
-                            <p class="font-bold">Oops，请先<span class="btn-login" id='js_indexLogin'>登录</span>查看您参与的课程！</p>
-                        </div>
-                        <!-- <div class="row"> -->
-                        <div id="js_userCourseList">
-                        </div>
-                        <!-- </div> -->
                     </div>
                 </div>
-                <!-- <div class="m-t-md"></div> -->
+                <div class="your-course m-t-lg">
+                    <!-- <div class="row"> -->
+                        <!-- <div class="wrapper clearfix">
+                            <h3 class="pull-left">您的课程</h3>
+                        </div> -->
+                        <!-- <div class="row"> -->
+                        <div id="js_userCourseList" class="course-nav"></div>
+                        <div id="js_courseCont"></div>
+                        <!-- </div> -->
+                    <!-- </div> -->
+                </div>
                 <div class="recommend">
                     <div class="recommend-route hide">
                         <div class="row">
@@ -144,6 +157,7 @@
                         <div class="row">
                             <div class="col-md-3 col-xs-6">
                                 <div class="item-panel panel b-a">
+                                    <span class="btn-unenroll">unenroll</span>
                                     <div class="item-pic">
                                         <a href="#"><img src="https://www.codester.com/static//uploads/items/1469/preview.jpg" class="img-full" alt=""></a>
                                     </div>
@@ -246,14 +260,14 @@
                         </div>
                     </div>
                     <div class="recommend-course">
-                        <div class="row">
+                        <!-- <div class="row">
                             <div class="wrapper clearfix">
                                 <h3 class="pull-left">推荐课程</h3>
                                 <button class="pull-right btn btn-default" href="#">查看更多</button>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-3 col-xs-6">
+                        </div> -->
+                        <div id="js_recCourses" class="row">
+                            <!-- <div class="col-md-3 col-xs-6">
                                 <div class="item-panel panel b-a">
                                     <div class="item-pic">
                                         <a href="#"><img src="https://www.codester.com/static//uploads/items/1469/preview.jpg" class="img-full" alt=""></a>
@@ -274,73 +288,7 @@
                                         </ul>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-3 col-xs-6">
-                                <div class="item-panel panel b-a">
-                                    <div class="item-pic">
-                                        <a href="#"><img src="https://www.codester.com/static//uploads/items/1469/preview.jpg" class="img-full" alt=""></a>
-                                    </div>
-                                    <div class="item-tit text-center font-bold text-md">
-                                        <a href="#">JavaScript入门</a>
-                                    </div>
-                                    <div class="item-desc m-l-sm m-r-sm">
-                                        <div class="text-center">JavaScript零基础入门</div>
-                                    </div>
-                                    <div class="item-point  m-t-lg">
-                                        <span class="font-bold m-l-md">热门知识点</span>
-                                        <ul class="hot-point m-t-sm">
-                                            <li><a href="#">对象</a></li>
-                                            <li><a href="#">闭包</a></li>
-                                            <li><a href="#">函数作用域</a></li>
-                                            <li><a href="#">数组</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 col-xs-6">
-                                <div class="item-panel panel b-a">
-                                    <div class="item-pic">
-                                        <a href="#"><img src="https://www.codester.com/static//uploads/items/1469/preview.jpg" class="img-full" alt=""></a>
-                                    </div>
-                                    <div class="item-tit text-center font-bold text-md">
-                                        <a href="#">JavaScript入门</a>
-                                    </div>
-                                    <div class="item-desc m-l-sm m-r-sm">
-                                        <div class="text-center">JavaScript零基础入门</div>
-                                    </div>
-                                    <div class="item-point  m-t-lg">
-                                        <span class="font-bold m-l-md">热门知识点</span>
-                                        <ul class="hot-point m-t-sm">
-                                            <li><a href="#">对象</a></li>
-                                            <li><a href="#">闭包</a></li>
-                                            <li><a href="#">函数作用域</a></li>
-                                            <li><a href="#">数组</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 col-xs-6">
-                                <div class="item-panel panel b-a">
-                                    <div class="item-pic">
-                                        <a href="#"><img src="https://www.codester.com/static//uploads/items/1469/preview.jpg" class="img-full" alt=""></a>
-                                    </div>
-                                    <div class="item-tit text-center font-bold text-md">
-                                        <a href="#">JavaScript入门</a>
-                                    </div>
-                                    <div class="item-desc m-l-sm m-r-sm">
-                                        <div class="text-center">JavaScript零基础入门</div>
-                                    </div>
-                                    <div class="item-point  m-t-lg">
-                                        <span class="font-bold m-l-md">热门知识点</span>
-                                        <ul class="hot-point m-t-sm">
-                                            <li><a href="#">对象</a></li>
-                                            <li><a href="#">闭包</a></li>
-                                            <li><a href="#">函数作用域</a></li>
-                                            <li><a href="#">数组</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>

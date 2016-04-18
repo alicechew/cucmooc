@@ -3,7 +3,11 @@ require ('init.php');
 header("content-Type:text/html;charset=utf-8");
 session_start();
 
-$type = isset($_GET['type']) ? $_GET['type'] : '';
+if(isset($_GET['type'])){
+    $type = $_GET['type'];
+}else if(isset($_POST['type'])){
+    $type = $_POST['type'];
+}
 // $type = 'getRoutesData';
 
 $con = mysql_connect(DB_HOST, DB_USER, DB_PASSWORD);
@@ -18,9 +22,17 @@ if (!$con) {
     if($type === 'recommend'){
         $sql = "SELECT courseName,courseDesc FROM course ";
         $result = mysql_query($sql);
-        $arr=array();
-        while($row = mysql_fetch_array($result, MYSQL_ASSOC)){
-            $arr[]=$row;
+        if(!$result){
+            $arr = array("status" => "0");
+        }else{
+            $cont=array();
+            while($row = mysql_fetch_array($result, MYSQL_ASSOC)){
+                $cont[]=$row;
+            }
+            $arr = array(
+                "status" => "200",
+                "content" => $cont
+                );
         }
         echo json_encode($arr,JSON_UNESCAPED_UNICODE);
     }
@@ -69,6 +81,7 @@ if (!$con) {
     //已参加轨迹
     else if( $type === 'getRoutesId'){
         $uid = $_GET['userId'];
+        $cid = $_GET['courseId'];
         $sql = "SELECT * FROM learningrecord WHERE userID='$uid'";
         $result = mysql_query($sql);
         $cont = array();
@@ -108,6 +121,21 @@ if (!$con) {
         }
         echo json_encode($arr, JSON_UNESCAPED_UNICODE);
     }
+    //取消关注课程
+        else if ($type === 'removeCourses'){
+            $uid = $_GET['userId'];
+            $cidStr = $_GET['courseStr'];
+            $cids = explode("&", $cidStr);
+            //$count = count($cids);
+            $sql = "DELETE * FROM  collectcourse  where userID = '$uid'  and courseID in ('$cids') ";
+            $res = mysql_query($sql);
+            if (!$res) {
+                $arr = array("status" => "0");
+            }else {
+                    $arr = array("status" => "200");
+            }
+        }
+
 }
 mysql_close($con);
 ?>

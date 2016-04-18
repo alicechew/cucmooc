@@ -19,6 +19,7 @@ requirejs(['jquery', 'bootstrap', 'loginModule', 'nanoscroller', 'videojs', 'ale
                     type: 'GET',
                     dataType: 'json',
                     data: {
+                        type: 'getRouteData',
                         routeId: rid
                     }
                 })

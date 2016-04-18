@@ -101,7 +101,7 @@ define(['jquery', 'bootstrap', 'validate'], function(jquery, bootstrap, Validate
                             var noticeStr = '<p class="notice text-center">注册成功！</br>本页面将在3s后关闭！</p>';
                             $('.signup-form').html(noticeStr);
                             setTimeout(function() {
-                                window.close();
+                                // window.close();
                             }, 3000);
                         }
                     })

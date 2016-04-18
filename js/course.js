@@ -318,7 +318,7 @@ requirejs(['jquery', 'bootstrap', 'loginModule'],
                         type: 'GET',
                         dataType: 'json',
                         data: {
-                            routeId: routeId,
+                            routeStr: routeId,
                             userId: userId
                         }
                     })
@@ -381,7 +381,6 @@ requirejs(['jquery', 'bootstrap', 'loginModule'],
                         }
                     })
                     .done(function(result) {
-                        console.log(result);
                         if (result.status == '200') {
                             //弹出tooltip
                             btnEnrollRoute.tooltip('show');
@@ -410,6 +409,7 @@ requirejs(['jquery', 'bootstrap', 'loginModule'],
                         type: 'GET',
                         dataType: 'json',
                         data: {
+                            type: 'getRouteData',
                             routeId: routeId
                         }
                     })
@@ -481,9 +481,10 @@ requirejs(['jquery', 'bootstrap', 'loginModule'],
                         type: 'GET',
                         dataType: 'json',
                         data: {
-                            routeId: routeId,
+                            routeStr: routeId,
                             userId: userId
-                        }
+                        },
+                        async:false
                     })
                     .done(function(result) {
                         if (result.status == '0') {
@@ -491,7 +492,7 @@ requirejs(['jquery', 'bootstrap', 'loginModule'],
                             $('#js_btnOpenRoute').attr('href', url + routeId + '&nid=' + firstNodeId);
                             return;
                         } else if (result.status == '200') {
-                            routeStatus = result.content;
+                            routeStatus = result.content[0];
                             fillStatus(routeId, routeStatus);
                         }
                     })
@@ -499,7 +500,7 @@ requirejs(['jquery', 'bootstrap', 'loginModule'],
                         console.log("get route status error");
                     })
                     .always(function(result) {
-                        // console.log("complete");
+                        console.log(result);
                     });
             }
             //填充节点状态

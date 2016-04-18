@@ -2,9 +2,14 @@
 require 'init.php';
 header('content-Type:text/html;charset=utf-8');
 session_start();
-$posts = $_POST['form'];
-$type = $_GET['type'] || $_POST['type'];
-$loginname = $posts['username'];
+if(isset($_GET['type'])){
+    $type = $_GET['type'];
+}else if(isset($_POST['type'])){
+    $type = $_POST['type'];
+    $posts = array();
+    parse_str($_POST['form'], $posts);
+    $loginname = $posts['username'];
+}
 //连接数据库
 $con = mysql_connect(DB_HOST, DB_USER, DB_PASSWORD);
 mysql_set_charset('utf8', $con);
@@ -29,7 +34,7 @@ $sql = "SELECT * FROM users WHERE userName='{$loginname}'";
 $res = mysql_query($sql);
 $rows = mysql_num_rows($res);
 if ($rows > 0) {
-    $arr = array('status' => '0');
+    $arr = array("status" => "0");
 } else {
     //**************用户名可用，插入数据库***********
     //*****插入users表******
@@ -37,23 +42,36 @@ if ($rows > 0) {
     $hash = password_hash("{$password}", PASSWORD_DEFAULT);
     $education = $posts['education'];
     // $subjectsid[] = json_deccode($posts['subjects'], true);
-    $
     $sql = "INSERT INTO users (userName,userPassword,userEducation) VALUES ('{$loginname}','{$hash}','{$education}')";
     $res = mysql_query($sql);
     if ($res) {
-        $arr = array('status' => '200');
+        $arr = array("status" => "200");
     }
     //**********插入interest表**********
-    $sql = "SELECT userID FROM users WHERE userName='{$loginname}'  ";
+    $sql = "SELECT userID FROM users WHERE userName='$loginname'";
     $res = mysql_query($sql);
     $row = mysql_fetch_array($res);
-    $userid = $row['userID'];
-    $sql = "INSERT INTO interest (userID,courseID) values ('{$userid}','{$courseid}')";
-    //前端传递courseid
+    $userid=$row['userID'];
+
+    $course_array = $posts['subjects'];
+
+    $count= count($course_array);
+    $sql="INSERT INTO interest (userID,subjectID) VALUES ";
+    for ($i=0;$i<$count;$i++){
+        $sql.="($userid,$course_array[$i]),";
+    }
+    $sql = substr($sql,0,strlen($sql)-1);
+    // $course_array=json_decode($courseid);//$courseid是前端传过来的json数组,转换成PHP数组
+    // $sql = "INSERT INTO interest (userID,subjectID) values ('$userid','$course_array[0]'), ('$userid','$course_array[1]'), ('$userid','$course_array[2]'), ('$userid','$course_array[3]')";
     $res = mysql_query($sql);
-    $row = mysql_fetch_array($res);
-    if ($res) {
-        $arr = array('status' => '200');
+    if($res) {
+        $arr = array(
+            "status" => "200"
+        );
+    }else{
+        $arr = array(
+            "status" => "0"
+        );
     }
 }
 $str = json_encode($arr);
