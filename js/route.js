@@ -45,7 +45,7 @@ requirejs(['jquery', 'bootstrap', 'loginModule', 'nanoscroller', 'videojs', 'ale
                     navContainer = $('#js_routeNav'),
                     courseTit = $('#js_courseName'),
                     routeTit = $('#js_routeName'),
-                    courseHref = './course.html?id=';
+                    courseHref = './course.html?courseId=';
 
                 // 获取课程信息
                 $.ajax({

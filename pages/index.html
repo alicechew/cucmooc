@@ -16,6 +16,13 @@
     <div class="login-form-popup" id="js_loginFormPopup">
     </div>
     <div class="wrap">
+        <div id="js_quicknav" class="quicknav">
+           <!--  <div class="quicknav-item">已选课程</div>
+            <div class="line-wrap text-center">
+                <div class="line"></div>
+            </div>
+            <div class="quicknav-item">推荐课程</div> -->
+        </div>
         <div id="js_navWrap"></div>
         <!--  <header class="navbar navbar-fixed-top box-shadow">
             <div class="container">
@@ -90,14 +97,14 @@
                 <div class="your-status">
                     <div class="row">
                         <div class="wrapper clearfix">
-                            <h3 class="pull-left">您的学习状态</h3>
+                            <h3 class="text-center">您的学习状态</h3>
                         </div>
-                        <div class="row text-center login-notice">
+                        <div class="text-center login-notice">
                             <p class="font-bold">Oops，请先<span class="btn-login" id='js_indexLogin'>登录</span>查看您的学习状态！</p>
                         </div>
                     </div>
                 </div>
-              <!--   <div class="your-route hide">
+                <!--   <div class="your-route hide">
                     <div class="row">
                         <div class="wrapper clearfix">
                             <h3 class="pull-left">您的轨迹</h3>
@@ -135,15 +142,15 @@
                         </div>
                     </div>
                 </div>
-                <div class="your-course m-t-lg">
+                <div id="js_urc" class="your-course m-t-lg">
                     <!-- <div class="row"> -->
-                        <!-- <div class="wrapper clearfix">
+                    <!-- <div class="wrapper clearfix">
                             <h3 class="pull-left">您的课程</h3>
                         </div> -->
-                        <!-- <div class="row"> -->
-                        <div id="js_userCourseList" class="course-nav"></div>
-                        <div id="js_courseCont"></div>
-                        <!-- </div> -->
+                    <!-- <div class="row"> -->
+                    <div id="js_userCourseList" class="course-nav"></div>
+                    <div id="js_courseCont" class="row"></div>
+                    <!-- </div> -->
                     <!-- </div> -->
                 </div>
                 <div class="recommend">
@@ -259,36 +266,81 @@
                             </div>
                         </div>
                     </div>
-                    <div class="recommend-course">
-                        <!-- <div class="row">
+                    <div id='js_rec' class="recommend-course">
+                        <div class="row">
                             <div class="wrapper clearfix">
-                                <h3 class="pull-left">推荐课程</h3>
-                                <button class="pull-right btn btn-default" href="#">查看更多</button>
-                            </div>
-                        </div> -->
+                                <h3 class="text-center">推荐课程<span class="btn-switch" id="js_change">换一批<span class="icon-switch"></span></span></h3></div>
+                        </div>
                         <div id="js_recCourses" class="row">
-                            <!-- <div class="col-md-3 col-xs-6">
-                                <div class="item-panel panel b-a">
-                                    <div class="item-pic">
-                                        <a href="#"><img src="https://www.codester.com/static//uploads/items/1469/preview.jpg" class="img-full" alt=""></a>
+                            <div class="col-md-6 col-xs-12">
+                                <a target="_blank" class="item" href="./course.html?courseId=1">
+                                    <div class="rec-panel">
+                                        <div class="tab">
+                                            <span>热度</span><span class="hot-index">8.5</span>
+                                        </div>
+                                        <div class="row">
+                                            <div class="rec-pic col-md-5 col-xs-5">
+                                                <img class="img-full" src="../images/course/bg_imgloading.png" alt="">
+                                            </div>
+                                            <div class="rec-info col-md-7 col-xs-7">
+                                                <p class="title">JavaScript基础入门</p>
+                                                <p class="desc">相比较前面一种方法，这个js实现的方法更加智能些（也更占用资源），通过复制节点（就是需要判断是否文字溢出省略号显示的标签层），获取其宽度，再判断其宽度是否大于样式中给定的宽度限值，大于则去掉尾部字符，添加省略号，循环，直到复制的层的宽度小于css给定值。</p>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="item-tit text-center font-bold text-md">
-                                        <a href="#">JavaScript入门</a>
+                                </a>
+                            </div>
+                            <div class="col-md-6 col-xs-12">
+                                <div class="rec-panel">
+                                    <div class="tab">
+                                        <span>热度</span>
+                                        <br/><span class="hot-index">7</span>
                                     </div>
-                                    <div class="item-desc m-l-sm m-r-sm">
-                                        <div class="text-center">JavaScript零基础入门</div>
-                                    </div>
-                                    <div class="item-point  m-t-lg">
-                                        <span class="font-bold m-l-md">热门知识点</span>
-                                        <ul class="hot-point m-t-sm">
-                                            <li><a href="#">对象</a></li>
-                                            <li><a href="#">闭包</a></li>
-                                            <li><a href="#">函数作用域</a></li>
-                                            <li><a href="#">数组</a></li>
-                                        </ul>
+                                    <div class="row">
+                                        <div class="rec-pic col-md-5 col-xs-5">
+                                            <img class="img-full" src="../images/course/c01.jpg" alt="">
+                                        </div>
+                                        <div class="rec-info col-md-7 col-xs-7">
+                                            <p class="title">JavaScript基础入门</p>
+                                            <p class="desc">相比较前面一种方法，这个js实现的方法更加智能些（也更占用资源），通过复制节点（就是需要判断是否文字溢出省略号显示的标签层），获取其宽度，再判断其宽度是否大于样式中给定的宽度限值，大于则去掉尾部字符，添加省略号，循环，直到复制的层的宽度小于css给定值。</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div> -->
+                            </div>
+                            <div class="col-md-6 col-xs-12">
+                                <div class="rec-panel">
+                                    <div class="tab">
+                                        <span>热度</span>
+                                        <br/><span class="hot-index">7</span>
+                                    </div>
+                                    <div class="row">
+                                        <div class="rec-pic col-md-5 col-xs-5">
+                                            <img class="img-full" src="../images/course/c01.jpg" alt="">
+                                        </div>
+                                        <div class="rec-info col-md-7 col-xs-7">
+                                            <p class="title">JavaScript基础入门</p>
+                                            <p class="desc">相比较前面一种方法，这个js实现的方法更加智能些（也更占用资源），通过复制节点（就是需要判断是否文字溢出省略号显示的标签层），获取其宽度，再判断其宽度是否大于样式中给定的宽度限值，大于则去掉尾部字符，添加省略号，循环，直到复制的层的宽度小于css给定值。</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-xs-12">
+                                <div class="rec-panel">
+                                    <div class="tab">
+                                        <span>热度</span>
+                                        <br/><span class="hot-index">7</span>
+                                    </div>
+                                    <div class="row">
+                                        <div class="rec-pic col-md-5 col-xs-5">
+                                            <img class="img-full" src="../images/course/c01.jpg" alt="">
+                                        </div>
+                                        <div class="rec-info col-md-7 col-xs-7">
+                                            <p class="title">JavaScript基础入门</p>
+                                            <p class="desc">相比较前面一种方法，这个js实现的方法更加智能些（也更占用资源），通过复制节点（就是需要判断是否文字溢出省略号显示的标签层），获取其宽度，再判断其宽度是否大于样式中给定的宽度限值，大于则去掉尾部字符，添加省略号，循环，直到复制的层的宽度小于css给定值。</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

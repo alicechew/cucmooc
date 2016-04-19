@@ -34,7 +34,7 @@ requirejs(['jquery', 'bootstrap', 'loginModule', 'api'],
 
             //未登录 --> 推荐课程
             if (ifLogin === 'false') {
-                setRecCourses();
+                // setRecCourses();
             }
 
             //已登录
@@ -116,12 +116,12 @@ requirejs(['jquery', 'bootstrap', 'loginModule', 'api'],
                     console.log('getNodesData error');
                 });
 
-                lastRouteStr = '<p class="title text-center">最近动态</p><div class="last-route"><div class="row"><div class="col-md-4 col-xs-12">' + '<img class="img-full" src="' + imgUrl + imgSrc + '"></div><div class="col-md-6 col-xs-10">' + '<h4>' + routeName + '</h4><div class="progress">' + '<span class="bar" style="width: ' + progress + '%"><span>' + progress + '%</span></span></div>' + '<p>当前节点：' + curNodeName + '</p></div><a target="_blank" href="'+routeHref+'" class="more">more</a></div></div>';
+                lastRouteStr = '<p class="title text-center">最近动态</p><div class="last-route"><div class="row"><div class="col-md-4 col-xs-12">' + '<img class="img-full" src="' + imgUrl + imgSrc + '"></div><div class="col-md-6 col-xs-10">' + '<h4>' + routeName + '</h4><div class="progress">' + '<span class="bar" style="width: ' + progress + '%"><span>' + progress + '%</span></span></div>' + '<p>当前节点：' + curNodeName + '</p></div><a target="_blank" href="' + routeHref + '" class="more">more</a></div></div>';
                 $('#js_lastRoute').html(lastRouteStr);
             }
 
             function setDashBoard() {
-                $('.your-course').html('<div id="js_userCourseList" class="course-nav"></div><div id="js_courseCont"></div>');
+                $('.your-course').html('<div id="js_userCourseList" class="course-nav"></div><div id="js_courseCont" class="row"></div>');
                 //判断用户选课
                 API.getEnrollCourses({
                     userId: userInfo.userId
@@ -141,7 +141,41 @@ requirejs(['jquery', 'bootstrap', 'loginModule', 'api'],
                         });
                         setTitle('.your-course', '您的课程');
                         createCourseNav('#js_userCourseList', courseArr);
+
+                        //快速导航
+                        setQuickNav('#js_quicknav');
                     }
+                });
+            }
+
+            function setQuickNav(selector) {
+                var container = $(selector),
+                    navHtml,
+                    position,
+                    urcId = 'js_qn_urc',
+                    recId = 'js_qn_rec',
+                    $body = (window.opera) ? (document.compatMode == "CSS1Compat" ? $('html') : $('body')) : $('html,body');// 这行是 Opera 的补丁, 少了它 Opera 是直接用跳的而且画面闪烁;
+
+                navHtml = '<div id="'+urcId+'" class="quicknav-item">最近动态</div>' + '<div class="line-wrap text-center"><div class="line"></div></div>' + '<div id="' + recId + '" class="quicknav-item">推荐课程</div>';
+
+                container.html(navHtml);
+                //滚至推荐课程
+                $(selector).on('click', '#' + recId, function(event) {
+                    $body.animate({
+                            scrollTop: $('#js_rec').offset().top - $('#nav_collapse').height()  //注意这里不要先把高度存起来，因为有可能页面还没加载完，所以还是点击的时候再计算高度
+                        },
+                        800);
+
+                    return false; //返回false避免在原链接后加上#
+                });
+
+                $(selector).on('click', '#' + urcId, function(event) {
+                    $body.animate({
+                            scrollTop: $('#js_lastRoute').offset().top - $('#nav_collapse').height()
+                        },
+                        800);
+
+                    return false; //返回false避免在原链接后加上#
                 });
             }
 
@@ -334,6 +368,7 @@ requirejs(['jquery', 'bootstrap', 'loginModule', 'api'],
                         userId: userInfo.userId,
                         courseId: cid
                     }, function(result) {
+                        console.log(result);
                         if (result.status == '200') {
                             ifRoutes = result.content.length > 0 ? true : false;
                             if (ifRoutes) {
@@ -347,6 +382,7 @@ requirejs(['jquery', 'bootstrap', 'loginModule', 'api'],
                     //未选轨迹 --> 推荐轨迹
                     if (!ifRoutes) {
                         //@TODO: 推荐轨迹
+                        fillRoutes('1&2');
                     } else {
                         // 串接轨迹字符串
                         routesStr = routesArr.join('&');

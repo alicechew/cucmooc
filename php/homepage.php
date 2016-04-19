@@ -82,7 +82,7 @@ if (!$con) {
     else if( $type === 'getRoutesId'){
         $uid = $_GET['userId'];
         $cid = $_GET['courseId'];
-        $sql = "SELECT * FROM learningrecord WHERE userID='$uid'";
+        $sql = "SELECT *FROM learningrecord WHERE userID='$uid' AND pathID IN (SELECT pathID FROM learningpath WHERE courseID='$cid')";
         $result = mysql_query($sql);
         $cont = array();
         if( !$result ){

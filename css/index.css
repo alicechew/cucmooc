@@ -13,6 +13,7 @@
         bottom: 10px;
     }
 }
+
 .main-content{
     background-color: #FAFBFC;
 }
@@ -235,7 +236,7 @@ h3 {
 
 /* 你的课程 管理*/
 
-.your-course .btn-manage {
+.your-course .btn-manage, .recommend-course .btn-switch {
     display: inline-block;
     *display: inline;
     *zoom: 1;
@@ -252,17 +253,113 @@ h3 {
     text-align: center;
 }
 
-.your-course .btn-manage:hover {
+.your-course .btn-manage:hover, .recommend-course .btn-switch:hover {
     background-color: #b8e6f9;
 }
 
-.your-course .icon-manage {
+.your-course .icon-manage{
+    background: url('../images/btn_manage.png') no-repeat center center;
+}
+
+.recommend-course .icon-switch{
+    background: url('../images/btn_switch.png') no-repeat center center;
+}
+
+.your-course .icon-manage,.recommend-course .icon-switch {
     display: inline-block;
     width: 18px;
     height: 18px;
     margin-left: 2px;
-    background: url('../images/btn_manage.png') no-repeat center center;
     -webkit-background-size: 100% auto;
     background-size: 100% auto;
     vertical-align: -3px;
 }
+
+
+
+/* 快捷导航 */
+.quicknav{
+    height: 120px;
+    position:fixed;
+    right: 0;
+    top:0;
+    bottom:0;
+    margin: auto;
+    margin-right: 30px;
+    z-index: 10;
+    border-radius:8px;
+    border: 1px solid #dbdbdb;
+    cursor: pointer;
+    background-color: #fff;
+    overflow: hidden;
+}
+.quicknav-item{
+    padding:10px;
+    width: 60px;
+    background-color: #fff;
+    /*background-color: rgba(0,0,0,0.5);*/
+    /*color: #fff;*/
+    text-align: center;
+}
+.quicknav-item:hover{
+    background-color: #39A030;
+    color: #fff;
+}
+.quicknav .line-wrap{
+    font-size: 0;
+}
+.quicknav .line{
+    display: inline-block;
+    *display: inline;
+    *zoom:1;
+    width: 80%;
+    border-bottom:1px solid #dbdbdb;
+}
+
+/* 推荐课程 */
+.recommend-course .item{
+    display: block;
+}
+.rec-panel{
+    position: relative;
+    background-color: #fff;
+    padding:20px;
+    margin-bottom: 25px;
+    box-shadow:0 2px 4px 0 rgba(46,61,73,.2);
+}
+
+.rec-panel .tab{
+    position:absolute;
+    top: -3px;
+    width:50px;
+    height: 66px;
+    padding-top:5px;
+    background-color: #15C26B;
+    text-align: center;
+    color:#fff;
+    z-index: 2;
+    /*box-shadow:0 2px 4px 0 rgba(46,61,73,.2);*/
+    background: url('../images/bg_hottab.png') no-repeat center center;
+    -webkit-background-size: 100% 100%;
+    background-size: 100% 100%;
+}
+
+.rec-panel .hot-index{
+    font-size: 20px;
+    font-family: 'Open Sans','Helvetica','sans-serif';
+}
+.rec-info .title{
+    font-size: 16px;
+    font-weight: 600;
+    color:#2e3d49;
+}
+
+.rec-info .desc{
+    height: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+}
+
