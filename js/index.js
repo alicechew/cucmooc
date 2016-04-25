@@ -29,21 +29,22 @@ requirejs(['jquery', 'bootstrap', 'loginModule', 'api'],
          * 用户内容加载
          */
         var userDashBoard = (function(API, ifLogin) {
-            var ifEnroll;
+            var ifEnroll,
+                curCourse;
 
-
+            setRecCourses();
             //未登录 --> 推荐课程
-            if (ifLogin === 'false') {
-                // setRecCourses();
-            }
+            // if (ifLogin === 'false') {
+
+            // }
 
             //已登录
             if (ifLogin === 'true') {
                 //隐藏登录提示
                 $('.your-status').hide();
                 //显示最近轨迹
-                setLastRoute(userInfo.userId);
-                setDashBoard();
+                curCourse = setLastRoute(userInfo.userId);
+                setDashBoard(curCourse);
             }
 
             //@TODO: loading
@@ -64,26 +65,27 @@ requirejs(['jquery', 'bootstrap', 'loginModule', 'api'],
                     curNodeId,
                     curNodeName,
                     progress,
-                    lastRouteStr;
+                    lastRouteStr,
+                    lastCourseId;
 
 
                 API.getLastRoute({
                     userId: userId
                 }, function(result) {
                     if (result.status == '200') {
-                        lastRid = result.content.pathID;
+                        lastRid = result.content[0].pathID;
                         routeHref += 'rid=' + lastRid;
                     }
                 }, function() {
                     console.log('getLastRoute error');
                 });
-
                 API.getRoutesData({
                     routeStr: lastRid
                 }, function(result) {
                     if (result.status == '200') {
                         var lastRoute = result.content[0];
                         routeName = lastRoute.pathName;
+                        lastCourseId = lastRoute.courseID;
                         nodeCount = lastRoute.nodeCount;
                     }
                 }, function() {
@@ -118,9 +120,12 @@ requirejs(['jquery', 'bootstrap', 'loginModule', 'api'],
 
                 lastRouteStr = '<p class="title text-center">最近动态</p><div class="last-route"><div class="row"><div class="col-md-4 col-xs-12">' + '<img class="img-full" src="' + imgUrl + imgSrc + '"></div><div class="col-md-6 col-xs-10">' + '<h4>' + routeName + '</h4><div class="progress">' + '<span class="bar" style="width: ' + progress + '%"><span>' + progress + '%</span></span></div>' + '<p>当前节点：' + curNodeName + '</p></div><a target="_blank" href="' + routeHref + '" class="more">more</a></div></div>';
                 $('#js_lastRoute').html(lastRouteStr);
+
+
+                return lastCourseId;
             }
 
-            function setDashBoard() {
+            function setDashBoard(curCourseId) {
                 $('.your-course').html('<div id="js_userCourseList" class="course-nav"></div><div id="js_courseCont" class="row"></div>');
                 //判断用户选课
                 API.getEnrollCourses({
@@ -140,10 +145,10 @@ requirejs(['jquery', 'bootstrap', 'loginModule', 'api'],
                             courseArr.push(el.courseID);
                         });
                         setTitle('.your-course', '您的课程');
-                        createCourseNav('#js_userCourseList', courseArr);
+                        createCourseNav('#js_userCourseList', courseArr, curCourseId);
 
                         //快速导航
-                        setQuickNav('#js_quicknav');
+                        setQuickNav('#js_quicknavWrap');
                     }
                 });
             }
@@ -154,15 +159,15 @@ requirejs(['jquery', 'bootstrap', 'loginModule', 'api'],
                     position,
                     urcId = 'js_qn_urc',
                     recId = 'js_qn_rec',
-                    $body = (window.opera) ? (document.compatMode == "CSS1Compat" ? $('html') : $('body')) : $('html,body');// 这行是 Opera 的补丁, 少了它 Opera 是直接用跳的而且画面闪烁;
+                    $body = (window.opera) ? (document.compatMode == "CSS1Compat" ? $('html') : $('body')) : $('html,body'); // 这行是 Opera 的补丁, 少了它 Opera 是直接用跳的而且画面闪烁;
 
-                navHtml = '<div id="'+urcId+'" class="quicknav-item">最近动态</div>' + '<div class="line-wrap text-center"><div class="line"></div></div>' + '<div id="' + recId + '" class="quicknav-item">推荐课程</div>';
+                navHtml = '<div id="js_quicknav" class="quicknav"><div id="' + urcId + '" class="quicknav-item">最近动态</div>' + '<div class="line-wrap text-center"><div class="line"></div></div>' + '<div id="' + recId + '" class="quicknav-item">推荐课程</div></div>';
 
                 container.html(navHtml);
                 //滚至推荐课程
                 $(selector).on('click', '#' + recId, function(event) {
                     $body.animate({
-                            scrollTop: $('#js_rec').offset().top - $('#nav_collapse').height()  //注意这里不要先把高度存起来，因为有可能页面还没加载完，所以还是点击的时候再计算高度
+                            scrollTop: $('#js_rec').offset().top - $('#nav_collapse').height() //注意这里不要先把高度存起来，因为有可能页面还没加载完，所以还是点击的时候再计算高度
                         },
                         800);
 
@@ -206,17 +211,14 @@ requirejs(['jquery', 'bootstrap', 'loginModule', 'api'],
                     }
                 });
 
-                function blockClick() {
-                    return false;
+                function blockClick(ev) {
+                    if (!$(ev.target).hasClass('btn-unenroll')) {
+                        return false;
+                    }
                 }
             }
 
             function setRecCourses() {
-                var container = $('.recommend-course'),
-                    title = '推荐课程',
-                    titStr = '<div class="row"><div class="wrapper clearfix">' + '<h3 class="pull-left">' + title + '</h3>' + '<button class="pull-right btn btn-default" href="#">查看更多</button>' + '</div></div>';
-
-                container.html(titStr);
                 refreshRecCourses('#js_recCourses');
             }
 
@@ -224,7 +226,7 @@ requirejs(['jquery', 'bootstrap', 'loginModule', 'api'],
                 API.getRecommendCourses({},
                     function(result) {
                         if (result.status == '200') {
-                            // fillRecCourses(selector ,result.content);
+                            fillRecCourses(selector, result.content);
                         }
                     },
                     function() {
@@ -233,15 +235,19 @@ requirejs(['jquery', 'bootstrap', 'loginModule', 'api'],
             }
 
             function fillRecCourses(selector, courses) {
+                var recCourseHtml = '',
+                    itemUrl = './course.html?courseId=',
+                    hotIndex,
+                    imgUrl = '../images/course/';
 
-
-                container.html(titStr);
                 $(courses).each(function(index, el) {
-
+                    el.courseImgSrc = el.courseImgSrc || 'bg_imgloading.png';
+                    recCourseHtml += '<div class="col-md-6 col-xs-12"><a target="_blank" class="item" href="' + itemUrl + el.courseID + '">' + '<div class="rec-panel"><div class="tab"><span>热度</span></br><span class="hot-index">' + el.courseHeat + '</span></div>' + '<div class="row"><div class="rec-pic col-md-5 col-xs-5"><img class="img-full" src="' + imgUrl + el.courseImgSrc + '" alt=""></div>' + '<div class="rec-info col-md-7 col-xs-7"><p class="title">' + el.courseName + '</p><p class="desc">' + el.courseDesc + '</p></div></div></div></a></div>'
                 });
+                $(selector).html(recCourseHtml);
             }
 
-            function createCourseNav(selector, enrollArr) {
+            function createCourseNav(selector, enrollArr, curCourseId) {
                 var container = $(selector),
                     enrollStr,
                     navHtml = '',
@@ -260,7 +266,7 @@ requirejs(['jquery', 'bootstrap', 'loginModule', 'api'],
                         container.html(navHtml);
 
                         //init
-                        $curTab = $($('.course-nav-tab')[0]);
+                        $curTab = $($('.course-nav').find('[data-cid="'+curCourseId+'"]')[0]);
                         $curTab.addClass('cur');
                         refreshCourseContent($curTab.attr('data-cid'));
 
@@ -368,7 +374,6 @@ requirejs(['jquery', 'bootstrap', 'loginModule', 'api'],
                         userId: userInfo.userId,
                         courseId: cid
                     }, function(result) {
-                        console.log(result);
                         if (result.status == '200') {
                             ifRoutes = result.content.length > 0 ? true : false;
                             if (ifRoutes) {
@@ -382,7 +387,7 @@ requirejs(['jquery', 'bootstrap', 'loginModule', 'api'],
                     //未选轨迹 --> 推荐轨迹
                     if (!ifRoutes) {
                         //@TODO: 推荐轨迹
-                        fillRoutes('1&2');
+                        setRecRoutes('#js_courseCont', cid);
                     } else {
                         // 串接轨迹字符串
                         routesStr = routesArr.join('&');
@@ -390,6 +395,34 @@ requirejs(['jquery', 'bootstrap', 'loginModule', 'api'],
                     }
 
                 }
+            }
+
+            function setRecRoutes(selector, cid) {
+                var container = $(selector),
+                    recRouteHtml = '',
+                    pathName = 'pathName',
+                    pathDesc = 'pathDesc',
+                    itemPath = './route.html?',
+                    pathID = '2',
+                    imgUrl = '../images/path/',
+                    routeCont,
+                    index = 1,
+                    routeStatus = ['1'];
+
+                API.getRecommendRoutes({
+                        courseId: cid
+                    },
+                    function(result) {
+                        if (result.status == '200') {
+                            $(result.content).each(function(index, el) {
+                                el.imgScr = el.imgScr || 'bg_imgloading.png';
+                                recRouteHtml += '<div class="col-md-3 col-xs-6">' + '<div class="item-panel panel b-a"><span class="icon-corner"></span>' + '<div class="item-pic">' + '<a target="_blank" href="' + itemPath + 'rid=' + el.pathID + '&nid=' + routeStatus[index] + '"><img src="' + imgUrl + el.imgScr + '" class="img-full" alt=""></a>' + '</div>' + '<div class="item-tit text-center font-bold text-md">' + '<a target="_blank" href="' + itemPath + 'rid=' + el.pathID + '&nid=' + routeStatus[index] + '">' + el.pathName + '</a>' + '</div>' + '<div class="item-desc m-l-sm m-r-sm m-b-sm">' + '<div class="text-center">' + el.pathDesc + '</div>' + '</div>' + '</div>' + '</div>';
+                            });
+                        }
+                    });
+
+
+                container.html(recRouteHtml);
             }
 
             function fillRoutes(routesStr) {

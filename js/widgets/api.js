@@ -1,7 +1,7 @@
 define('api', ['jquery'], function() {
     var Q = {
         name: 'API',
-        version: 1.1
+        version: 1.2
     };
 
     var apiUrl = '../php/';
@@ -9,6 +9,19 @@ define('api', ['jquery'], function() {
     /**
      * 课程
      */
+    //搜索课程
+    Q.searchCourses = function(data, doneCb, failCb, alwaysCb) {
+        data.searchType = 'course';
+
+        $.ajax({
+            url: apiUrl + 'categories.php',
+            type: 'GET',
+            dataType: 'json',
+            data: data,
+            async: false
+        }).done(doneCb).fail(failCb).always(alwaysCb);
+    };
+
     //获取课程信息
     Q.getCourseData = function(data, doneCb, failCb, alwaysCb) {
         data.type = 'getCoursesData';
@@ -71,7 +84,7 @@ define('api', ['jquery'], function() {
 
     //获取推荐课程
     Q.getRecommendCourses = function(data, doneCb, failCb, alwaysCb) {
-        data.type = 'recommend';
+        data.type = 'recommendCourse';
 
         $.ajax({
             url: apiUrl + 'homepage.php',
@@ -87,10 +100,10 @@ define('api', ['jquery'], function() {
      */
     //获取用户最后观看的轨迹
     Q.getLastRoute = function(data, doneCb, failCb, alwaysCb) {
-        data.type = 'getLastRouteId';
+        data.type = 'getLastRoute';
 
         $.ajax({
-            url: '../js/data/lastroute.json',
+            url: apiUrl + 'homepage.php',
             type: 'GET',
             dataType: 'json',
             data: data,
@@ -161,5 +174,17 @@ define('api', ['jquery'], function() {
         }).done(doneCb).fail(failCb).always(alwaysCb);
     };
 
+    //获取推荐轨迹
+    Q.getRecommendRoutes = function(data, doneCb, failCb, alwaysCb) {
+        data.type = 'recommendPath';
+
+        $.ajax({
+            url: apiUrl + 'homepage.php',
+            type: 'GET',
+            dataType: 'json',
+            data: data,
+            async: false
+        }).done(doneCb).fail(failCb).always(alwaysCb);
+    };
     return Q;
 });

@@ -221,27 +221,96 @@
 .main {
     background-color: #fff;
 }
-.main .header{
+
+.main .header {
     background-color: #5d9b44;
     /*background-color: #437A39;*/
     color: #fff;
     margin-left: -15px;
     margin-right: -15px;
-    padding:20px;
+    padding: 20px;
 }
-.page-title{
+
+.page-title {
     font-size: 30px;
 }
 
-.extra .title{
+.extra .title {
     font-size: 20px;
 }
 
-.video-js{
+.video-js {
     width: 100%;
     height: auto;
 }
 
-.video-js .vjs-tech{
+.video-js .vjs-tech {
     position: relative;
+}
+
+
+/* 补充资源 */
+
+.extra-item {
+    position: relative;
+    /*height: 80px;*/
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+}
+
+.extra-item a {
+    display: block;
+}
+
+.extra-item .item-icon span {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    height: 46px;
+    width: 46px;
+    opacity: 0.6;
+}
+
+.extra-item .type-video {
+    background: url('../images/icon_video.png') no-repeat center center;
+    -webkit-background-size: 100% 100%;
+    background-size: 100% 100%;
+}
+
+.extra-item .type-ppt {
+    background: url('../images/icon_ppt.png') no-repeat center center;
+    -webkit-background-size: 100% 100%;
+    background-size: 100% 100%;
+}
+
+.extra-item .type-text {
+    background: url('../images/icon_text.png') no-repeat center center;
+    -webkit-background-size: 100% 100%;
+    background-size: 100% 100%;
+}
+
+.extra-item .item-info {
+    margin-left: 60px;
+}
+
+
+/* 退出轨迹 */
+.routenav-header .btn-unenroll{
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    width: 20px;
+    height: 20px;
+    background: url('../images/btn_unenroll2.png') no-repeat center center;
+    -webkit-background-size: 100% 100%;
+    background-size: 100% 100%;
+    opacity: 0.5;
+    cursor: pointer;
+
+}
+
+.routenav-header .btn-unenroll:hover{
+    opacity: 1;
 }

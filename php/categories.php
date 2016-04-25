@@ -21,7 +21,7 @@ $type= isset($_GET['searchType'])? $_GET['searchType'] : '';
             echo 'error';
         }
        else if($type=='course'){
-        $sql = "select courseName,courseDesc from course where courseName like '%$term%'";
+        $sql = "select * from course where courseName like '%$term%'";
         $result = mysql_query($sql);
         if (!$result) {
             echo "<script>alert('没有此课程！');//</script>";

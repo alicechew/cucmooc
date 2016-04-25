@@ -135,6 +135,64 @@ if (!$con) {
                     $arr = array("status" => "200");
             }
         }
+        // 推荐课程
+    else if($type === 'recommendCourse'){
+        $sql = "SELECT * FROM course ORDER BY courseHeat DESC LIMIT 4 ";
+        $result = mysql_query($sql);
+        if(!$result){
+            $arr = array("status" => "0");
+        }else{
+            $cont=array();
+            while($row = mysql_fetch_array($result, MYSQL_ASSOC)){
+                $cont[]=$row;
+            }
+            $arr = array(
+                "status" => "200",
+                "content" => $cont
+                );
+        }
+        echo json_encode($arr,JSON_UNESCAPED_UNICODE);
+    }
+
+    //推荐轨迹
+    else if($type === 'recommendPath'){
+        $cid = $_GET['courseId'];
+        $sql = "SELECT * FROM learningPath WHERE courseID='$cid' ORDER BY pathHeat DESC LIMIT 4";
+        $result = mysql_query($sql);
+        if(!$result){
+            $arr = array("status" => "0");
+        }else{
+            $cont=array();
+            while($row = mysql_fetch_array($result, MYSQL_ASSOC)){
+                $cont[]=$row;
+            }
+            $arr = array(
+                "status" => "200",
+                "content" => $cont
+            );
+        }
+        echo json_encode($arr,JSON_UNESCAPED_UNICODE);
+    }
+    //取得最近观看轨迹id
+    else if($type === 'getLastRoute'){
+        $uid = $_GET['userId'];
+        $sql = "SELECT * FROM learningrecord WHERE userID='$uid' ORDER BY recordUpdateTime DESC LIMIT 1";
+
+         $result = mysql_query($sql);
+        if(!$result){
+            $arr = array("status" => "0");
+        }else{
+            $cont=array();
+            while($row = mysql_fetch_array($result, MYSQL_ASSOC)){
+                $cont[]=$row;
+            }
+            $arr = array(
+                "status" => "200",
+                "content" => $cont
+            );
+        }
+        echo json_encode($arr,JSON_UNESCAPED_UNICODE);
+    }
 
 }
 mysql_close($con);

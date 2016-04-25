@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>管理平台</title>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+
+<body>
+    <!-- 登录弹窗 start-->
+    <div class="login-form-popup" id="js_loginFormPopup">
+    </div>
+    <!-- 登录弹窗 end-->
+    <div class="wrap">
+        <div id="js_navWrap"></div>
+        <div class="main-content">
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- sidebar start -->
+                    <div class="col-md-2 col-sm-3 sidebar">
+                        <ul class="nav nav-sidebar">
+                            <li class="active"><a href="">课程管理</a></li>
+                            <li><a href="">知识点管理</a></li>
+                            <li><a href="">学习轨迹管理</a></li>
+                            <li><a href="">学习资源管理</a></li>
+                            <li><a href="">用户审核</a></li>
+                        </ul>
+                    </div>
+                    <!-- sidebar end -->
+                    <!-- main start -->
+                    <div id="js_main" class="col-md-10 col-md-offset-2 col-sm-9 col-sm-offset-3 main">
+                        <!-- <h1 class="page-header">管理平台</h1>
+                        <div class="row placeholders"></div>
+                        <h2 class="sub-header">课程列表</h2>
+                        <div id="js_courseTable" class="course-table table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>课程id</th>
+                                        <th>课程名称</th>
+                                        <th>课程简介</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>JavaScript基础</td>
+                                        <td>介绍介绍介绍</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>JavaScript进阶</td>
+                                        <td>介绍介，绍介绍绍介绍绍介绍绍介绍</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div> -->
+                        <!-- <h2 class="sub-header">课程详情 <span class="btn-edit"><i class="icon-edit"></i>编辑内容</span></h2>
+                        <div class="row course-info">
+                            <div class="col-md-5 col-sm-4 col-xs-5 placeholder text-center">
+                                <div class="img-wrap">
+                                <img class="img-responsive" src="../images/course/bg_imgloading.png" alt="" width="450" height="300">
+                                <div class="img-mask">
+                                    <a id="js_btnChangePic" class="btn-changepic">更改图片</a>
+                                </div>
+                                </div>
+                                <h4>课程图片: <span id="js_cinfo_imgSrc">null</span></h4>
+                            </div>
+                            <div class="col-md-7 col-sm-8 col-xs-7 placeholder">
+                                <div class="form-group">
+                                    <label for="js_cinfo_name">课程名称</label>
+                                    <input id="js_cinfo_name" type="text" class="form-control" readonly="true">
+                                </div>
+                                <div class="form-group">
+                                    <label for="js_cinfo_desc">一句话描述</label>
+                                    <input id="js_cinfo_desc" type="text" class="form-control" readonly="true">
+                                </div>
+                                <div class="form-group">
+                                    <label for="js_cinfo_intro">课程描述</label>
+                                    <textarea id="js_cinfo_intro" class="form-control" rows="5" readonly="true"></textarea>
+                                </div>
+                            </div>
+                        </div> -->
+                    </div>
+                    <!-- main end -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <script data-main="../js/dashboard" src="../js/lib/require.js"></script>
+    <script src="../js/config.js"></script>
+</body>
+
+</html>

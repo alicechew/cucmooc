@@ -23,14 +23,9 @@ h3 {
 }
 
 
-/*.recommend-point .item-panel {
-    min-height: 212px;
-}*/
-
-.recommend-course .item-panel {
-    /*height: 360px;*/
+.item-panel{
+    position: relative;
 }
-
 .item-panel .btn-unenroll {
     display: inline-block;
     *display: inline;
@@ -186,6 +181,7 @@ h3 {
     background-color: #fff;
     box-shadow:0 2px 4px 0 rgba(46,61,73,.2);
 }
+
 .last-route .more {
     position: absolute;
     display: inline-block;
@@ -363,3 +359,18 @@ h3 {
     -webkit-line-clamp: 5;
 }
 
+/* 推荐轨迹 */
+.icon-corner{
+    position: absolute;
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    width: 60px;
+    height: 60px;
+    top: 0;
+    left: 0;
+    background: url('../images/icon_rec.png') no-repeat center center;
+    -webkit-background-size: 100% 100%;
+    background-size: 100% 100%;
+    z-index: 2;
+}

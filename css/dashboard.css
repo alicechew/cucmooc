@@ -1,0 +1,344 @@
+/*
+ * Base structure
+ */
+
+
+/* Move down content because we have a fixed navbar that is 50px tall */
+
+body {
+    padding-top: 50px;
+}
+
+
+/*
+ * Global add-ons
+ */
+
+.sub-header {
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+
+/*
+ * Top navigation
+ * Hide default border to remove 1px line.
+ */
+
+.navbar-fixed-top {
+    border: 0;
+}
+
+
+/*
+ * Sidebar
+ */
+
+
+/* Hide for mobile, show later */
+
+.sidebar {
+    display: none;
+}
+
+@media (min-width: 768px) {
+    .sidebar {
+        position: fixed;
+        top: 51px;
+        bottom: 0;
+        left: 0;
+        z-index: 1000;
+        display: block;
+        padding: 20px;
+        overflow-x: hidden;
+        overflow-y: auto;
+        /* Scrollable contents if viewport is shorter than content. */
+        background-color: #f5f5f5;
+        border-right: 1px solid #eee;
+    }
+}
+
+
+/* Sidebar navigation */
+
+.nav-sidebar {
+    margin-right: -21px;
+    /* 20px padding + 1px border */
+    margin-bottom: 20px;
+    margin-left: -20px;
+}
+
+.nav-sidebar > li > a {
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+.nav-sidebar > .active > a,
+.nav-sidebar > .active > a:hover,
+.nav-sidebar > .active > a:focus {
+    color: #fff;
+    background-color: #428bca;
+}
+
+
+/*
+ * Main content
+ */
+
+.main {
+    padding: 20px;
+}
+
+@media (min-width: 768px) {
+    .main {
+        padding-right: 40px;
+        padding-left: 40px;
+    }
+}
+
+.main .page-header {
+    margin-top: 0;
+}
+
+
+/*
+ * Placeholder dashboard ideas
+ */
+
+.placeholders {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.placeholders h4 {
+    margin-bottom: 0;
+}
+
+.placeholder {
+    margin-bottom: 20px;
+}
+
+.placeholder img {
+    display: inline-block;
+    /*border-radius: 50%;*/
+}
+
+
+/* table */
+
+.course-table tbody tr {
+    cursor: pointer;
+}
+
+.course-table tbody tr:hover {
+    background-color: #d0e8f4;
+}
+
+.course-table tbody td {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+
+/*课程详情*/
+
+.btn-back {
+    cursor: pointer;
+}
+
+.btn-back i {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    width: 25px;
+    height: 21px;
+    margin-right: 5px;
+    background: url('../images/btn_back.png') no-repeat;
+    background-position: 0 0;
+    vertical-align: -6px;
+}
+
+.btn-back:hover {
+    color: #428bca;
+}
+
+.btn-back:hover i {
+    background-position: -30px 0;
+}
+
+.btn-edit {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    width: 135px;
+    height: 32px;
+    line-height: 32px;
+    margin-left: 10px;
+    background-color: #E1F3FB;
+    border-radius: 15px;
+    font-size: 16px;
+    vertical-align: 3px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.btn-edit:hover,
+.btn-edit.active {
+    color: #428bca;
+}
+
+.icon-edit {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    width: 28px;
+    height: 25px;
+    margin-right: 5px;
+    background: url('../images/btn_edit.png') no-repeat;
+    -webkit-background-size: auto 100%;
+    background-size: auto 100%;
+    vertical-align: -6px;
+}
+
+.icon-edit {
+    background-position: 2px 0;
+}
+
+.btn-edit:hover .icon-edit,
+.btn-edit.active .icon-edit {
+    background-position: -25px 0;
+}
+
+.img-wrap {
+    position: relative;
+}
+
+.img-mask {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(208, 232, 244, 0.8);
+    -webkit-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+}
+
+.img-wrap:hover .img-mask {
+    opacity: 1;
+}
+
+.btn-changepic {
+    display: block;
+    position: absolute;
+    width: 120px;
+    height: 60px;
+    line-height: 60px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    background-color: #fff;
+    border-radius: 8px;
+    border: 1px solid #dbdbdb;
+    color: #428BCA;
+    text-decoration: none;
+}
+
+.form-control[readonly] {
+    background-color: #f7f7f7;
+}
+
+
+/* point */
+#js_cpoint ul{
+    padding: 0;
+}
+
+.point{
+    position: relative;
+    display: block;
+    width: 100%;
+}
+
+.point-title{
+    line-height: 25px;
+}
+.point-level-1 {
+    margin-left: 10px;
+}
+
+.point-level-2 {
+    margin-left: 15px;
+}
+
+.point-level-3 {
+    margin-left: 30px;
+}
+
+.point-level-4 {
+    margin-left: 40px;
+}
+
+
+.point .btn-edit-group span{
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    width: 16px;
+    height: 16px;
+    margin-left: 10px;
+    text-indent: -999px;
+    background-image: url('../images/btn_edit_sprite.png');
+    background-repeat: no-repeat;
+
+}
+
+.btn-edit-point{
+    background-position: 0 0;
+}
+
+.btn-add-sub{
+    background-position: -60px 0;
+}
+
+.btn-delete-point{
+    background-position: -80px 0;
+}
+
+/*知识点编辑框*/
+.cpoint-temp{
+    position:absolute;
+    display: block;
+    left: 0;
+    top: 0;
+    z-index: 2;
+    background-color: #fff;
+}
+
+.cpoint-temp-sub{
+    position:relative;
+    display: block;
+}
+
+.cpoint-temp-save, .cpoint-temp-cancel{
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    width: 16px;
+    height: 16px;
+    margin-left: 10px;
+    background-image: url('../images/btn_edit_sprite.png');
+    background-repeat: no-repeat;
+    text-indent: -999px;
+
+}
+.cpoint-temp-save{
+    background-position: -20px 0;
+}
+.cpoint-temp-cancel{
+    background-position: -40px 0;
+}

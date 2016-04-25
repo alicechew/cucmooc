@@ -1,5 +1,5 @@
-requirejs(['jquery', 'bootstrap', 'loginModule', 'nanoscroller', 'videojs', 'alert'],
-    function(jquery, bootstrap, LoginModule, Scroller, VideoJs, Alert) {
+requirejs(['jquery', 'bootstrap', 'loginModule', 'nanoscroller', 'videojs', 'alert', 'api'],
+    function(jquery, bootstrap, LoginModule, Scroller, VideoJs, Alert, API) {
         //验证登录状态
         var userInfo = LoginModule.verifyLogin(),
             ifLogin = userInfo.ifLogin, //@ATTENTION: 这里的ifLogin是字符串而不是boolean！
@@ -53,9 +53,10 @@ requirejs(['jquery', 'bootstrap', 'loginModule', 'nanoscroller', 'videojs', 'ale
                         type: 'GET',
                         dataType: 'json',
                         data: {
-                            type:'getCourseData',
+                            type: 'getCourseData',
                             courseId: courseId
-                        }
+                        },
+                        async: false
                     })
                     .done(function(result) {
                         courseName = result.content.courseName;
@@ -63,6 +64,7 @@ requirejs(['jquery', 'bootstrap', 'loginModule', 'nanoscroller', 'videojs', 'ale
                         courseTit.html('<i class="glyphicon glyphicon-triangle-left"></i>' + courseName);
                         courseTit.attr('href', courseHref + courseId);
                         routeTit.text(routeName);
+
                     })
                     .fail(function() {
                         console.log("error");
@@ -70,9 +72,6 @@ requirejs(['jquery', 'bootstrap', 'loginModule', 'nanoscroller', 'videojs', 'ale
                     .always(function() {
                         // console.log("complete");
                     });
-
-
-
 
                 //nodes
                 routeNodesStr && createNodes(navContainer, routeNodesStr);
@@ -135,19 +134,37 @@ requirejs(['jquery', 'bootstrap', 'loginModule', 'nanoscroller', 'videojs', 'ale
                             type: 'GET',
                             dataType: 'json',
                             data: {
-                                routeId: rid,
+                                routeStr: rid,
                                 userId: userInfo.userId
                             }
                         })
                         .done(function(result) {
                             if (result.status == '0') {
-                                setTimeout(function(){
+                                setTimeout(function() {
                                     Alert.alert('.wrap', 'warning', '<strong>提示： </strong>您还没有加入该轨迹，观看记录将不会被记录！');
-                                },1000);
+                                }, 1000);
                                 return
                             } else if (result.status == '200') {
-                                routeStatus = result.content;
+                                routeStatus = result.content[0];
                                 fillStatus(routeStatus);
+                                $('<span id="js_unenroll" class="btn-unenroll pull-right" title="退出轨迹"></span>').insertAfter('#js_routeName');
+
+                                //绑定退出轨迹事件
+                                $('#js_unenroll').on('click', function(event) {
+                                    var answer = confirm('退出轨迹，该轨迹的学习记录将一并删除！确定退出？');
+
+                                    if (answer) {
+                                        API.unenrollRoutes({
+                                            routeStr: rid,
+                                            userId: userInfo.userId
+                                        }, function(result) {
+                                            if (result.status == '200') {
+                                                alert('退出成功！');
+                                                window.location.reload();
+                                            }
+                                        });
+                                    }
+                                });
                             }
                         })
                         .fail(function() {
@@ -160,13 +177,16 @@ requirejs(['jquery', 'bootstrap', 'loginModule', 'nanoscroller', 'videojs', 'ale
 
                 //填充节点状态
                 function fillStatus(routeStatus) {
-                    var done = routeStatus.haveLearned.split('&');
+                    var done = routeStatus.haveLearned ? routeStatus.haveLearned.split('&') : [];
                     undone = routeStatus.havenotLearned.split('&');
                     cur = routeStatus.isLearning.split('&');
+
                     //已完成
-                    $(done).each(function(index, el) {
-                        $('[data-nid=' + el + ']').addClass('done');
-                    });
+                    if (done.length) {
+                        $(done).each(function(index, el) {
+                            $('[data-nid=' + el + ']').addClass('done');
+                        });
+                    }
                     //未完成
                     $(undone).each(function(index, el) {
                         $('[data-nid=' + el + ']').addClass('undone');
@@ -208,11 +228,15 @@ requirejs(['jquery', 'bootstrap', 'loginModule', 'nanoscroller', 'videojs', 'ale
                     video = $('#js_video'),
                     nodeName = content.nodeName || '',
                     nodeDesc = content.nodeDesc || '',
-                    videoSrc = content.videoSrc || '';
+                    videoSrc = content.videoSrc || '',
+                    subMaterial;
 
                 pageTit.text(nodeName);
                 pageDesc.text(nodeDesc);
                 video.find('source').attr('src', videoSrc);
+
+                // 补充资源
+
             }
 
         }());
@@ -240,7 +264,8 @@ requirejs(['jquery', 'bootstrap', 'loginModule', 'nanoscroller', 'videojs', 'ale
 
             //播放结束后记录观看状态
             video.on('ended', function(event) {
-
+                var next = recordStatus(routeStatus, nid);
+                window.location.href = 'http://localhost/cucmooc/pages/route.html?rid=2&nid=' + next;
             });
 
             function recordStatus(records, curId) {
@@ -263,7 +288,7 @@ requirejs(['jquery', 'bootstrap', 'loginModule', 'nanoscroller', 'videojs', 'ale
                         data: {
                             newHaveLearned: done,
                             newHavenotLearned: undone,
-                            newIsLearning: newCur
+                            newIsLearning: nextCur
                         }
                     })
                     .done(function() {
@@ -276,7 +301,9 @@ requirejs(['jquery', 'bootstrap', 'loginModule', 'nanoscroller', 'videojs', 'ale
                         // console.log("complete");
                     });
 
+                    return nextCur;
             }
+
         }());
 
 
