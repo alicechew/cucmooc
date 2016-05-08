@@ -265,7 +265,7 @@ requirejs(['jquery', 'bootstrap', 'loginModule', 'nanoscroller', 'videojs', 'ale
             //播放结束后记录观看状态
             video.on('ended', function(event) {
                 var next = recordStatus(routeStatus, nid);
-                window.location.href = 'http://localhost/cucmooc/pages/route.html?rid=2&nid=' + next;
+                window.location.href = 'http://localhost/cucmooc/pages/route.html?rid='+rid+'&nid=' + next;
             });
 
             function recordStatus(records, curId) {

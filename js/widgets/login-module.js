@@ -111,7 +111,7 @@ define(function() {
             ifLogin: ifLogin,
             userId: userId,
             userEnroll: userEnroll
-        };
+        };tr
 
     };
 

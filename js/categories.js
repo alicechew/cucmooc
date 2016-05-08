@@ -108,7 +108,6 @@ requirejs(['jquery', 'bootstrap', 'paginator', 'loginModule'],
                 $content.each(function(index, el) {
                     if (currentPage < numOfPage) {
                         if (index % itemPerPage < itemPerPage - 1) {
-                            // console.log(tempGroup);
                             tempGroup.push(el);
                         } else {
                             tempGroup.push(el);
