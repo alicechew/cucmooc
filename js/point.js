@@ -7,12 +7,12 @@ requirejs(['jquery', 'bootstrap', 'loginModule'],
 
         var pointData = {
             "subjectId":"01",
-            "subjectName": 'IT互联网',
+            "subjectName": "IT互联网",
             "courseId":"01",
-            "courseName": "php基础",
+            "courseName": "JavaScript基础",
             "pointId":"0101",
-            "pointName": "php基本语法",
-            "pointDesc": "知识点介绍知识点介绍知识点介绍知识点介绍知识点介绍知识点介绍知识点介绍知识点介绍知识点介绍知识点介绍知识点介绍知识点介绍知识点介绍知识点介绍知识点介绍知识点介绍知识点介绍知识点介绍知识点介绍知识点介绍知识点介绍"
+            "pointName": "怎么插入JS",
+            "pointDesc": "外部引用就是引用HTML文件外部的JavaScript文件，这种方式可以使代码更清晰，更容易扩展。"
         };
         $(document).ready(function() {
             var pointId = getQueryVariable('pointId');

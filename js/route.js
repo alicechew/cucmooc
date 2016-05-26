@@ -178,7 +178,7 @@ requirejs(['jquery', 'bootstrap', 'loginModule', 'nanoscroller', 'videojs', 'ale
                 //填充节点状态
                 function fillStatus(routeStatus) {
                     var done = routeStatus.haveLearned ? routeStatus.haveLearned.split('&') : [];
-                    undone = routeStatus.havenotLearned.split('&');
+                    undone = routeStatus.havenotLearned ? routeStatus.havenotLearned.split('&') : [];
                     cur = routeStatus.isLearning.split('&');
 
                     //已完成
@@ -264,44 +264,47 @@ requirejs(['jquery', 'bootstrap', 'loginModule', 'nanoscroller', 'videojs', 'ale
 
             //播放结束后记录观看状态
             video.on('ended', function(event) {
-                var next = recordStatus(routeStatus, nid);
-                window.location.href = 'http://localhost/cucmooc/pages/route.html?rid='+rid+'&nid=' + next;
+                var next;
+
+                next = recordStatus(routeStatus, nid, rid);
+
+                if (routeStatus.havenotLearned.length) {
+                    window.location.href = 'http://localhost/cucmooc/pages/route.html?rid=' + rid + '&nid=' + next;
+                }
+
             });
 
-            function recordStatus(records, curId) {
-                var done = records.haveLearned.split('&'),
-                    undone = records.havenotLearned.split('&'),
+            function recordStatus(records, curId, routeId) {
+                var done = records.haveLearned.length ? records.haveLearned.split('&') : [],
+                    undone = records.havenotLearned.length ? records.havenotLearned.split('&') : [],
                     cur = records.isLearning,
                     nextCur;
 
                 done.push(curId);
-                nextCur = undone[0];
-                undone.splice(jQuery.inArray(nextCur, undone), 1);
-                done.join('&');
-                undone.join('&');
+                //若还有未完成节点
+                if (undone.length) {
+                    nextCur = undone[0];
+                    undone.splice(jQuery.inArray(nextCur, undone), 1);
+                    undone = undone.join('&');
+                }else{
+                    nextCur = cur;
+                }
+                done = done.join('&');
 
-                //新状态写入数据库
-                $.ajax({
-                        url: '/path/to/file',
-                        type: 'POST',
-                        dataType: 'json',
-                        data: {
-                            newHaveLearned: done,
-                            newHavenotLearned: undone,
-                            newIsLearning: nextCur
-                        }
-                    })
-                    .done(function() {
-                        console.log("record status success");
-                    })
-                    .fail(function() {
-                        console.log("error");
-                    })
-                    .always(function() {
-                        // console.log("complete");
-                    });
 
-                    return nextCur;
+                // 新状态写入数据库
+                API.updateStatus({
+                    type: 'updateStatus',
+                    userId: userInfo.userId,
+                    routeStr: routeId,
+                    newHaveLearned: done,
+                    newHavenotLearned: undone,
+                    newIsLearning: nextCur
+                },function(){
+                    alert('更新状态成功！');
+                });
+
+                return nextCur;
             }
 
         }());

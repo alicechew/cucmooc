@@ -87,7 +87,7 @@ requirejs(['jquery', 'bootstrap', 'loginModule'],
                     })
                     .done(function(result) {
                         courseData = result.content;
-                        fillInfo(courseData.subjectID, courseData.courseName, courseData.courseDesc, courseData.courseImgSrc);
+                        fillInfo(courseData.subjectID, courseData.courseName, courseData.courseIntro, courseData.courseImgSrc);
                         createKnowList('#js_kldgPoint', courseId);
                     })
                     .fail(function() {
@@ -183,7 +183,8 @@ requirejs(['jquery', 'bootstrap', 'loginModule'],
                     tabIndex,
                     btnString,
                     listString,
-                    subListString;
+                    subListString,
+                    pointHref = './knowledge-point.html';
 
                 //判断该知识点是否有子知识点
                 if (ifChild == '1') {
@@ -197,7 +198,7 @@ requirejs(['jquery', 'bootstrap', 'loginModule'],
                     subListString = '';
                 }
                 //拼合单点列表
-                listString = '<li class="point-level-' + pointLevel + '">' + btnString + '<a href="' + point.pointHref + '">' + pointTitle + '</a>' + subListString + '</li>';
+                listString = '<li class="point-level-' + pointLevel + '">' + btnString + '<a target="_blank" href="' + pointHref + '">' + pointTitle + '</a>' + subListString + '</li>';
 
                 //判断该知识点是否有父级知识点，若有则插入到该父节点的ul
                 if (ifParent) {
@@ -343,15 +344,7 @@ requirejs(['jquery', 'bootstrap', 'loginModule'],
 
             });
 
-            if (ifLogin == 'false') {
-                return;
-            }
-            //绑定tooltip
-            btnEnrollRoute.tooltip({
-                trigger: 'manual',
-                title: '加入轨迹成功！',
-                placement: 'top'
-            });
+
 
             //加入轨迹按钮事件绑定
             btnEnrollRoute.on('click', function(event) {
@@ -371,7 +364,7 @@ requirejs(['jquery', 'bootstrap', 'loginModule'],
                 $.ajax({
                         url: '../php/course.php',
                         type: 'POST',
-                        dataType:'json',
+                        dataType: 'json',
                         data: {
                             type: 'enrollRoute',
                             userId: userId,
@@ -399,6 +392,16 @@ requirejs(['jquery', 'bootstrap', 'loginModule'],
                     .always(function() {
                         // console.log("complete");
                     });
+
+                if (ifLogin == 'false') {
+                    return;
+                }
+                //绑定tooltip
+                btnEnrollRoute.tooltip({
+                    trigger: 'manual',
+                    title: '加入轨迹成功！',
+                    placement: 'top'
+                });
             });
 
             function getRouteNode(routeId) {
@@ -484,7 +487,7 @@ requirejs(['jquery', 'bootstrap', 'loginModule'],
                             routeStr: routeId,
                             userId: userId
                         },
-                        async:false
+                        async: false
                     })
                     .done(function(result) {
                         if (result.status == '0') {

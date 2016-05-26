@@ -1,3 +1,9 @@
+/**
+ * author: Shuang Qiu
+ * Ver: 0.1
+ * Update Time: 2016/5/18
+ */
+
 requirejs(['jquery', 'bootstrap', 'loginModule', 'api'],
     function(jquery, bootstrap, LoginModule, API) {
 
@@ -48,9 +54,9 @@ requirejs(['jquery', 'bootstrap', 'loginModule', 'api'],
             }
 
             //@TODO: loading
-            $('#js_courseCont').load(function() {
-                $(this).html('<p style="color:red">loading...</p>');
-            });
+            // $('#js_courseCont').load(function() {
+            //     $(this).html('<p style="color:red">loading...</p>');
+            // });
 
             //显示最后观看轨迹
             function setLastRoute(userId) {
@@ -87,6 +93,7 @@ requirejs(['jquery', 'bootstrap', 'loginModule', 'api'],
                         routeName = lastRoute.pathName;
                         lastCourseId = lastRoute.courseID;
                         nodeCount = lastRoute.nodeCount;
+                        imgSrc = lastRoute.imgSrc;
                     }
                 }, function() {
                     console.log('getRoutesData error');
@@ -266,7 +273,7 @@ requirejs(['jquery', 'bootstrap', 'loginModule', 'api'],
                         container.html(navHtml);
 
                         //init
-                        $curTab = $($('.course-nav').find('[data-cid="'+curCourseId+'"]')[0]);
+                        $curTab = $($('.course-nav').find('[data-cid="' + curCourseId + '"]')[0]);
                         $curTab.addClass('cur');
                         refreshCourseContent($curTab.attr('data-cid'));
 
@@ -415,7 +422,7 @@ requirejs(['jquery', 'bootstrap', 'loginModule', 'api'],
                     function(result) {
                         if (result.status == '200') {
                             $(result.content).each(function(index, el) {
-                                el.imgScr = el.imgScr || 'bg_imgloading.png';
+                                el.imgScr = el.imgSrc || 'bg_imgloading.png';
                                 recRouteHtml += '<div class="col-md-3 col-xs-6">' + '<div class="item-panel panel b-a"><span class="icon-corner"></span>' + '<div class="item-pic">' + '<a target="_blank" href="' + itemPath + 'rid=' + el.pathID + '&nid=' + routeStatus[index] + '"><img src="' + imgUrl + el.imgScr + '" class="img-full" alt=""></a>' + '</div>' + '<div class="item-tit text-center font-bold text-md">' + '<a target="_blank" href="' + itemPath + 'rid=' + el.pathID + '&nid=' + routeStatus[index] + '">' + el.pathName + '</a>' + '</div>' + '<div class="item-desc m-l-sm m-r-sm m-b-sm">' + '<div class="text-center">' + el.pathDesc + '</div>' + '</div>' + '</div>' + '</div>';
                             });
                         }
@@ -461,6 +468,7 @@ requirejs(['jquery', 'bootstrap', 'loginModule', 'api'],
                 });
 
                 $(routeCont).each(function(index, el) {
+                    itemImgSrc = el.imgSrc;
                     routeHtmlStr += '<div class="col-md-3 col-xs-6">' + '<div class="item-panel panel b-a"><span class="btn-unenroll hide" data-rid="' + el.pathID + '">unenroll</span>' + '<div class="item-pic">' + '<a target="_blank" href="' + itemPath + 'rid=' + el.pathID + '&nid=' + routeStatus[index] + '"><img src="' + imgUrl + itemImgSrc + '" class="img-full" alt=""></a>' + '</div>' + '<div class="item-tit text-center font-bold text-md">' + '<a target="_blank" href="' + itemPath + 'rid=' + el.pathID + '&nid=' + routeStatus[index] + '">' + el.pathName + '</a>' + '</div>' + '<div class="item-desc m-l-sm m-r-sm m-b-sm">' + '<div class="text-center">' + el.pathDesc + '</div>' + '</div>' + '</div>' + '</div>';
                 });
                 $('#js_courseCont').html(routeHtmlStr);
@@ -503,31 +511,22 @@ requirejs(['jquery', 'bootstrap', 'loginModule', 'api'],
             //获取用户已参加课程信息
             function getUserCourses(userId) {
                 var courseStr = '';
-                $.ajax({
-                        url: '../php/homepage.php',
-                        type: 'GET',
-                        dataType: 'json',
-                        data: {
-                            type: 'getCoursesId',
-                            userId: userId
-                        },
-                        async: false
-                    })
-                    .done(function(result) {
-                        if (result.status == '200') {
-                            var courses = new Array();
-                            $(result.content).each(function(index, el) {
-                                courses.push(el.courseID);
-                            });
-                            courseStr = courses.join('&');
-                        }
-                    })
-                    .fail(function() {
-                        console.log("get user courses error");
-                    })
-                    .always(function() {
-                        // console.log("complete");
-                    });
+
+                API.getEnrollCourses({
+                    type: 'getCoursesId',
+                    userId: userId
+                }, function(result) {
+                    if (result.status == '200') {
+                        var courses = new Array();
+                        $(result.content).each(function(index, el) {
+                            courses.push(el.courseID);
+                        });
+                        courseStr = courses.join('&');
+                    }
+                }, function() {
+                    console.log('get user courses error');
+                });
+
                 return courseStr;
             }
             //拆解userEnroll字串
@@ -553,24 +552,15 @@ requirejs(['jquery', 'bootstrap', 'loginModule', 'api'],
                     userCourseContainer.html(noticeStr);
                     return;
                 }
-                $.ajax({
-                        url: '../php/homepage.php',
-                        type: 'GET',
-                        dataType: 'json',
-                        data: {
-                            type: 'getCoursesData',
-                            courseStr: userEnroll
-                        },
-                    })
-                    .done(function(result) {
-                        fillInList(result.content, userCourseContainer, courseHtmlStr);
-                    })
-                    .fail(function() {
-                        console.log("get courses data error");
-                    })
-                    .always(function(result) {
-                        // console.log("complete");
-                    });
+
+                API.getCourseData({
+                    type: 'getCoursesData',
+                    courseStr: userEnroll
+                }, function(result){
+                    fillInList(result.content, userCourseContainer, courseHtmlStr);
+                }, function(){
+                    console.log('get courses data error');
+                });
             }
 
             // function fillInList(content, container, htmlTemp) {
@@ -583,175 +573,5 @@ requirejs(['jquery', 'bootstrap', 'loginModule', 'api'],
             //     container.html(htmlList);
             // }
         });
-
-        /**
-         * 用户参与轨迹
-         */
-        // var userRoute = (function(ifLogin) {
-        //     var userEnroll = getUserRoutes(userInfo.userId),
-        //         userCourseContainer = $('#js_userRouteList');
-        //     //未登录则不作更改
-        //     if (ifLogin == 'false') {
-        //         return;
-        //     }
-        //     createItem(userEnroll);
-
-
-        //     //获取用户已参加轨迹信息
-        //     function getUserRoutes(userId) {
-        //         var routeStr = '';
-        //         $.ajax({
-        //                 url: '../php/homepage.php',
-        //                 type: 'GET',
-        //                 dataType: 'json',
-        //                 data: {
-        //                     type: 'getRoutesId',
-        //                     userId: userId
-        //                 },
-        //                 async: false
-        //             })
-        //             .done(function(result) {
-        //                 if (result.status == '200') {
-        //                     var routes = new Array();
-        //                     $(result.content).each(function(index, el) {
-        //                         routes.push(el.pathID);
-        //                     });
-        //                     routeStr = routes.join('&');
-        //                 }
-        //             })
-        //             .fail(function() {
-        //                 console.log("get user routes error");
-        //             })
-        //             .always(function() {
-        //                 // console.log("complete");
-        //             });
-        //         return routeStr;
-        //     }
-
-        //     //@TODO: 2016-4-4
-        //     function createItem(userEnroll) {
-        //         //html模板
-        //         var routes,
-        //             itemName = 'pathName',
-        //             itemIntro = 'pathDesc',
-        //             itemPath = './route.html?',
-        //             itemId = 'pathID',
-        //             imgUrl = '../images/path/',
-        //             itemImgSrc = 'itemImgSrc',
-        //             cur,
-        //             courseHtmlStr = '<div class="col-md-3 col-xs-6">' + '<div class="item-panel panel b-a">' + '<div class="item-pic">' + '<a target="_blank" href="' + itemPath + 'rid=$' + itemId + '$"><img src="' + imgUrl + '$' + itemImgSrc + '$" class="img-full" alt=""></a>' + '</div>' + '<div class="item-tit text-center font-bold text-md">' + '<a target="_blank" href="' + itemPath + 'rid=$' + itemId + '$">$' + itemName + '$</a>' + '</div>' + '<div class="item-desc m-l-sm m-r-sm m-b-sm">' + '<div class="text-center">$' + itemIntro + '$</div>' + '</div>' + '</div>' + '</div>';
-
-        //         //如果没有参加轨迹，则不发送ajax
-        //         if (!userEnroll) {
-        //             var noticeStr = '<div class="login-notice"><p class="text-center">您还没有参加任何轨迹！</p></div>';
-        //             userCourseContainer.html(noticeStr);
-        //             return;
-        //         }
-
-        //         $.ajax({
-        //                 url: '../php/homepage.php',
-        //                 type: 'GET',
-        //                 dataType: 'json',
-        //                 data: {
-        //                     type: 'getRoutesData',
-        //                     routeStr: userEnroll
-        //                 }
-        //             })
-        //             .done(function(result) {
-        //                 console.log(result);
-        //                 fillInList(result.content, userCourseContainer, courseHtmlStr);
-        //             })
-        //             .fail(function() {
-        //                 console.log("get routes data error");
-        //             })
-        //             .always(function(result) {
-        //                 // console.log("complete");
-        //             });
-        //     }
-
-        //     //@TODO: status
-        //     function getStatus(routeId, userId) {
-        //         var cur;
-
-        //         //routeStatus 当前学习状态
-        //         $.ajax({
-        //                 url: '../php/route-status.php',
-        //                 type: 'GET',
-        //                 dataType: 'json',
-        //                 data: {
-        //                     routeId: routeId,
-        //                     userId: userId
-        //                 },
-        //                 async: false
-        //             })
-        //             .done(function(result) {
-        //                 if (result.status == '200') {
-        //                     routeStatus = result.content;
-        //                     cur = routeStatus.isLearning || '';
-        //                 }
-        //             })
-        //             .fail(function() {
-        //                 console.log("get route status error");
-        //             })
-        //             .always(function(result) {
-        //                 // console.log("complete");
-        //             });
-
-        //         return cur;
-        //     }
-
-        //     function fillInList(content, container, htmlTemp) {
-        //         var htmlList = '';
-        //         container.html('');
-        //         $(content).each(function(index, el) {
-        //             el.itemImgSrc = el.courseImgSrc || 'bg_imgloading.png';
-        //             htmlList += htmlTemp.temp(el);
-        //         });
-        //         container.html(htmlList);
-        //     }
-        // }(ifLogin));
-
-        // //填充推荐内容
-        // //@TODO：试试传入填充种类参数。三种填充内容公用一个填充函数。
-        // var fillRecommend = (function() {
-        //     var courseItems = $('.recommend-course').find('.item-panel'),
-        //         courseName = courseItems.find('.item-tit').find('a'),
-        //         courseDesc = courseItems.find('.item-desc').find('div'),
-        //         courseImg = courseItems.find('img'),
-        //         url = '../images/course/';
-
-        //     $.ajax({
-        //             url: '../php/homepage.php',
-        //             type: 'GET',
-        //             dataType: 'json',
-        //             data: {
-        //                 type: 'recommend'
-        //             }
-        //         })
-        //         .done(function(result) {
-        //             console.log('recommend course load success');
-        //             //推荐课程数量固定，故直接填充，不动态生成
-        //             courseName.each(function(index, el) {
-        //                 // el.innerText = result[index].courseName;
-        //                 // firefox 不支持innerText
-        //                 $(el).text(result[index].courseName);
-        //             });
-        //             courseDesc.each(function(index, el) {
-        //                 // el.innerText = result[index].courseDesc;
-        //                 $(el).text(result[index].courseDesc);
-        //             });
-
-        //             courseImg.each(function(index, el) {
-        //                 var imgSrc = result[index].courseImgSrc || 'bg_imgloading.png';
-        //                 el.src = url + imgSrc;
-        //             });
-        //         })
-        //         .fail(function() {
-        //             console.log("recommend course load error");
-        //         })
-        //         .always(function() {
-        //             // console.log("complete");
-        //         });
-        // }());
 
     });

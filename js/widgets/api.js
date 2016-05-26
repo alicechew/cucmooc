@@ -149,6 +149,18 @@ define('api', ['jquery'], function() {
         }).done(doneCb).fail(failCb).always(alwaysCb);
     };
 
+    //更新学习轨迹状态
+    Q.updateStatus = function(data, doneCb, failCb, alwaysCb) {
+
+        $.ajax({
+            url: '../php/route.php',
+            type: 'POST',
+            dataType: 'json',
+            data: data,
+            async: false
+        }).done(doneCb).fail(failCb).always(alwaysCb);
+    };
+
     //获取轨迹结点信息
     Q.getNodesData = function(data, doneCb, failCb, alwaysCb) {
 

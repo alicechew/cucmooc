@@ -45,6 +45,25 @@ if (!$con) {
         echo json_encode($arr,JSON_UNESCAPED_UNICODE);
 
     }
+
+     //完成当前节点，更新数据库信息
+    else if ($type ==='updateStatus'){
+        $uid = $_POST['userId'];
+        $ridStr = $_POST['routeStr'];
+        $newHave = $_POST['newHaveLearned'];
+        $newHaveNot = $_POST['newHavenotLearned'];
+        $newIs = $_POST['newIsLearning'];
+        $sql = "UPDATE learningrecord SET haveLearned='$newHave',havenotLearned='$newHaveNot',isLearning='$newIs' WHERE userID='$uid' AND pathID='$ridStr'";
+        $res = mysql_query($sql);
+        if (!$res){
+            $arr = array("status" => "0");
+        }else {
+            $arr = array("status" => "200");
+        }
+
+        echo json_encode($arr,JSON_UNESCAPED_UNICODE);
+
+    }
 }
 
 mysql_close($con);

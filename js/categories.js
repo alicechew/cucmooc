@@ -27,13 +27,14 @@ requirejs(['jquery', 'bootstrap', 'paginator', 'loginModule'],
                 itemName = searchType + 'Name',
                 itemDesc = searchType + 'Desc',
                 itemPath = './course.html?',
-                itemId = searchType + 'Id',
-                itemImgSrc = 'itemImgSrc';
+                itemId = searchType == 'point' ? 'pointID' : 'courseID',
+                itemUrl = '../images/course/',
+                itemImgSrc = 'courseImgSrc';
 
                 htmlTemp = '<div class="col-md-3 col-xs-6">'
                         + '<div class="item-panel panel b-a">'
                         +    '<div class="item-pic">'
-                        +       '<a target="_blank" href="'+ itemPath + 'courseId=$' + itemId + '$"><img src="$' + itemImgSrc +'$" class="img-full" alt=""></a>'
+                        +       '<a target="_blank" href="'+ itemPath + 'courseId=$' + itemId + '$"><img src="'+itemUrl+'$' + itemImgSrc +'$" class="img-full" alt=""></a>'
                         +   '</div>'
                         +    '<div class="item-tit text-center font-bold text-md">'
                         +       '<a target="_blank" href="' + itemPath + 'courseId=$' + itemId + '$">$' + itemName + '$</a>'
